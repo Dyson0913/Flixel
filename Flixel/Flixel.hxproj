@@ -16,15 +16,18 @@
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="C:\HaxeToolkit\haxe\lib\flixel\4,0,1" />
-    <class path="C:\HaxeToolkit\haxe\lib\openfl\3,6,1" />
     <class path="C:\HaxeToolkit\haxe\lib\lime\2,9,1" />
+    <class path="C:\HaxeToolkit\haxe\lib\openfl\3,6,1" />
+    <class path="C:\HaxeToolkit\haxe\lib\openfl-websocket\0,2,0\src" />
+    <class path="C:\HaxeToolkit\haxe\lib\haxe-ws\0,0,4\src" />
+    <class path="C:\HaxeToolkit\haxe\lib\hxssl\3,0,0-alpha" />
     <class path="source" />
     <class path="C:\HaxeToolkit\haxe\lib\openfl\3,6,1\extern" />
     <class path="export\flash\haxe" />
   </classpaths>
   <!-- Build options -->
   <build>
-    <option directives="flixel=4.0.1&#xA;openfl=3.6.1&#xA;lime=2.9.1&#xA;openfl-next&#xA;tools=2.9.1&#xA;FLX_NO_DEBUG&#xA;no-compilation&#xA;NAPE_RELEASE_BUILD&#xA;openfl-flash&#xA;web&#xA;display" />
+    <option directives="flixel=4.0.1&#xA;lime=2.9.1&#xA;openfl=3.6.1&#xA;openfl-websocket=0.2.0&#xA;haxe-ws=0.0.4&#xA;hxssl=3.0.0-alpha&#xA;openfl-next&#xA;tools=2.9.1&#xA;FLX_NO_DEBUG&#xA;no-compilation&#xA;NAPE_RELEASE_BUILD&#xA;openfl-flash&#xA;web&#xA;display" />
     <option flashStrict="False" />
     <option mainClass="ApplicationMain" />
     <option enabledebug="False" />

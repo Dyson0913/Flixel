@@ -8,6 +8,10 @@ import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
 import haxe.Json;
 
+import flash.display.BitmapData;
+
+import Std;
+import openfl.Assets;
 //import flixel.util.FlxSpriteUtil;
 
 import openfl.utils.ByteArray;
@@ -19,6 +23,12 @@ class MenuState extends FlxState
 	private var _btn_sence:FlxButton;
 	
 	private var _pack:FlxText;
+	private var _dyson:FlxText;
+	
+	private var _program:FlxText;
+	
+	private var _bit:BitmapData;
+	private var _player:Base_sprite;
 	
 	private var _ws:WebSocket;
 	
@@ -34,8 +44,17 @@ class MenuState extends FlxState
 		_pack = new FlxText(100, 30, 200, "pack", 14);
 		add(_pack);
 		
+		_dyson = new FlxText(300, 300, 200, "dyson", 14);
+		add(_dyson);
+		
+		_program = new FlxText(400, 300, 200, "pro", 14);
+		add(_program);
 		
 		
+		
+		
+		_player = new Base_sprite(30, 30);
+		add(_player);
 		
 		_ws = new WebSocket("ws://106.186.116.216:8888/gamesocket/111");
 		_ws.onOpen.add(onOpen);		
@@ -45,6 +64,24 @@ class MenuState extends FlxState
 		super.create();
 	}
 
+	private function dysonpro(percent:Float):Void
+	{
+		_program.text = Std.string(percent);
+	}
+	
+	private function dysonDown(s:BitmapData):Void
+	{
+		if( s == null) _dyson.text = "not  ok";
+		else
+		{
+			_dyson.text = "ok";
+			_bit = s;
+			_player.set_bitmap(_bit);
+		}
+		
+		
+	}
+	
 	private function onOpen(s:Dynamic):Void
     {
 		if ( s == null) _pack.text = " onopen";
@@ -73,7 +110,9 @@ class MenuState extends FlxState
 	
 	private function clickPlay():Void
 	{
-		FlxG.switchState(new PlayState());
+		Assets.loadBitmapData("assets/images/dyson.png").onProgress(dysonpro).onComplete(dysonDown);
+		
+		//FlxG.switchState(new PlayState());
 	}
 	
 	override public function update(elapsed:Float):Void
