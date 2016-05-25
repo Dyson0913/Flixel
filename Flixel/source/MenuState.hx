@@ -22,8 +22,9 @@ class MenuState extends FlxState
 {
 	private var _btn_sence:FlxButton;
 	
+	private var _hud:HUD;
 	
-	private var _change_sence:FlxButton;
+	private var _dk:FlxButton;
 	
 	private var _pack:FlxText;
 	private var _dyson:FlxText;
@@ -37,15 +38,17 @@ class MenuState extends FlxState
 	
 	override public function create():Void
 	{
+		_hud = new HUD();
+		
 		
 		add(new FlxText(0, 0, 0, "Hello World!"));
 		
-		_btn_sence = new FlxButton(200, 300, "playe", clickPlay);
+		_btn_sence = new FlxButton(200, 300, "loadingpic", loadingpic);
 		//centerSprite(_btn_sence);
 		add(_btn_sence);
 		
-		_change_sence = new FlxButton(250, 400, "change", clickchange);		
-		add(_change_sence);
+		_dk = new FlxButton(250, 400, "dk", dk);		
+		add(_dk);
 		
 		
 		_pack = new FlxText(100, 30, 200, "pack", 14);
@@ -53,6 +56,8 @@ class MenuState extends FlxState
 		
 		_dyson = new FlxText(300, 300, 200, "dyson", 14);
 		add(_dyson);
+		
+		
 		
 		_program = new FlxText(400, 300, 200, "pro", 14);
 		add(_program);		
@@ -117,7 +122,7 @@ class MenuState extends FlxState
 	}
 	
 	
-	private function clickPlay():Void
+	private function loadingpic():Void
 	{
 		Assets.loadBitmapData("assets/images/lobby/lobby.png").onProgress(dysonpro).onComplete(dysonDown);
 		//Assets.loadBitmapData("assets/images/dyson.png").onProgress(dysonpro).onComplete(dysonDown);
@@ -125,12 +130,13 @@ class MenuState extends FlxState
 		//FlxG.switchState(new PlayState());
 	}
 	
-	private function clickchange():Void
+	private function dk():Void
 	{
 		//Assets.loadBitmapData("assets/images/lobby/lobby.png").onProgress(dysonpro).onComplete(dysonDown);
 		//Assets.loadBitmapData("assets/images/dyson.png").onProgress(dysonpro).onComplete(dysonDown);
-		
-		FlxG.switchState(new PlayState());
+		add(_hud);
+		//remove(_hud);
+		//FlxG.switchState(new PlayState());
 	}
 	
 	override public function update(elapsed:Float):Void
