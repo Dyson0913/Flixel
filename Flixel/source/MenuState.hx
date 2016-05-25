@@ -22,6 +22,9 @@ class MenuState extends FlxState
 {
 	private var _btn_sence:FlxButton;
 	
+	
+	private var _change_sence:FlxButton;
+	
 	private var _pack:FlxText;
 	private var _dyson:FlxText;
 	
@@ -30,16 +33,20 @@ class MenuState extends FlxState
 	private var _bit:BitmapData;
 	private var _player:Base_sprite;
 	
-	private var _ws:WebSocket;
+	private var _ws:WebSocket =null;
 	
 	override public function create():Void
 	{
 		
 		add(new FlxText(0, 0, 0, "Hello World!"));
 		
-		_btn_sence = new FlxButton(0, 0, "playe", clickPlay);
-		centerSprite(_btn_sence);
+		_btn_sence = new FlxButton(200, 300, "playe", clickPlay);
+		//centerSprite(_btn_sence);
 		add(_btn_sence);
+		
+		_change_sence = new FlxButton(250, 400, "change", clickchange);		
+		add(_change_sence);
+		
 		
 		_pack = new FlxText(100, 30, 200, "pack", 14);
 		add(_pack);
@@ -48,18 +55,20 @@ class MenuState extends FlxState
 		add(_dyson);
 		
 		_program = new FlxText(400, 300, 200, "pro", 14);
-		add(_program);
-		
+		add(_program);		
 		
 		
 		
 		_player = new Base_sprite(30, 30);
 		add(_player);
 		
-		_ws = new WebSocket("ws://106.186.116.216:8888/gamesocket/111");
-		_ws.onOpen.add(onOpen);		
-		_ws.onTextPacket.add(onText);
-		_ws.onClose.add(onClose);
+		if ( _ws == null)
+		{
+			_ws = new WebSocket("ws://106.186.116.216:8888/gamesocket/111");
+			_ws.onOpen.add(onOpen);		
+			_ws.onTextPacket.add(onText);
+			_ws.onClose.add(onClose);
+		}
 		
 		super.create();
 	}
@@ -110,13 +119,27 @@ class MenuState extends FlxState
 	
 	private function clickPlay():Void
 	{
-		Assets.loadBitmapData("assets/images/dyson.png").onProgress(dysonpro).onComplete(dysonDown);
+		Assets.loadBitmapData("assets/images/lobby/lobby.png").onProgress(dysonpro).onComplete(dysonDown);
+		//Assets.loadBitmapData("assets/images/dyson.png").onProgress(dysonpro).onComplete(dysonDown);
 		
 		//FlxG.switchState(new PlayState());
+	}
+	
+	private function clickchange():Void
+	{
+		//Assets.loadBitmapData("assets/images/lobby/lobby.png").onProgress(dysonpro).onComplete(dysonDown);
+		//Assets.loadBitmapData("assets/images/dyson.png").onProgress(dysonpro).onComplete(dysonDown);
+		
+		FlxG.switchState(new PlayState());
 	}
 	
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
+	}
+	
+	override public function destroy():Void
+	{
+		//_ws.dispose();
 	}
 }
