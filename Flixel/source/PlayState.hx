@@ -7,10 +7,6 @@ import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
 
-import flash.display.BitmapData;
-
-import openfl.Assets;
-
 class PlayState extends FlxState
 {
 	
@@ -19,6 +15,7 @@ class PlayState extends FlxState
 	{
 		super.create();
 		add(new FlxText(0, 0, 0, "playerState"));	
+		//FlxG.switchState(new PlayState());
 		
 	}
 

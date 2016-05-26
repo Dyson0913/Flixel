@@ -7,9 +7,12 @@ package ;
 import flixel.FlxG;
 import flixel.group.FlxGroup;
 import flixel.FlxSprite;
+import flixel.text.FlxText;
 
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
+
+
 
 class HUD extends FlxTypedGroup<FlxSprite>
 {
@@ -25,26 +28,29 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	{
 		super();
 		
-		_sprBack = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BROWN);
+		_sprBack = new FlxSprite().makeGraphic(FlxG.width, 30, FlxColor.BROWN);
 		add(_sprBack);
 		
-		_loadpic = new FlxButton(50, 0, "loading", clickPlay);		
+		add(new FlxText(0, 0, 0, "playerName"));	
+		
+		_loadpic = new FlxButton(100, 0, "back", clickPlay);		
 		add(_loadpic);
-		
-		_player = new Base_sprite(30, 30);
-		add(_player);
-		
-		_change_sence = new FlxButton(250, 400, "change", clickchange);		
-		add(_change_sence);
+		//
+		//_player = new Base_sprite(30, 30);
+		//add(_player);
+		//
+		//_change_sence = new FlxButton(250, 400, "change", clickchange);		
+		//add(_change_sence);
 	}
 	
 	private function clickPlay():Void
 	{
+		FlxG.switchState(new MenuState());
 		//Assets.loadBitmapData("assets/images/dk/dk.png").onComplete(dysonDown);		
 	}
 	
 	private function clickchange():Void
 	{		
-		//FlxG.switchState(new MenuState());
+		
 	}
 }
