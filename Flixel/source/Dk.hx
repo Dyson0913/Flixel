@@ -34,7 +34,7 @@ class Dk extends FlxTypedGroup<FlxSprite>
 		_sprBack = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLUE);
 		add(_sprBack);
 		FlxG.log.add("dk init");
-		s = Main._model;
+		s = Main._model._name;
 		
 		_loadpic = new FlxButton(300, 200, s, clickPlay);		
 		add(_loadpic);

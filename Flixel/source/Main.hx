@@ -3,6 +3,7 @@ package ;
 import flixel.FlxG;
 import flixel.FlxGame;
 import haxe.Log;
+import model.Model;
 import openfl.display.Sprite;
 
 
@@ -15,11 +16,13 @@ class Main extends Sprite
 {
 	private var _ws:WebSocket = null;
 	
-	public static var _model:String;
+	public static var _model:Model;
 	
 	public function new()
 	{
 		super();
+		
+		_model = new Model();
 		
 		addChild(new FlxGame(640, 480, MenuState));
 		
@@ -30,7 +33,7 @@ class Main extends Sprite
 			_ws.onTextPacket.add(onText);
 			_ws.onClose.add(onClose);
 		}
-		//FlxG.debugger.visible = true;
+		FlxG.debugger.visible = true;		
 	}
 	
 	private function onOpen(s:Dynamic):Void
@@ -40,8 +43,10 @@ class Main extends Sprite
 	
 	private function onText(s:String):Void
 	{
-		Main._model = "100";
-		FlxG.log.add(s);
+		var ob:Dynamic = Json.parse(Json.stringify(s));
+		FlxG.log.add(ob);
+		Main._model._name = ob.myname;
+		//FlxG.log.add(s);
 		
 		_ws.sendText(Json.stringify(s));
 	}

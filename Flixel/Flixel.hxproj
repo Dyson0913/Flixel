@@ -27,7 +27,7 @@
   </classpaths>
   <!-- Build options -->
   <build>
-    <option directives="flixel=4.0.1&#xA;lime=2.9.1&#xA;openfl=3.6.1&#xA;openfl-websocket=0.2.0&#xA;haxe-ws=0.0.4&#xA;hxssl=3.0.0-alpha&#xA;openfl-next&#xA;tools=2.9.1&#xA;FLX_NO_DEBUG&#xA;no-compilation&#xA;NAPE_RELEASE_BUILD&#xA;openfl-flash&#xA;web&#xA;display" />
+    <option directives="flixel=4.0.1&#xA;lime=2.9.1&#xA;openfl=3.6.1&#xA;openfl-websocket=0.2.0&#xA;haxe-ws=0.0.4&#xA;hxssl=3.0.0-alpha&#xA;openfl-next&#xA;tools=2.9.1&#xA;no-compilation&#xA;NAPE_RELEASE_BUILD&#xA;openfl-flash&#xA;web&#xA;display" />
     <option flashStrict="False" />
     <option mainClass="ApplicationMain" />
     <option enabledebug="False" />
