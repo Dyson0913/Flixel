@@ -10,9 +10,7 @@ import openfl.display.Sprite;
 
 import haxe.Json;
 import openfl.net.WebSocket;
-
-
-import sys.io.File;
+import openfl.Assets;
 
 class Main extends Sprite
 {
@@ -36,6 +34,13 @@ class Main extends Sprite
 			_ws.onClose.add(onClose);
 		}
 		FlxG.debugger.visible = true;		
+		
+		Assets.loadText("assets/data/pack_DK_normal.txt").onComplete(dysonDown);	
+	}
+	
+	private function dysonDown(s:Dynamic):Void
+	{		
+		FlxG.log.add(s);
 	}
 	
 	private function onOpen(s:Dynamic):Void
