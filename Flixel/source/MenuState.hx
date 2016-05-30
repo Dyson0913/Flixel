@@ -16,7 +16,7 @@ import openfl.Assets;
 
 import openfl.utils.ByteArray;
 
-
+import Sys.io.File;
 
 class MenuState extends FlxState
 {
@@ -47,6 +47,9 @@ class MenuState extends FlxState
 		add(_7pk);		
 		
 		add(_hud);
+		
+		//var value = File.getContent("assets/data/pack_DK_normal.txt");
+		FlxG.log.add(value);
 		super.create();
 	}
 	
