@@ -24,9 +24,11 @@ class MenuState extends FlxState
 	
 	private var _dkcanvs:Dk;
 	private var _PAcanvs:PA;
+	private var _7pkcanvs:Super7pk;
 	
 	private var _dk:FlxButton;
 	private var _pa:FlxButton;
+	private var _7pk:FlxButton;
 	
 	override public function create():Void
 	{
@@ -40,6 +42,9 @@ class MenuState extends FlxState
 		
 		_pa = new FlxButton(400, 400, "pa", pa);		
 		add(_pa);		
+		
+		_7pk = new FlxButton(500, 400, "7pk", click7pk);		
+		add(_7pk);		
 		
 		add(_hud);
 		super.create();
@@ -64,6 +69,15 @@ class MenuState extends FlxState
 		remove(_hud);
 		_PAcanvs = new PA();
 		add(_PAcanvs);
+		add(_hud);
+		
+	}
+	
+	private function click7pk():Void
+	{		
+		remove(_hud);
+		_7pkcanvs = new Super7pk();
+		add(_7pkcanvs);
 		add(_hud);
 		
 	}

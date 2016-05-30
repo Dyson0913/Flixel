@@ -31,7 +31,8 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		_sprBack = new FlxSprite().makeGraphic(FlxG.width, 30, FlxColor.BROWN);
 		add(_sprBack);
 		
-		add(new FlxText(0, 0, 0, "playerName"));	
+		
+		add(new FlxText(0, 0, 0, ""));	
 		
 		_loadpic = new FlxButton(100, 0, "back", clickPlay);		
 		add(_loadpic);

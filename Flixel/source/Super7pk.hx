@@ -15,7 +15,7 @@ import flixel.util.FlxColor;
 import openfl.Assets;
 import flash.display.BitmapData;
 
-class PA extends FlxTypedGroup<FlxSprite>
+class Super7pk extends FlxTypedGroup<FlxSprite>
 {
 	private var _sprBack:FlxSprite;
 	
@@ -30,9 +30,7 @@ class PA extends FlxTypedGroup<FlxSprite>
 		super();
 		
 		_sprBack = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.RED);
-		add(_sprBack);
-		FlxG.log.add("PA init");
-		
+		add(_sprBack);				
 		
 		_loadpic = new FlxButton(300, 200, Main._model._name, clickPlay);		
 		add(_loadpic);
@@ -46,7 +44,7 @@ class PA extends FlxTypedGroup<FlxSprite>
 	
 	private function clickPlay():Void
 	{
-		Assets.loadBitmapData("assets/images/pa/pa.png").onComplete(dysonDown);		
+		Assets.loadBitmapData("assets/images/super7pk/super7pk.png").onComplete(dysonDown);		
 	}
 	
 	private function dysonDown(s:BitmapData):Void

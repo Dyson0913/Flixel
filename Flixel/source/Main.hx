@@ -33,7 +33,7 @@ class Main extends Sprite
 			_ws.onTextPacket.add(onText);
 			_ws.onClose.add(onClose);
 		}
-		FlxG.debugger.visible = true;		
+		//FlxG.debugger.visible = true;		
 	}
 	
 	private function onOpen(s:Dynamic):Void
@@ -43,10 +43,10 @@ class Main extends Sprite
 	
 	private function onText(s:String):Void
 	{
-		var ob:Dynamic = Json.parse(Json.stringify(s));
-		FlxG.log.add(ob);
+		FlxG.log.add(s);
+		var ob:Dynamic = Json.parse(s);		
 		Main._model._name = ob.myname;
-		//FlxG.log.add(s);
+		//FlxG.log.add(ob);
 		
 		_ws.sendText(Json.stringify(s));
 	}
