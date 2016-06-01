@@ -33,9 +33,9 @@ class Main extends Sprite
 			_ws.onTextPacket.add(onText);
 			_ws.onClose.add(onClose);
 		}
-		FlxG.debugger.visible = true;		
+		//FlxG.debugger.visible = true;		
 		
-		Assets.loadText("assets/data/pack_DK_normal.txt").onComplete(dysonDown);	
+		//Assets.loadText("assets/data/pack_DK_normal.txt").onComplete(dysonDown);	
 	}
 	
 	private function dysonDown(s:Dynamic):Void

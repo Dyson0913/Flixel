@@ -25,18 +25,15 @@ class Dk extends FlxTypedGroup<FlxSprite>
 	
 	private var _change_sence:FlxButton;	
 	
-	private var s:String;
-	
 	public function new() 
 	{
 		super();
 		
 		_sprBack = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLUE);
 		add(_sprBack);
-		FlxG.log.add("dk init");
-		s = Main._model._name;
+		FlxG.log.add("dk init");		
 		
-		_loadpic = new FlxButton(300, 200, s, clickPlay);		
+		_loadpic = new FlxButton(300, 200, "dk", clickPlay);
 		add(_loadpic);
 		
 		_player = new Base_sprite(30, 30);

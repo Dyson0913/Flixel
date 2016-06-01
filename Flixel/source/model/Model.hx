@@ -10,7 +10,7 @@ class Model extends FlxObject
 {
 
 	public var _name:String;
-	public var _n:String;
+	public var _credit:String;
 	
 	public function new() 
 	{

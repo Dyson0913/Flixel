@@ -12,12 +12,16 @@ import flash.text.TextField;
 import flash.text.TextFormat;
 import flixel.FlxG;
 import flixel.system.FlxBasePreloader;
+import flixel.system.FlxAssets;
 
+//@:bitmap("assets/images/preloader1.jpg")
 @:bitmap("assets/images/preloader/light.png")
 private class GraphicLogoLight extends BitmapData {}
 
-@:bitmap("assets/images/preloader/corners.png")
+//@:bitmap("assets/images/preloader/corners.png")
+@:bitmap("assets/images/preloader1.jpg")
 private class GraphicLogoCorners extends BitmapData {}
+
 
 /**
  * This is the Default HaxeFlixel Themed Preloader 
@@ -71,7 +75,7 @@ class CusomPreloader extends FlxBasePreloader
 		//_bmpBar.x = 4;
 		//_bmpBar.y = _height - 11;
 		//_buffer.addChild(_bmpBar);
-		//
+		
 		//_text = new TextField();
 		//_text.defaultTextFormat = new TextFormat(FlxAssets.FONT_DEFAULT, 8, 0x5f6aff);
 		//_text.embedFonts = true;
