@@ -22,23 +22,24 @@ class Main extends Sprite
 		
 		_model = new Model();
 		
-		addChild(new FlxGame(640, 480, MenuState));
+		addChild(new FlxGame(1920, 1080, MenuState,1,60,60,false,true));
 		
 		if ( _ws == null)
 		{
-			_ws = new WebSocket("ws://106.186.116.216:8888/gamesocket/111");
+			_ws = new WebSocket("ws://52.68.210.98:7777/gamesocket/111");
+			//_ws = new WebSocket("ws://www.mm9900.net:8001/gamesocket/token/6f4922f45568161a8cdf4ad2299f6d23");
 			_ws.onOpen.add(onOpen);		
 			_ws.onError.add(onError);
 			_ws.onTextPacket.add(onText);
 			_ws.onClose.add(onClose);
 		}
-		FlxG.debugger.visible = true;		
+		//FlxG.debugger.visible = true;		
 		
 		//TODO test class
-		Assets.loadText("assets/data/pack_DK_normal.txt").onComplete(dysonDown);	
+		Assets.loadText("assets/data/pack_DK_normal.txt").onComplete(pack_loading_Ok);
 	}
 	
-	private function dysonDown(un_parse_pack:Dynamic):Void
+	private function pack_loading_Ok(un_parse_pack:Dynamic):Void
 	{		
 		var ob:Dynamic = Json.parse(un_parse_pack);		
 		var _packlist:Array<String> = ob.packlist;
@@ -71,22 +72,12 @@ class Main extends Sprite
 	}
 	
 	public static function parse_pack(un_parse_pack:String)
-	{
+	{				
+		var ob:Dynamic = Json.parse(un_parse_pack);
+		//FlxG.log.add(ob);
 		
+		//parse
 		
-		
-		//form server?
-		var ob:String = Json.stringify(un_parse_pack);
-		FlxG.log.add(ob);
-		return;
-		//from pack?
-		//var ob:Dynamic = Json.stringify(un_parse_pack);
-		
-		
-		
-		FlxG.log.add(ob);
-		
-		//parse 
 		
 	}
 	

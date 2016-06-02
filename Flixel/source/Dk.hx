@@ -15,11 +15,17 @@ import flixel.util.FlxColor;
 import openfl.Assets;
 import flash.display.BitmapData;
 
+import flixel.input.mouse.FlxMouseEventManager;
+
 class Dk extends FlxTypedGroup<FlxSprite>
 {
-	private var _sprBack:FlxSprite;
+	private var _bg:FlxSprite;	
+	private var _desk:FlxSprite;
+	private var _girl:FlxSprite;
 	
 	private var _loadpic:FlxButton;
+	private var _hide:FlxButton;
+	private var _show:FlxButton;
 	
 	private var _player:Base_sprite;
 	
@@ -29,18 +35,42 @@ class Dk extends FlxTypedGroup<FlxSprite>
 	{
 		super();
 		
-		_sprBack = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLUE);
-		add(_sprBack);
-		FlxG.log.add("dk init");		
+		FlxG.log.add("dk init");
+		
+		//_bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLUE);		
+		_bg = new FlxSprite().loadGraphic(AssetPaths.dk_bg__png);
+		add(_bg);
+		
+		_desk = new FlxSprite().loadGraphic(AssetPaths.dk_desk__png);
+		add(_desk);
+		
+		//new Btn(10, 20, AssetPaths.dk_girl__png,null,null,drag,null);
+		_girl = new FlxSprite(650).loadGraphic(AssetPaths.dk_girl__png);
+		add(_girl);
 		
 		_loadpic = new FlxButton(300, 200, "dk", clickPlay);
 		add(_loadpic);
 		
+		_hide = new FlxButton(400, 200, "hide", hide);
+		add(_hide);
+		
+		_show = new FlxButton(500, 200, "show", show);
+		add(_show);
+		
 		_player = new Base_sprite(30, 30);
 		add(_player);
 		
-		//_change_sence = new FlxButton(250, 400, "dk pic loading", clickchange);		
-		//add(_change_sence);
+	}
+	
+	
+	private function show():Void
+	{
+		_player.show();
+	}
+	
+	private function hide():Void
+	{
+		_player.hide();
 	}
 	
 	private function clickPlay():Void
@@ -52,10 +82,5 @@ class Dk extends FlxTypedGroup<FlxSprite>
 	{		
 		_player.set_bitmap(s);
 	}
-	
-	
-	private function clickchange():Void
-	{		
-		//FlxG.switchState(new MenuState());
-	}
+		
 }

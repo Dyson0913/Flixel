@@ -55,8 +55,7 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	}
 	
 	private function pack_test():Void
-	{		
-		FlxG.log.add(Main._model._packlist[0]);
-		//Main.parse_pack(Main._model._packlist[0]);
+	{				
+		Main.parse_pack(Main._model._packlist[0]);
 	}
 }
