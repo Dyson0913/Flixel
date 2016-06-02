@@ -8,11 +8,13 @@ import flixel.FlxG;
 import flixel.group.FlxGroup;
 import flixel.FlxSprite;
 import flixel.text.FlxText;
+import model.Model;
+import openfl.utils.Object;
 
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 
-
+import haxe.Json;
 
 class HUD extends FlxTypedGroup<FlxSprite>
 {
@@ -24,6 +26,8 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	
 	private var _change_sence:FlxButton;
 	
+	
+	
 	public function new() 
 	{
 		super();
@@ -34,7 +38,7 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		
 		add(new FlxText(0, 0, 0, ""));	
 		
-		_loadpic = new FlxButton(100, 0, "back", back_to_lobby);		
+		//_loadpic = new FlxButton(100, 0, "back", back_to_lobby);		
 		_loadpic = new FlxButton(100, 0, "test", pack_test);		
 		add(_loadpic);
 		//
@@ -52,6 +56,7 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	
 	private function pack_test():Void
 	{		
-		
+		FlxG.log.add(Main._model._packlist[0]);
+		//Main.parse_pack(Main._model._packlist[0]);
 	}
 }
