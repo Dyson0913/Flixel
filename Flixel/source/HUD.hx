@@ -34,7 +34,8 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		
 		add(new FlxText(0, 0, 0, ""));	
 		
-		_loadpic = new FlxButton(100, 0, "back", clickPlay);		
+		_loadpic = new FlxButton(100, 0, "back", back_to_lobby);		
+		_loadpic = new FlxButton(100, 0, "test", pack_test);		
 		add(_loadpic);
 		//
 		//_player = new Base_sprite(30, 30);
@@ -44,13 +45,12 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		//add(_change_sence);
 	}
 	
-	private function clickPlay():Void
+	private function back_to_lobby():Void
 	{
-		FlxG.switchState(new MenuState());
-		//Assets.loadBitmapData("assets/images/dk/dk.png").onComplete(dysonDown);		
+		FlxG.switchState(new MenuState());		
 	}
 	
-	private function clickchange():Void
+	private function pack_test():Void
 	{		
 		
 	}

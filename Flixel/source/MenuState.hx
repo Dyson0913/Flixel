@@ -34,6 +34,8 @@ class MenuState extends FlxState
 		
 		//add(new FlxText(0, 0, 0, "Hello World!"));
 		//centerSprite(_btn_sence);
+		dk();
+		return;
 		
 		_dk = new FlxButton(250, 400, "dk", dk);		
 		add(_dk);
