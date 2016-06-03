@@ -3,12 +3,15 @@ package ;
 import flixel.FlxG;
 import flixel.FlxGame;
 import haxe.Log;
+import js.html.ButtonElement;
 import model.Model;
 import openfl.display.Sprite;
 
 import haxe.Json;
 import openfl.net.WebSocket;
 import openfl.Assets;
+
+import js.Browser;
 
 class Main extends Sprite
 {
@@ -37,6 +40,16 @@ class Main extends Sprite
 		
 		//TODO test class
 		Assets.loadText("assets/data/pack_DK_normal.txt").onComplete(pack_loading_Ok);
+		
+		#if html5
+		var button:ButtonElement = Browser.document.createButtonElement();
+		button.textContent = "click me!";
+		button.onclick = function(event)
+		{
+			Browser.alert("haxe is great");			
+		}
+		Browser.document.body.appendChild(button);
+		#end
 	}
 	
 	private function pack_loading_Ok(un_parse_pack:Dynamic):Void

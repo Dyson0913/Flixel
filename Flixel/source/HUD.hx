@@ -8,6 +8,7 @@ import flixel.FlxG;
 import flixel.group.FlxGroup;
 import flixel.FlxSprite;
 import flixel.text.FlxText;
+import js.html.ButtonElement;
 import model.Model;
 import openfl.utils.Object;
 
@@ -15,6 +16,7 @@ import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 
 import haxe.Json;
+
 
 class HUD extends FlxTypedGroup<FlxSprite>
 {
@@ -47,6 +49,8 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		//
 		//_change_sence = new FlxButton(250, 400, "change", clickchange);		
 		//add(_change_sence);
+		
+		
 	}
 	
 	private function back_to_lobby():Void
@@ -55,7 +59,9 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	}
 	
 	private function pack_test():Void
-	{				
-		Main.parse_pack(Main._model._packlist[0]);
+	{
+		FlxG.fullscreen = !FlxG.fullscreen;		
+		
+		//Main.parse_pack(Main._model._packlist[0]);
 	}
 }

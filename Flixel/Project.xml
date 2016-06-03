@@ -83,7 +83,7 @@
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
 	
 	<!-- _________________________________ Custom _______________________________ -->
-	
+	<dependency name="./fullscreen.js" if="html5" />
 	<!-- <app preloader="CusomPreloader" />
 	
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
