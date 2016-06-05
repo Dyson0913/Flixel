@@ -3,15 +3,12 @@ package ;
 import flixel.FlxG;
 import flixel.FlxGame;
 import haxe.Log;
-import js.html.ButtonElement;
 import model.Model;
 import openfl.display.Sprite;
 
 import haxe.Json;
 import openfl.net.WebSocket;
 import openfl.Assets;
-
-import js.Browser;
 
 class Main extends Sprite
 {
@@ -29,27 +26,20 @@ class Main extends Sprite
 		
 		if ( _ws == null)
 		{
-			_ws = new WebSocket("ws://52.68.210.98:7777/gamesocket/111");
-			//_ws = new WebSocket("ws://www.mm9900.net:8001/gamesocket/token/6f4922f45568161a8cdf4ad2299f6d23");
+			//_ws = new WebSocket("ws://52.68.210.98:7777/gamesocket/111");
+			_ws = new WebSocket("ws://52.197.7.184:8001/gamesocket/token/6f4922f45568161a8cdf4ad2299f6d23");
 			_ws.onOpen.add(onOpen);		
 			_ws.onError.add(onError);
 			_ws.onTextPacket.add(onText);
 			_ws.onClose.add(onClose);
 		}
-		//FlxG.debugger.visible = true;		
+		FlxG.debugger.visible = true;		
 		
 		//TODO test class
 		Assets.loadText("assets/data/pack_DK_normal.txt").onComplete(pack_loading_Ok);
 		
-		#if html5
-		var button:ButtonElement = Browser.document.createButtonElement();
-		button.textContent = "click me!";
-		button.onclick = function(event)
-		{
-			Browser.alert("haxe is great");			
-		}
-		Browser.document.body.appendChild(button);
-		#end
+		
+		
 	}
 	
 	private function pack_loading_Ok(un_parse_pack:Dynamic):Void
@@ -90,8 +80,7 @@ class Main extends Sprite
 		//FlxG.log.add(ob);
 		
 		//parse
-		
-		
+		_model.pack_parse(ob);
 	}
 	
 	private function onClose(s:Dynamic):Void

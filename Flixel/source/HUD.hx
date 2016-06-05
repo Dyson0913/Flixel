@@ -8,7 +8,6 @@ import flixel.FlxG;
 import flixel.group.FlxGroup;
 import flixel.FlxSprite;
 import flixel.text.FlxText;
-import js.html.ButtonElement;
 import model.Model;
 import openfl.utils.Object;
 

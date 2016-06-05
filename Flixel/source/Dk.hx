@@ -8,6 +8,7 @@ import flixel.FlxG;
 import flixel.group.FlxGroup;
 import flixel.FlxSprite;
 import flixel.text.FlxText;
+import model.Model;
 
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
@@ -30,6 +31,8 @@ class Dk extends FlxTypedGroup<FlxSprite>
 	private var _player:Base_sprite;
 	
 	private var _change_sence:FlxButton;	
+	
+	
 	
 	public function new() 
 	{
@@ -60,8 +63,13 @@ class Dk extends FlxTypedGroup<FlxSprite>
 		_player = new Base_sprite(30, 30);
 		add(_player);
 		
+		Main._model.StateUpdate.add(onget);
 	}
 	
+	private function onget(s:Dynamic):Void
+	{
+		FlxG.log.add("dk onget "+s);
+	}
 	
 	private function show():Void
 	{
