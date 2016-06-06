@@ -34,7 +34,7 @@ class PA extends FlxTypedGroup<FlxSprite>
 		FlxG.log.add("PA init");
 		
 		
-		_loadpic = new FlxButton(300, 200, Main._model._name, clickPlay);		
+		_loadpic = new FlxButton(300, 200, "pa", clickPlay);		
 		add(_loadpic);
 		
 		_player = new Base_sprite(30, 30);
@@ -51,6 +51,7 @@ class PA extends FlxTypedGroup<FlxSprite>
 	
 	private function dysonDown(s:BitmapData):Void
 	{		
+		
 		_player.set_bitmap(s);
 	}
 	

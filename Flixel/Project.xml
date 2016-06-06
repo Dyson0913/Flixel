@@ -16,13 +16,13 @@
 	<!-- ____________________________ Window Settings ___________________________ -->
 	
 	<!--These window settings apply to all targets-->
-	<window width="1920" height="1080" fps="60" background="#000000" hardware="true" vsync="true" />
+	<window width="1920" height="1080" fps="60" background="#000000" hardware="true" vsync="true" antialiasing="4" />
 	
 	<!--HTML5-specific-->
-	<window if="html5" resizable="true" width="1920" height="1080" fullscreen="true"/>
+	<window if="html5"  resizable="true" width="1920" height="1080" fullscreen="true" vsync="true" antialiasing="4"  />
 	
 	<!--Desktop-specific-->
-	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" />
+	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" antialiasing="4" />
 	
 	<!--Mobile-specific-->
 	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" />
@@ -38,8 +38,9 @@
 	<haxelib name="flixel" />
 	<haxelib name="openfl" />
 	<haxelib name="openfl-websocket" />
+	
 	<!-- 
-	<haxelib name="lime"/>  -->
+	 <haxelib name="lime"/> -->
 	
 	<!--In case you want to use the addons package-->
 	<!--<haxelib name="flixel-addons" />-->

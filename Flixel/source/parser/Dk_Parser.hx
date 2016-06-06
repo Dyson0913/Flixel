@@ -23,7 +23,7 @@ class Dk_Parser extends IParser
 		FlxG.log.add("dk parse");
 		FlxG.log.add(message);
 		
-		Main._model.StateUpdate.dispatch(message);
+		//Main._model.StateUpdate.dispatch(message);
     }
 	
 	

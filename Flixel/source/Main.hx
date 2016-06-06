@@ -6,9 +6,12 @@ import haxe.Log;
 import model.Model;
 import openfl.display.Sprite;
 
+
 import haxe.Json;
 import openfl.net.WebSocket;
 import openfl.Assets;
+
+import visual_component.Hint_board;
 
 class Main extends Sprite
 {
@@ -16,13 +19,16 @@ class Main extends Sprite
 	
 	public static var _model:Model;		
 	
+	public var _game:FlxGame;
+	
+	
+	
 	public function new()
 	{
 		super();
 		
 		_model = new Model();
-		
-		addChild(new FlxGame(1920, 1080, MenuState,1,60,60,false,true));
+		addChild(new FlxGame(1920, 1080, MenuState,1,60,60,false,true));		
 		
 		if ( _ws == null)
 		{
@@ -85,7 +91,8 @@ class Main extends Sprite
 	
 	private function onClose(s:Dynamic):Void
 	{	
-		FlxG.log.add("close==");		
-		
+		FlxG.log.add("close==");
+		var s:String = "socket close";
+		Main._model.socket_error.dispatch(s);
 	}
 }

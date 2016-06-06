@@ -7,6 +7,7 @@ import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
 import haxe.Json;
+import visual_component.Hint_board;
 
 import flash.display.BitmapData;
 
@@ -28,13 +29,22 @@ class MenuState extends FlxState
 	private var _pa:FlxButton;
 	private var _7pk:FlxButton;
 	
+	public var _hint_board:Hint_board;
+	
+	
 	override public function create():Void
 	{
+		super.create();
 		_hud = new HUD();
 		
 		//add(new FlxText(0, 0, 0, "Hello World!"));
 		//centerSprite(_btn_sence);
-		dk();
+		
+		_hint_board = new Hint_board();
+		add(_hint_board);
+		
+		//event
+		Main._model.creditUpdate.add(credit_update);
 		
 		return;
 		
@@ -49,7 +59,13 @@ class MenuState extends FlxState
 		
 		add(_hud);
 		
-		super.create();
+		
+	}
+	
+	private function credit_update(data:Dynamic):Void
+	{
+		FlxG.log.add("main enter");
+		dk();
 	}
 	
 	function centerSprite(sprite:FlxButton)

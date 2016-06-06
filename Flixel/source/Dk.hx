@@ -49,6 +49,8 @@ class Dk extends FlxTypedGroup<FlxSprite>
 		
 		//new Btn(10, 20, AssetPaths.dk_girl__png,null,null,drag,null);
 		_girl = new FlxSprite(650).loadGraphic(AssetPaths.dk_girl__png);
+		_girl.antialiasing = true;
+		
 		add(_girl);
 		
 		_loadpic = new FlxButton(300, 200, "dk", clickPlay);
@@ -63,6 +65,7 @@ class Dk extends FlxTypedGroup<FlxSprite>
 		_player = new Base_sprite(30, 30);
 		add(_player);
 		
+		//event
 		Main._model.StateUpdate.add(onget);
 	}
 	
@@ -83,11 +86,13 @@ class Dk extends FlxTypedGroup<FlxSprite>
 	
 	private function clickPlay():Void
 	{
-		Assets.loadBitmapData("assets/images/dk/dk.png").onComplete(dysonDown);		
+		Assets.loadBitmapData(AssetPaths.dk_girl__png).onComplete(dysonDown);		
 	}
 	
 	private function dysonDown(s:BitmapData):Void
 	{		
+		
+		_player.antialiasing = true;
 		_player.set_bitmap(s);
 	}
 		

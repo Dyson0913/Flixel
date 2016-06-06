@@ -16,11 +16,15 @@ class Model extends FlxObject
 	public var _parser:IParser;	
 	
 	//model
-	public var _name:String;
+	public var _credit:String;
 	
 	
+	//event
+	public var socket_error = new Signal<Dynamic>();
+	public var creditUpdate = new Signal<Dynamic>();
 	
-	public var StateUpdate = new Signal<Dynamic>();		
+	
+	public var StateUpdate = new Signal<Dynamic>();
 	
 	//for test
 	public var _packlist:Array<String> = new Array();
@@ -33,23 +37,25 @@ class Model extends FlxObject
 		_parser = new Dk_Parser();		
 	}
 	
-	public function pack_parse(unparse_pack:Dynamic):Void
+	public function pack_parse(pack:Dynamic):Void
 	{
 		//check which game ,lobby or game
-		//FlxG.log.add("lobby pack parse "+unparse_pack);
-		if ( unparse_pack.message_type == "MsgLogin")
+		//FlxG.log.add("lobby pack parse "+pack);
+		if ( pack.message_type == "MsgLogin")
 		{
 			FlxG.log.add("lobby pack MsgLogin not handle ");
+			_credit = pack.player_info.player_credit;
+			Main._model.creditUpdate.dispatch(_credit);
 			return;
 		}
 		
-		if ( unparse_pack.message_type == "MsgKeepLive")
+		if ( pack.message_type == "MsgKeepLive")
 		{
 			FlxG.log.add("lobby pack MsgKeepLive not handle");
 			return;
 		}
 		
-		//_parser.parser(unparse_pack);
+		_parser.parser(pack);
 	}
 	
 }

@@ -32,7 +32,7 @@ class Super7pk extends FlxTypedGroup<FlxSprite>
 		_sprBack = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.RED);
 		add(_sprBack);				
 		
-		_loadpic = new FlxButton(300, 200, Main._model._name, clickPlay);		
+		_loadpic = new FlxButton(300, 200, "pa", clickPlay);		
 		add(_loadpic);
 		
 		_player = new Base_sprite(30, 30);

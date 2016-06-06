@@ -15,7 +15,7 @@ class Base_sprite extends FlxSprite
 	{
 		super(X, Y);
 		
-		makeGraphic(16, 16, FlxColor.BLUE);
+		//makeGraphic(16, 16, FlxColor.BLUE);
 		
 		//spirte
 		//loadGraphic(AssetPaths.dyson__png, false, 16, 16);
