@@ -20,6 +20,11 @@ class Model extends FlxObject
 	public var _credit:String;
 	public var _gamelist:Array<String> = new Array();
 	
+	public var _game_round:String;
+	public var _game_state:String;
+	public var _remain_time:String;
+	
+	
 	//base event
 	public var send_pack = new Signal<Dynamic>();
 	
@@ -46,6 +51,7 @@ class Model extends FlxObject
 	{
 		//check which game ,lobby or game
 		//FlxG.log.add("lobby pack parse "+pack);
+		
 		if ( pack.message_type == "echo_join")
 		{
 			Main._model.creditUpdate.dispatch("100");
