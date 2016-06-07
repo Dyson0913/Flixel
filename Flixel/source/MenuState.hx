@@ -17,6 +17,8 @@ import openfl.Assets;
 
 import openfl.utils.ByteArray;
 
+import visual_component.Click_item;
+
 class MenuState extends FlxState
 {
 	private var _hud:HUD;
@@ -31,6 +33,9 @@ class MenuState extends FlxState
 	
 	public var _hint_board:Hint_board;
 	
+	private var _bet_zone:Click_item;
+	
+	
 	
 	override public function create():Void
 	{
@@ -44,6 +49,7 @@ class MenuState extends FlxState
 		
 		//event
 		Main._model.creditUpdate.add(credit_update);
+		Main._model.join_game_success.add(join_game_success);
 		
 		return;
 		
@@ -67,7 +73,7 @@ class MenuState extends FlxState
 		
 		//send join pack
 		join_game();
-		//dk();
+		
 	}
 	
 	private function join_game():Void
@@ -81,11 +87,20 @@ class MenuState extends FlxState
 		Main._model.send_pack.dispatch(join_info);
 	}
 	
+	private function join_game_success(data:Dynamic):Void
+	{
+		dk();
+	}
+	
 	private function dk():Void
 	{		
 		remove(_hud);
 		_dkcanvs = new Dk();
 		add(_dkcanvs);
+		
+		_bet_zone = new Click_item();
+		add(_bet_zone);
+		
 		add(_hud);		
 	}
 	

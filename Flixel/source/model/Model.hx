@@ -28,13 +28,19 @@ class Model extends FlxObject
 	//base event
 	public var send_pack = new Signal<Dynamic>();
 	
-	//event
+	//sys event
 	public var socket_error = new Signal<Dynamic>();
 	public var creditUpdate = new Signal<Dynamic>();
+	public var join_game_success = new Signal<Dynamic>();
 	
 	
 	
-	public var StateUpdate = new Signal<Dynamic>();
+	public var NewRoundState = new Signal<Dynamic>();
+	public var StartBetState = new Signal<Dynamic>();
+	public var EndBetState = new Signal<Dynamic>();
+	public var OpenState = new Signal<Dynamic>();
+	public var EndRoundState = new Signal<Dynamic>();
+	//public var StateUpdate = new Signal<Dynamic>();
 	
 	//for test
 	public var _packlist:Array<String> = new Array();
@@ -77,7 +83,7 @@ class Model extends FlxObject
 		
 		if ( pack.message_type == "MsgKeepLive")
 		{
-			FlxG.log.add("lobby pack MsgKeepLive not handle");
+			//FlxG.log.add("lobby pack MsgKeepLive not handle");
 			return;
 		}
 		

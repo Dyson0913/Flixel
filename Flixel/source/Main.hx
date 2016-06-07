@@ -90,7 +90,7 @@ class Main extends Sprite
 	public static function parse_pack(un_parse_pack:String)
 	{				
 		var ob:Dynamic = Json.parse(un_parse_pack);
-		FlxG.log.add(ob);
+		//FlxG.log.add(ob);
 		
 		//parse
 		_model.pack_parse(ob);

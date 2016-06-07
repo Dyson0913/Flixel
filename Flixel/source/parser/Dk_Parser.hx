@@ -18,10 +18,10 @@ class Dk_Parser extends IParser
 		super();		
 	}
 	
-	public override function parser(message:Dynamic):Void 
+	public override function parser(pack:Dynamic):Void 
 	{
 		FlxG.log.add("dk parse");
-		//FlxG.log.add(message);
+		FlxG.log.add(pack);
 		
 		
 		
@@ -32,14 +32,18 @@ class Dk_Parser extends IParser
 		
 		if ( pack.message_type == "MsgPlayerEnterGame")
 		{
+			Main._model.join_game_success.dispatch(pack.game_state);
+			
 			if ( pack.game_state == "NewRoundState")
 			{
 				//record_list : [ { banker_pair : false, point : 3, player_pair : true, winner : BetBWBanker } : false, winner : None },..] }
+				Main._model.NewRoundState.dispatch(pack.game_state);
 			}
 			
 			if ( pack.game_state == "StartBetState")
 			{
 				//Main._model._remain_time = pack.remain_time;
+				Main._model.StartBetState.dispatch(pack.game_state);
 			}
 			
 			if ( pack.game_state == "EndBetState")
@@ -69,11 +73,13 @@ class Dk_Parser extends IParser
 			if ( pack.game_state == "NewRoundState")
 			{
 				//record_list : [ { banker_pair : false, point : 3, player_pair : true, winner : BetBWBanker } : false, winner : None },..] }
+				Main._model.NewRoundState.dispatch(pack.game_state);
 			}
 			
 			if ( pack.game_state == "StartBetState")
 			{
 				//Main._model._remain_time = pack.remain_time;
+				Main._model.StartBetState.dispatch(pack.game_state);
 			}
 			if ( pack.game_state == "EndBetState")
 			{
@@ -91,7 +97,7 @@ class Dk_Parser extends IParser
 			}
 		}
 		
-		//Main._model.StateUpdate.dispatch(message);
+		//Main._model.StateUpdate.dispatch(pack.game_state);
     }
 	
 	

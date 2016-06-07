@@ -10,6 +10,7 @@ import flixel.FlxSprite;
 import flixel.text.FlxText;
 import model.Model;
 
+
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 
@@ -53,6 +54,8 @@ class Dk extends FlxTypedGroup<FlxSprite>
 		
 		add(_girl);
 		
+		
+		
 		_loadpic = new FlxButton(300, 200, "dk", clickPlay);
 		add(_loadpic);
 		
@@ -65,14 +68,7 @@ class Dk extends FlxTypedGroup<FlxSprite>
 		_player = new Base_sprite(30, 30);
 		add(_player);
 		
-		//event
-		Main._model.StateUpdate.add(onget);
-	}
-	
-	private function onget(s:Dynamic):Void
-	{
-		FlxG.log.add("dk onget "+s);
-	}
+	}	
 	
 	private function show():Void
 	{
