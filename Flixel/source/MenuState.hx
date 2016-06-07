@@ -72,10 +72,10 @@ class MenuState extends FlxState
 	
 	private function join_game():Void
 	{
-		var join_info = { "id":1111,
+		var join_info = { "id":1111,							
 		                  "message_type":"MsgPlayerEnterGame", 
 						  "game_type":"BigWin",
-						  "game_id": "Bingo-1"
+						  "game_id": "BigWin-1"
 		};
 		
 		Main._model.send_pack.dispatch(join_info);
