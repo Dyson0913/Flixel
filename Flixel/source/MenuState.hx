@@ -37,8 +37,7 @@ class MenuState extends FlxState
 		super.create();
 		_hud = new HUD();
 		
-		//add(new FlxText(0, 0, 0, "Hello World!"));
-		//centerSprite(_btn_sence);
+		//add(new FlxText(0, 0, 0, "Hello World!"));		
 		
 		_hint_board = new Hint_board();
 		add(_hint_board);
@@ -65,13 +64,21 @@ class MenuState extends FlxState
 	private function credit_update(data:Dynamic):Void
 	{
 		FlxG.log.add("main enter");
-		dk();
+		
+		//send join pack
+		join_game();
+		//dk();
 	}
 	
-	function centerSprite(sprite:FlxButton)
+	private function join_game():Void
 	{
-		sprite.x = (FlxG.width / 2) - (sprite.width / 2);
-		sprite.y = (FlxG.height / 2) - (sprite.height / 2);
+		var join_info = { "id":1111,
+		                  "message_type":"MsgPlayerEnterGame", 
+						  "game_type":"BigWin",
+						  "game_id": "Bingo-1"
+		};
+		
+		Main._model.send_pack.dispatch(join_info);
 	}
 	
 	private function dk():Void

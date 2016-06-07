@@ -30,10 +30,13 @@ class Main extends Sprite
 		_model = new Model();
 		addChild(new FlxGame(1920, 1080, MenuState,1,60,60,false,true));		
 		
+		//event
+		Main._model.send_pack.add(send_pack);
+		
 		if ( _ws == null)
 		{
-			//_ws = new WebSocket("ws://52.68.210.98:7777/gamesocket/111");
-			_ws = new WebSocket("ws://52.197.7.184:8001/gamesocket/token/6f4922f45568161a8cdf4ad2299f6d23");
+			_ws = new WebSocket("ws://52.68.210.98:7777/gamesocket/111");
+			//_ws = new WebSocket("ws://52.197.7.184:8001/gamesocket/token/6f4922f45568161a8cdf4ad2299f6d23");
 			_ws.onOpen.add(onOpen);		
 			_ws.onError.add(onError);
 			_ws.onTextPacket.add(onText);
@@ -42,10 +45,16 @@ class Main extends Sprite
 		FlxG.debugger.visible = true;		
 		
 		//TODO test class
-		Assets.loadText("assets/data/pack_DK_normal.txt").onComplete(pack_loading_Ok);
+		//Assets.loadText("assets/data/pack_DK_normal.txt").onComplete(pack_loading_Ok);
 		
 		
 		
+	}
+	
+	private function send_pack(data:Dynamic):Void
+	{
+		FlxG.log.add("send_pack " + data);
+		_ws.sendText(Json.stringify(data));
 	}
 	
 	private function pack_loading_Ok(un_parse_pack:Dynamic):Void
@@ -76,14 +85,12 @@ class Main extends Sprite
 	private function onText(s:String):Void
 	{
 		parse_pack(s);
-		
-		//_ws.sendText(Json.stringify(s));
 	}
 	
 	public static function parse_pack(un_parse_pack:String)
 	{				
 		var ob:Dynamic = Json.parse(un_parse_pack);
-		//FlxG.log.add(ob);
+		FlxG.log.add(ob);
 		
 		//parse
 		_model.pack_parse(ob);

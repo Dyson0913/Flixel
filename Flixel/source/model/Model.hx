@@ -4,6 +4,7 @@ import flixel.FlxObject;
 import parser.*;
 import flixel.FlxG;
 
+import haxe.Json;
 /**
  * ...
  * @author hhg4092
@@ -17,11 +18,15 @@ class Model extends FlxObject
 	
 	//model
 	public var _credit:String;
+	public var _gamelist:Array<String> = new Array();
 	
+	//base event
+	public var send_pack = new Signal<Dynamic>();
 	
 	//event
 	public var socket_error = new Signal<Dynamic>();
 	public var creditUpdate = new Signal<Dynamic>();
+	
 	
 	
 	public var StateUpdate = new Signal<Dynamic>();
@@ -41,10 +46,25 @@ class Model extends FlxObject
 	{
 		//check which game ,lobby or game
 		//FlxG.log.add("lobby pack parse "+pack);
-		if ( pack.message_type == "MsgLogin")
+		if ( pack.message_type == "echo_join")
 		{
-			FlxG.log.add("lobby pack MsgLogin not handle ");
+			Main._model.creditUpdate.dispatch("100");
+			return;
+		}
+		
+		if ( pack.message_type == "MsgLogin")
+		{			
 			_credit = pack.player_info.player_credit;
+			
+			//dynamic field
+			for (n in Reflect.fields(pack.game_list))
+			{
+				var item:Dynamic = Reflect.field(pack.game_list, n);
+				//FlxG.log.add("gamelist " + Reflect.field(pack.game_list, n));
+				//FlxG.log.add("gamelist " + item.game_id);
+				_gamelist.push(item.game_id);
+			}				
+			
 			Main._model.creditUpdate.dispatch(_credit);
 			return;
 		}
