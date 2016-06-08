@@ -49,6 +49,7 @@ class Dk_Parser extends IParser
 			if ( pack.game_state == "EndBetState")
 			{
 				//event
+				Main._model.EndBetState.dispatch(pack.game_state);
 			}
 			
 			if ( pack.game_state == "OpenState")
@@ -56,12 +57,14 @@ class Dk_Parser extends IParser
 				//cards_info : { river_card_list : [], extra_card_list : [], banker_card_list : [], player_card_list : [] }
 				//"cards_bigwin_prob":[0.00017,0.011068,0.072029,0.815305,1.00866,2.15512]
 				//"card_list":["7s"],"card_type":"Player",Banker,River				
+				Main._model.OpenState.dispatch(pack.game_state);
 			}
 			
 			if ( pack.game_state == "EndRoundState")
 			{
 				//remain_time option
 				//result_list :[{"real_win_amount":95,"odds":1.95,"bet_attr":"BetAttrMain","bet_amount":100,"win_state":"WSBWNormalWin","settle_amount":195,"bet_type":"BetBWPlayer"},
+				Main._model.EndRoundState.dispatch(pack.game_state);
 			}
 			
 			// bet_list : {}, 
@@ -84,16 +87,19 @@ class Dk_Parser extends IParser
 			if ( pack.game_state == "EndBetState")
 			{
 				//event
+				Main._model.EndBetState.dispatch(pack.game_state);
 			}
 			if ( pack.game_state == "OpenState")
 			{
 				//"cards_bigwin_prob":[0.00017,0.011068,0.072029,0.815305,1.00866,2.15512]
 				//"card_list":["7s"],"card_type":"Player",Banker,River				
+				Main._model.OpenState.dispatch(pack.game_state);
 			}
 			if ( pack.game_state == "EndRoundState")
 			{
 				//remain_time option
 				//result_list :[{"real_win_amount":95,"odds":1.95,"bet_attr":"BetAttrMain","bet_amount":100,"win_state":"WSBWNormalWin","settle_amount":195,"bet_type":"BetBWPlayer"},
+				Main._model.EndRoundState.dispatch(pack.game_state);
 			}
 		}
 		

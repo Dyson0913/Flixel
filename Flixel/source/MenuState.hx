@@ -7,7 +7,8 @@ import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
 import haxe.Json;
-import visual_component.Hint_board;
+
+
 
 import flash.display.BitmapData;
 
@@ -17,6 +18,8 @@ import openfl.Assets;
 
 import openfl.utils.ByteArray;
 
+import visual_component.Card;
+import visual_component.Hint_board;
 import visual_component.Click_item;
 
 class MenuState extends FlxState
@@ -34,6 +37,7 @@ class MenuState extends FlxState
 	public var _hint_board:Hint_board;
 	
 	private var _bet_zone:Click_item;
+	private var _card:Card;
 	
 	
 	
@@ -100,6 +104,9 @@ class MenuState extends FlxState
 		
 		_bet_zone = new Click_item();
 		add(_bet_zone);
+		
+		_card = new Card();
+		add(_card);
 		
 		add(_hud);		
 	}

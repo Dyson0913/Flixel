@@ -44,6 +44,7 @@ class Model extends FlxObject
 	
 	//for test
 	public var _packlist:Array<String> = new Array();
+	public var _packlist_idx:Int = 0;
 	
 	public function new() 
 	{

@@ -68,6 +68,9 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		//FlxG.fullscreen = !FlxG.fullscreen;		
 		//_credit.text = "33";
 		
-		//Main.parse_pack(Main._model._packlist[0]);
+		Main.parse_pack(Main._model._packlist[Main._model._packlist_idx]);
+		Main._model._packlist_idx = Main._model._packlist_idx +1;
+		Main._model._packlist_idx %= Main._model._packlist.length;
+		
 	}
 }
