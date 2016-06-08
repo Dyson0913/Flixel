@@ -22,9 +22,7 @@ class Card extends FlxTypedGroup<FlxSprite>
 	{
 		super();
 		FlxG.log.add("Card init");
-		//_click_item = new FlxGroup();
-		//add(_click_item);
-		_zone = new FlxSprite().loadGraphic(AssetPaths.open_card_bg__png);
+		_zone = new FlxSprite(330,530).loadGraphic(AssetPaths.open_card_bg__png);
 		add(_zone);
 		_zone.kill();
 		
@@ -34,7 +32,8 @@ class Card extends FlxTypedGroup<FlxSprite>
 		Main._model.EndBetState.add(appear);
 		Main._model.OpenState.add(appear);
 		Main._model.EndRoundState.add(appear);
-		
+	
+		Main._model.adjust_item.dispatch(_zone);
 	}
 	
 	private function appear(s:Dynamic):Void

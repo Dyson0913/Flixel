@@ -61,7 +61,7 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 		Main._model.OpenState.add(disappear);
 		Main._model.EndRoundState.add(disappear);
 	
-		Main._model.adjust_item.dispatch(_zone3);
+		
 		
 	}
 	

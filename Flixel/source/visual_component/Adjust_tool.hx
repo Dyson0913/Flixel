@@ -31,7 +31,6 @@ class Adjust_tool extends FlxTypedGroup<FlxSprite>
 		super();
 		FlxG.log.add("Adjust_tool init");
 		
-		//event
 		Main._model.adjust_item.add(change);
 		
 		_test_btn = new FlxButton(400, 50, "+x", x);
