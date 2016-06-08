@@ -7,6 +7,7 @@ import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
 import haxe.Json;
+import visual_component.Adjust_tool;
 
 
 
@@ -38,6 +39,7 @@ class MenuState extends FlxState
 	
 	private var _bet_zone:Click_item;
 	private var _card:Card;
+	private var _adjust:Adjust_tool;
 	
 	
 	
@@ -98,9 +100,13 @@ class MenuState extends FlxState
 	
 	private function dk():Void
 	{		
-		remove(_hud);
+		remove(_hud);		
+		
 		_dkcanvs = new Dk();
 		add(_dkcanvs);
+		
+		_adjust = new Adjust_tool();
+		add(_adjust);
 		
 		_bet_zone = new Click_item();
 		add(_bet_zone);

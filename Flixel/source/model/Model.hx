@@ -40,11 +40,15 @@ class Model extends FlxObject
 	public var EndBetState = new Signal<Dynamic>();
 	public var OpenState = new Signal<Dynamic>();
 	public var EndRoundState = new Signal<Dynamic>();
-	//public var StateUpdate = new Signal<Dynamic>();
+	
+	
 	
 	//for test
 	public var _packlist:Array<String> = new Array();
 	public var _packlist_idx:Int = 0;
+	
+	public var adjust_item = new Signal<Dynamic>();
+	
 	
 	public function new() 
 	{
