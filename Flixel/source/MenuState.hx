@@ -8,6 +8,8 @@ import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
 import haxe.Json;
 import visual_component.Adjust_tool;
+import visual_component.Kiban_board;
+import visual_component.Paytable;
 
 
 
@@ -37,9 +39,12 @@ class MenuState extends FlxState
 	
 	public var _hint_board:Hint_board;
 	
+	//share item
 	private var _bet_zone:Click_item;
 	private var _card:Card;
 	private var _adjust:Adjust_tool;
+	private var _kiban:Kiban_board;
+	private var _paytable:Paytable;
 	
 	
 	
@@ -113,6 +118,12 @@ class MenuState extends FlxState
 		
 		_card = new Card();
 		add(_card);
+		
+		_kiban =  new Kiban_board();
+		add(_kiban);
+		
+		_paytable = new Paytable();
+		add(_paytable);
 		
 		add(_hud);		
 	}

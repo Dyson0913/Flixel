@@ -33,7 +33,7 @@ class Card extends FlxTypedGroup<FlxSprite>
 		Main._model.OpenState.add(appear);
 		Main._model.EndRoundState.add(appear);
 	
-		Main._model.adjust_item.dispatch(_zone);
+		
 	}
 	
 	private function appear(s:Dynamic):Void
