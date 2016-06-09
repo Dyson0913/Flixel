@@ -34,7 +34,7 @@ class Kiban_board extends FlxTypedGroup<FlxSprite>
 		_zone3 = new FlxSprite(1290,410).loadGraphic(AssetPaths.powerbar__png);
 		add(_zone3);
 		
-		Main._model.adjust_item.dispatch(_zone3);
+		//Main._model.adjust_item.dispatch(_zone3);
 		//event
 		//Main._model.NewRoundState.add(disappear);
 		//Main._model.StartBetState.add(disappear);

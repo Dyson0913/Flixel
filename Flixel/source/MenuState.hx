@@ -8,8 +8,10 @@ import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
 import haxe.Json;
 import visual_component.Adjust_tool;
+import visual_component.History_recode;
 import visual_component.Kiban_board;
 import visual_component.Paytable;
+import visual_component.Settle_panel;
 
 
 
@@ -45,6 +47,8 @@ class MenuState extends FlxState
 	private var _adjust:Adjust_tool;
 	private var _kiban:Kiban_board;
 	private var _paytable:Paytable;
+	private var _history:History_recode;
+	private var _settle:Settle_panel;
 	
 	
 	
@@ -124,6 +128,12 @@ class MenuState extends FlxState
 		
 		_paytable = new Paytable();
 		add(_paytable);
+		
+		_history =  new History_recode();
+		add(_history);
+		
+		_settle = new Settle_panel();
+		add(_settle);
 		
 		add(_hud);		
 	}
