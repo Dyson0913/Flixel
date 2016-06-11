@@ -26,6 +26,8 @@ class Adjust_tool extends FlxTypedGroup<FlxSprite>
 	
 	private var _control:FlxObject;
 	
+	private var _diff:Int = 2;
+	
 	public function new() 
 	{
 		super();
@@ -56,28 +58,28 @@ class Adjust_tool extends FlxTypedGroup<FlxSprite>
 	
 	private function ng_x():Void
 	{
-		_control.x -= 10;
+		_control.x -= _diff;
 		FlxG.log.add("item.x ="+_control.x);
 		FlxG.log.add("item.x ="+_control.y);
 	}
 	
 	private function x():Void
 	{
-		_control.x += 10;
+		_control.x += _diff;
 		FlxG.log.add("item.x ="+_control.x);
 		FlxG.log.add("item.x ="+_control.y);
 	}
 	
 	private function y():Void
 	{
-		_control.y += 10;
+		_control.y += _diff;
 		FlxG.log.add("item.y ="+_control.x);
 		FlxG.log.add("item.y ="+_control.y);
 	}
 	
 	private function ng_y():Void
 	{
-		_control.y -= 10;
+		_control.y -= _diff;
 		FlxG.log.add("item.x ="+_control.x);
 		FlxG.log.add("item.x ="+_control.y);
 	}

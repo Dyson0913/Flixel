@@ -45,11 +45,12 @@ class Dk extends FlxTypedGroup<FlxSprite>
 		_bg = new FlxSprite().loadGraphic(AssetPaths.dk_bg__png);
 		add(_bg);
 		
-		_desk = new FlxSprite().loadGraphic(AssetPaths.dk_desk__png);
+		//_desk = new FlxSprite().loadGraphic(AssetPaths.dk_desk__png);		
+		_desk = new FlxSprite().loadGraphic(AssetPaths.demo2__jpg);		
 		add(_desk);
 		
 		//new Btn(10, 20, AssetPaths.dk_girl__png,null,null,drag,null);
-		_girl = new FlxSprite(650).loadGraphic(AssetPaths.dk_girl__png);
+		_girl = new FlxSprite(650).loadGraphic(AssetPaths.dk_girl__png);		
 		_girl.antialiasing = true;
 		
 		add(_girl);

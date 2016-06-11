@@ -25,6 +25,9 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 	private var _zone5:FlxSprite;	
 	private var _zone6:FlxSprite;	
 	
+	private var _msgbg:FlxSprite;	
+	private var _msgtie:FlxSprite;	
+	
 	private var _click_item:FlxGroup;
 	
 	
@@ -34,12 +37,21 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 		FlxG.log.add("click item init");
 		//_click_item = new FlxGroup();
 		//add(_click_item);
-		_zone = new FlxSprite(1150,530).loadGraphic(AssetPaths.banker_zone_1__png);
-		_zone2 = new FlxSprite(330,530).loadGraphic(AssetPaths.player_zone_1__png);
-		_zone3 = new FlxSprite(785,690).loadGraphic(AssetPaths.tie_1__png);
-		_zone4 = new FlxSprite(1540,580).loadGraphic(AssetPaths.banker_pair_1__png);
-		_zone5 = new FlxSprite(20,570).loadGraphic(AssetPaths.player_pair_1__png);
-		_zone6 = new FlxSprite(800,530).loadGraphic(AssetPaths.sp__png);
+		_zone = new FlxSprite(1116,530).loadGraphic(AssetPaths.banker_zone_1__png);
+		_zone2 = new FlxSprite(334,527).loadGraphic(AssetPaths.player_zone_1__png);
+		_zone3 = new FlxSprite(765,687).loadGraphic(AssetPaths.tie_1__png);
+		_zone4 = new FlxSprite(1519,583).loadGraphic(AssetPaths.banker_pair_1__png);
+		_zone5 = new FlxSprite(13,587).loadGraphic(AssetPaths.player_pair_1__png);
+		_zone6 = new FlxSprite(779, 526).loadGraphic(AssetPaths.sp__png);
+		
+		//_msgbg = new FlxSprite(140, 636).loadGraphic(AssetPaths.msg_bg__png);
+		//
+		//_msgtie = new FlxSprite(588, 563).loadGraphic(AssetPaths.msg_start_bet__png);
+		//_msgtie.scale.set(0.45, 0.45);
+		//
+		//add(_msgbg);
+		//add(_msgtie);
+		
 		add(_zone);
 		add(_zone2);
 		add(_zone3);
@@ -60,7 +72,9 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 		Main._model.EndBetState.add(disappear);
 		Main._model.OpenState.add(disappear);
 		Main._model.EndRoundState.add(disappear);
-	
+		
+		//Main._model.adjust_item.dispatch(_msgtie);
+		
 		
 		
 	}

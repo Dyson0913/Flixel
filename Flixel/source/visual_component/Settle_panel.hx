@@ -40,7 +40,7 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 		Main._model.OpenState.add(appear);
 		Main._model.EndRoundState.add(appear);
 		
-		Main._model.adjust_item.dispatch(_zone2);
+		
 	}
 	
 	private function appear(s:Dynamic):Void
