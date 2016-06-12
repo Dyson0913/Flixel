@@ -44,14 +44,6 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 		_zone5 = new FlxSprite(13,587).loadGraphic(AssetPaths.player_pair_1__png);
 		_zone6 = new FlxSprite(779, 526).loadGraphic(AssetPaths.sp__png);
 		
-		//_msgbg = new FlxSprite(140, 636).loadGraphic(AssetPaths.msg_bg__png);
-		//
-		//_msgtie = new FlxSprite(588, 563).loadGraphic(AssetPaths.msg_start_bet__png);
-		//_msgtie.scale.set(0.45, 0.45);
-		//
-		//add(_msgbg);
-		//add(_msgtie);
-		
 		add(_zone);
 		add(_zone2);
 		add(_zone3);
@@ -72,10 +64,6 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 		Main._model.EndBetState.add(disappear);
 		Main._model.OpenState.add(disappear);
 		Main._model.EndRoundState.add(disappear);
-		
-		//Main._model.adjust_item.dispatch(_msgtie);
-		
-		
 		
 	}
 	

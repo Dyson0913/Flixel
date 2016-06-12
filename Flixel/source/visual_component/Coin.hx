@@ -82,7 +82,7 @@ class Coin extends FlxTypedGroup<FlxSprite>
 		Main._model.OpenState.add(disappear);
 		Main._model.EndRoundState.add(disappear);
 		
-		Main._model.adjust_item.dispatch(_bet6);
+		//Main._model.adjust_item.dispatch(_bet6);
 		
 	}
 	

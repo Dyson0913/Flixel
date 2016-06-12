@@ -9,10 +9,12 @@ import flixel.math.FlxMath;
 import haxe.Json;
 import visual_component.Adjust_tool;
 import visual_component.Coin;
+import visual_component.Hint_msg;
 import visual_component.History_recode;
 import visual_component.Kiban_board;
 import visual_component.Paytable;
 import visual_component.Settle_panel;
+import visual_component.Timer;
 
 
 
@@ -51,6 +53,8 @@ class MenuState extends FlxState
 	private var _history:History_recode;
 	private var _settle:Settle_panel;
 	private var _coin:Coin;
+	private var _hintmsg:Hint_msg;
+	private var _timer:Timer;
 	
 	
 	
@@ -139,6 +143,12 @@ class MenuState extends FlxState
 		
 		_coin = new Coin();
 		add(_coin);
+		
+		_hintmsg = new Hint_msg();
+		add(_hintmsg);
+		
+		_timer = new Timer();
+		add(_timer);
 		
 		add(_hud);		
 	}

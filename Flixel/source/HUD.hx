@@ -39,7 +39,7 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		add(_loadpic);
 		
 		
-		_credit_bg = new FlxSprite(1450).loadGraphic(AssetPaths.money__png);
+		_credit_bg = new FlxSprite(1451,13).loadGraphic(AssetPaths.money__png);
 		add(_credit_bg);		
 		//_credit.antialiasing = true;
 		
@@ -49,6 +49,8 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		
 		//event
 		Main._model.creditUpdate.add(credit_update);
+		
+		
 	}
 	
 	private function credit_update(data:Dynamic):Void
@@ -65,8 +67,10 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	
 	private function pack_test():Void
 	{
-		//FlxG.fullscreen = !FlxG.fullscreen;		
-		//_credit.text = "33";
+		//FlxG.fullscreen = !FlxG.fullscreen;
+		
+		//Main._model.adjust_item.dispatch(_credit_bg);
+		//return;
 		
 		Main.parse_pack(Main._model._packlist[Main._model._packlist_idx]);
 		Main._model._packlist_idx = Main._model._packlist_idx +1;
