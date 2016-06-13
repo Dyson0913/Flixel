@@ -24,8 +24,9 @@ class Btn extends FlxSprite
 	private var _onOut:Btn->Void = null;
 	
 	public var _name:String = "";
+	public var _id:Int = -1;
 	
-	public function new(X:Float=0, Y:Float=0,Graphic:FlxGraphicAsset,?OnDown:Btn->Void,?OnUp:Btn->Void,?OnOver:Btn->Void,?OnOut:Btn->Void) 
+	public function new(X:Float=0, Y:Float=0,id:Int,Graphic:FlxGraphicAsset,?OnDown:Btn->Void,?OnUp:Btn->Void,?OnOver:Btn->Void,?OnOut:Btn->Void) 
 	{
 		super(X, Y);		
 		
@@ -40,6 +41,7 @@ class Btn extends FlxSprite
 		
 		FlxMouseEventManager.add(this, onDown, onUp, onOver, onOut);
 		_name = Graphic;
+		_id = id;
 	}
 	
 	private function onDown(Sprite:Btn)
