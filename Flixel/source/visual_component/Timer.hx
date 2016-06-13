@@ -46,7 +46,7 @@ class Timer extends FlxTypedGroup<FlxSprite>
 		Main._model.EndRoundState.add(disappear);		
 		
 		disappear(1);
-		Main._model.adjust_item.dispatch(_zone3);
+		//Main._model.adjust_item.dispatch(_zone3);
 	}
 	
 	private function appear(s:Dynamic):Void

@@ -26,7 +26,7 @@ class Dk extends FlxTypedGroup<FlxSprite>
 	private var _girl:FlxSprite;
 	
 	private var _loadpic:FlxButton;
-	private var _player:Base_sprite;
+	//private var _player:Base_sprite;
 	
 	public function new() 
 	{
@@ -46,7 +46,7 @@ class Dk extends FlxTypedGroup<FlxSprite>
 		_girl = new FlxSprite(623,-2).loadGraphic(AssetPaths.dk_girl__png);		
 		_girl.antialiasing = true;
 		
-		//add(_girl);
+		add(_girl);
 		
 		
 		
@@ -55,8 +55,8 @@ class Dk extends FlxTypedGroup<FlxSprite>
 		
 		
 		
-		_player = new Base_sprite(30, 30);
-		add(_player);
+		//_player = new Base_sprite(30, 30);
+		//add(_player);
 		
 	}	
 	
@@ -69,8 +69,8 @@ class Dk extends FlxTypedGroup<FlxSprite>
 	private function dysonDown(s:BitmapData):Void
 	{		
 		
-		_player.antialiasing = true;
-		_player.set_bitmap(s);
+		//_player.antialiasing = true;
+		//_player.set_bitmap(s);
 	}
 		
 }

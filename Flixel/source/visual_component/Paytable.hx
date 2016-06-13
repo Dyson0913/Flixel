@@ -23,12 +23,12 @@ class Paytable extends FlxTypedGroup<FlxSprite>
 	{
 		super();		
 		FlxG.log.add("Paytable init");
-		_zone = new FlxSprite(40, 100).loadGraphic(AssetPaths.paytable__png);
+		_zone = new FlxSprite(40, 110).loadGraphic(AssetPaths.paytable__png);
 		_zone.antialiasing = true;
 		add(_zone);
 		_zone.kill();
 		
-		_zone2 = new FlxSprite(40, 100).loadGraphic(AssetPaths.paytable_percent__png);
+		_zone2 = new FlxSprite(40, 110).loadGraphic(AssetPaths.paytable_percent__png);
 		_zone2.antialiasing = true;
 		add(_zone2);
 		_zone2.kill();
@@ -38,7 +38,9 @@ class Paytable extends FlxTypedGroup<FlxSprite>
 		Main._model.StartBetState.add(appear);
 		Main._model.EndBetState.add(disappear);
 		Main._model.OpenState.add(disappear);
-		Main._model.EndRoundState.add(appear);		
+		Main._model.EndRoundState.add(appear);
+		
+		//Main._model.adjust_item.dispatch(_zone);
 	}
 	
 	private function appear(s:Dynamic):Void
