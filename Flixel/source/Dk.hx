@@ -43,7 +43,7 @@ class Dk extends FlxTypedGroup<FlxSprite>
 		add(_desk);
 		
 		//new Btn(10, 20, AssetPaths.dk_girl__png,null,null,drag,null);
-		_girl = new FlxSprite(623,-2).loadGraphic(AssetPaths.dk_girl__png);		
+		_girl = new FlxSprite(686,24).loadGraphic(AssetPaths.dk_girl__png);		
 		_girl.antialiasing = true;
 		
 		add(_girl);
@@ -63,7 +63,7 @@ class Dk extends FlxTypedGroup<FlxSprite>
 	private function clickPlay():Void
 	{
 		//Assets.loadBitmapData(AssetPaths.dk_girl__png).onComplete(dysonDown);	
-		
+		//Main._model.adjust_item.dispatch(_girl);
 	}
 	
 	private function dysonDown(s:BitmapData):Void

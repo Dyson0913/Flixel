@@ -10,6 +10,7 @@ import flixel.group.FlxGroup;
 import flixel.FlxSprite;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
+import flixel.util.FlxTimer;
 import model.Model;
 
 import flixel.util.FlxColor;
@@ -30,6 +31,7 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 	
 	private var _click_item:FlxGroup;
 	
+	private var _timer:FlxTimer;
 	
 	public function new() 
 	{
@@ -51,12 +53,7 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 		add(_zone5);
 		add(_zone6);
 		
-		_zone.kill();
-		_zone2.kill();		
-		_zone3.kill();		
-		_zone4.kill();		
-		_zone5.kill();		
-		_zone6.kill();		
+		disappear(1);		
 		
 		//event
 		Main._model.NewRoundState.add(appear);
@@ -65,17 +62,23 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 		Main._model.OpenState.add(disappear);
 		Main._model.EndRoundState.add(disappear);
 		
+		_timer = new FlxTimer();
 	}
 	
 	private function appear(s:Dynamic):Void
-	{
-		FlxG.log.add("click item appear ");
+	{		
 		_zone.revive();
 		_zone2.revive();
 		_zone3.revive();
 		_zone4.revive();
 		_zone5.revive();
 		_zone6.revive();
+		
+		if ( Main._model._game_state == "StartBetState")
+		{
+			_timer.start(0.2, effect, 4);
+		}
+			
 	}
 	
 	private function disappear(s:Dynamic):Void
@@ -87,6 +90,32 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 		_zone4.kill();
 		_zone5.kill();
 		_zone6.kill();
+	}
+	
+	private function effect(timer:FlxTimer):Void
+	{		
+		if ( timer.loopsLeft % 2 == 0) flash_2();
+		else flash();		
+	}
+	
+	private function flash():Void
+	{
+		_zone.loadGraphic(AssetPaths.banker_zone_2__png);
+		_zone2.loadGraphic(AssetPaths.player_zone_2__png);
+		_zone3.loadGraphic(AssetPaths.tie_2__png);
+		_zone4.loadGraphic(AssetPaths.banker_pair_2__png);
+		_zone5.loadGraphic(AssetPaths.player_pair_2__png);
+		_zone6.loadGraphic(AssetPaths.sp2__png);
+	}
+	
+	private function flash_2():Void
+	{
+		_zone.loadGraphic(AssetPaths.banker_zone_1__png);
+		_zone2.loadGraphic(AssetPaths.player_zone_1__png);
+		_zone3.loadGraphic(AssetPaths.tie_1__png);
+		_zone4.loadGraphic(AssetPaths.banker_pair_1__png);
+		_zone5.loadGraphic(AssetPaths.player_pair_1__png);
+		_zone6.loadGraphic(AssetPaths.sp__png);
 	}
 	
 }
