@@ -64,14 +64,14 @@ class Card extends FlxTypedGroup<FlxSprite>
 	
 	private function appear(s:Dynamic):Void
 	{
-		FlxG.log.add("Card appear ");
+		
 		_zone.revive();
 		_Cards.revive();
 	}
 	
 	private function disappear(s:Dynamic):Void
 	{
-		FlxG.log.add("Card disappear ");
+		
 		_zone.kill();
 		_Cards.kill();
 	}

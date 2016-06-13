@@ -22,7 +22,7 @@ class Model extends FlxObject
 	
 	public var _game_round:String;
 	public var _game_state:String;
-	public var _remain_time:String;
+	public var _remain_time:Int;
 	public var _recode_hisotry:Dynamic;
 	
 	//base event
@@ -93,6 +93,19 @@ class Model extends FlxObject
 		}
 		
 		_parser.parser(pack);
+	}
+	
+	public static function Format(digit:Int,lenth:Int):String
+	{
+		var str:String = "";
+		var digLenth:Int = Std.string(digit).length;
+		
+		var len:Int = lenth - digLenth;
+		for (i in 0...(len))
+		{
+			str += "0";
+		}
+		return str + Std.string(digit);
 	}
 	
 }
