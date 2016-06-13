@@ -15,6 +15,8 @@ import model.Model;
 import flixel.util.FlxColor;
 import flixel.input.FlxInput;
 
+import EReg;
+
 
 class Coin extends FlxTypedGroup<FlxSprite>
 {
@@ -23,6 +25,8 @@ class Coin extends FlxTypedGroup<FlxSprite>
 	private var _zone3:FlxSprite;	
 	private var _zone4:FlxSprite;	
 	private var _zone5:FlxSprite;
+	
+	private var _coin:Btn;
 	
 	private var _bet:FlxSprite;	
 	private var _bet2:FlxSprite;	
@@ -33,10 +37,12 @@ class Coin extends FlxTypedGroup<FlxSprite>
 	
 	public function new() 
 	{
-		super();
-		FlxG.log.add("coin init");	
+		super();		
 		
-		_zone = new FlxSprite(514,935).loadGraphic(AssetPaths.five_1__png);
+		_coin = new Btn(514, 935, AssetPaths.five_1__png, onDown, null, onOver, onOut);
+		add(_coin);
+		
+		//_zone = new FlxSprite(514,935).loadGraphic(AssetPaths.five_1__png);
 		_zone2 = new FlxSprite(697,935).loadGraphic(AssetPaths.fh_1__png);
 		_zone3 = new FlxSprite(880,935).loadGraphic(AssetPaths.ot_1__png);
 		_zone4 = new FlxSprite(1063,935).loadGraphic(AssetPaths.ft_1__png);
@@ -49,7 +55,7 @@ class Coin extends FlxTypedGroup<FlxSprite>
 		_bet5 = new FlxSprite(131,617).loadGraphic(AssetPaths.betframe_bg__png);
 		_bet6 = new FlxSprite(851,510).loadGraphic(AssetPaths.betframe_bg__png);
 		
-		add(_zone);
+		//add(_zone);
 		add(_zone2);
 		add(_zone3);
 		add(_zone4);
@@ -62,18 +68,7 @@ class Coin extends FlxTypedGroup<FlxSprite>
 		add(_bet5);
 		add(_bet6);
 		
-		_zone.kill();
-		_zone2.kill();		
-		_zone3.kill();		
-		_zone4.kill();		
-		_zone5.kill();		
-		
-		_bet.kill();
-		_bet2.kill();		
-		_bet3.kill();		
-		_bet4.kill();		
-		_bet5.kill();	
-		_bet6.kill();	
+		disappear(1);
 		
 		//event
 		Main._model.NewRoundState.add(disappear);
@@ -84,12 +79,13 @@ class Coin extends FlxTypedGroup<FlxSprite>
 		
 		//Main._model.adjust_item.dispatch(_bet6);
 		
+		
 	}
 	
 	private function appear(s:Dynamic):Void
-	{
-		FlxG.log.add("coin appear ");
-		_zone.revive();
+	{		
+		_coin.revive();
+		//_zone.revive();
 		_zone2.revive();
 		_zone3.revive();
 		_zone4.revive();
@@ -104,9 +100,9 @@ class Coin extends FlxTypedGroup<FlxSprite>
 	}
 	
 	private function disappear(s:Dynamic):Void
-	{
-		FlxG.log.add("coin disappear ");
-		_zone.kill();
+	{		
+		_coin.kill();
+		
 		_zone2.kill();
 		_zone3.kill();
 		_zone4.kill();
@@ -118,6 +114,32 @@ class Coin extends FlxTypedGroup<FlxSprite>
 		_bet4.kill();		
 		_bet5.kill();	
 		_bet6.kill();	
+	}
+	
+	private function onDown(Sprite:Btn)
+	{
+		FlxG.log.add("Sprite " + Sprite._name);
+		var st:String = Sprite._name;
+		var r = ~/-1/;
+		
+		st = r.replace(st, "-2");
+		FlxG.log.add("match =" +st);
+		
+	}
+	
+	private function onUp(Sprite:FlxSprite)
+	{
+		
+	}
+	
+	private function onOver(Sprite:FlxSprite) 
+	{
+		
+	}
+	
+	private function onOut(Sprite:FlxSprite)
+	{
+		
 	}
 	
 }

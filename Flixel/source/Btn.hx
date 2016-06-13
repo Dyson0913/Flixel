@@ -1,6 +1,8 @@
 package;
 
 import flixel.FlxSprite;
+import flixel.graphics.FlxGraphic;
+import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.util.FlxColor;
 
 import flixel.input.mouse.FlxMouseEventManager;
@@ -15,17 +17,21 @@ class Btn extends FlxSprite
 {
 	private var _turned:Bool = false;
 	
-	private var _onDown:FlxSprite->Void = null;
-	private var _onUp:FlxSprite->Void = null;
-	private var _onOver:FlxSprite->Void = null;
-	private var _onOut:FlxSprite->Void = null;
 	
-	public function new(X:Float=0, Y:Float=0,Graphic:Dynamic,?OnDown:FlxSprite->Void,?OnUp:FlxSprite->Void,?OnOver:FlxSprite->Void,?OnOut:FlxSprite->Void) 
+	private var _onDown:Btn->Void = null;
+	private var _onUp:Btn->Void = null;
+	private var _onOver:Btn->Void = null;
+	private var _onOut:Btn->Void = null;
+	
+	public var _name:String = "";
+	
+	public function new(X:Float=0, Y:Float=0,Graphic:FlxGraphicAsset,?OnDown:Btn->Void,?OnUp:Btn->Void,?OnOver:Btn->Void,?OnOut:Btn->Void) 
 	{
 		super(X, Y);		
 		
 		//makeGraphic(16, 16, FlxColor.BLUE);
-		loadGraphic(Graphic, true,0,0);
+		var graph:FlxGraphic = FlxG.bitmap.add(Graphic);
+		loadGraphic(Graphic, true,graph.width,graph.height);
 		
 		_onDown = OnDown;
 		_onUp = OnUp;
@@ -33,25 +39,25 @@ class Btn extends FlxSprite
 		_onOut = OnOut;
 		
 		FlxMouseEventManager.add(this, onDown, onUp, onOver, onOut);
-		
+		_name = Graphic;
 	}
 	
-	private function onDown(Sprite:FlxSprite)
+	private function onDown(Sprite:Btn)
 	{
 		if( _onDown != null) _onDown(Sprite);
 	}
 	
-	private function onUp(Sprite:FlxSprite)
+	private function onUp(Sprite:Btn)
 	{
 		if( _onUp != null) _onUp(Sprite);
 	}
 	
-	private function onOver(Sprite:FlxSprite) 
+	private function onOver(Sprite:Btn) 
 	{
 		if( _onOver != null) _onOver(Sprite);
 	}
 	
-	private function onOut(Sprite:FlxSprite)
+	private function onOut(Sprite:Btn)
 	{
 		if( _onOut != null) _onOut(Sprite);
 	}
