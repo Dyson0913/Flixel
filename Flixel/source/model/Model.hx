@@ -23,7 +23,7 @@ class Model extends FlxObject
 	public var _game_round:String;
 	public var _game_state:String;
 	public var _remain_time:String;
-	
+	public var _recode_hisotry:Dynamic;
 	
 	//base event
 	public var send_pack = new Signal<Dynamic>();

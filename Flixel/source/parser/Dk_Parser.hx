@@ -5,7 +5,7 @@ import flixel.FlxG;
 
 import model.IParser;
 
-
+import haxe.Json;
 /**
  * ...
  * @author hhg4092
@@ -23,8 +23,6 @@ class Dk_Parser extends IParser
 		FlxG.log.add("dk parse");
 		FlxG.log.add(pack);
 		
-		
-		
 		Main._model._game_round = pack.game_round;
 		Main._model._game_state = pack.game_state;
 		
@@ -36,7 +34,7 @@ class Dk_Parser extends IParser
 			
 			if ( pack.game_state == "NewRoundState")
 			{
-				//record_list : [ { banker_pair : false, point : 3, player_pair : true, winner : BetBWBanker } : false, winner : None },..] }
+				//record_list : [ { banker_pair : false, point : 3, player_pair : true, winner : BetBWBanker } : false, winner : None },..] }				
 				Main._model.NewRoundState.dispatch(pack.game_state);
 			}
 			
@@ -75,7 +73,8 @@ class Dk_Parser extends IParser
 		{
 			if ( pack.game_state == "NewRoundState")
 			{
-				//record_list : [ { banker_pair : false, point : 3, player_pair : true, winner : BetBWBanker } : false, winner : None },..] }
+				//record_list : [ { banker_pair : false, point : 3, player_pair : true, winner : BetBWBanker } : false, winner : None },..] }				
+				Main._model._recode_hisotry = pack.record_list;				
 				Main._model.NewRoundState.dispatch(pack.game_state);
 			}
 			
