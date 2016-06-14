@@ -42,13 +42,20 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 	private var _bet_amount5:FlxText;
 	private var _bet_amount6:FlxText;
 	
-//	private var _coin_stack:Array<FlxSprite>;	
+
 	private var _statck:FlxGroup;
 	private var _statck2:FlxGroup;
 	private var _statck3:FlxGroup;
 	private var _statck4:FlxGroup;
 	private var _statck5:FlxGroup;
 	private var _statck6:FlxGroup;
+	
+	private var _statck_res:Array<String>;
+	private var _statck_res2:Array<String>;
+	private var _statck_res3:Array<String>;
+	private var _statck_res4:Array<String>;
+	private var _statck_res5:Array<String>;
+	private var _statck_res6:Array<String>;
 	
 	private var _timer:FlxTimer;
 	
@@ -85,46 +92,52 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		add(_bet6);
 		
 		_bet_amount = new FlxText(_bet.x+29, _bet.y+3,170, "", 35,true);
-		_bet_amount.setFormat(AssetPaths.Times_Bold__ttf, _bet_amount.size, FlxColor.WHITE, "right");
+		_bet_amount.setFormat(AssetPaths.arial_0__ttf, _bet_amount.size, FlxColor.WHITE, "right");
 		add(_bet_amount);
 		
 		_bet_amount2 = new FlxText(_bet2.x+29, _bet2.y+3,170, "", 35,true);
-		_bet_amount2.setFormat(AssetPaths.Times_Bold__ttf, _bet_amount2.size, FlxColor.WHITE, "right");
+		_bet_amount2.setFormat(AssetPaths.arial_0__ttf, _bet_amount2.size, FlxColor.WHITE, "right");
 		add(_bet_amount2);
 		
 		_bet_amount3 = new FlxText(_bet3.x+29, _bet3.y+3,170, "", 35,true);
-		_bet_amount3.setFormat(AssetPaths.Times_Bold__ttf, _bet_amount3.size, FlxColor.WHITE, "right");
+		_bet_amount3.setFormat(AssetPaths.arial_0__ttf, _bet_amount3.size, FlxColor.WHITE, "right");
 		add(_bet_amount3);
 		
 		_bet_amount4 = new FlxText(_bet4.x+29, _bet4.y+3,170, "", 35,true);
-		_bet_amount4.setFormat(AssetPaths.Times_Bold__ttf, _bet_amount4.size, FlxColor.WHITE, "right");
+		_bet_amount4.setFormat(AssetPaths.arial_0__ttf, _bet_amount4.size, FlxColor.WHITE, "right");
 		add(_bet_amount4);
 		
 		_bet_amount5 = new FlxText(_bet5.x+29, _bet5.y+3,170, "", 35,true);
-		_bet_amount5.setFormat(AssetPaths.Times_Bold__ttf, _bet_amount5.size, FlxColor.WHITE, "right");
+		_bet_amount5.setFormat(AssetPaths.arial_0__ttf, _bet_amount5.size, FlxColor.WHITE, "right");
 		add(_bet_amount5);
 		
 		_bet_amount6 = new FlxText(_bet6.x+29, _bet6.y+3,170, "", 35,true);
-		_bet_amount6.setFormat(AssetPaths.Times_Bold__ttf, _bet_amount6.size, FlxColor.WHITE, "right");
+		_bet_amount6.setFormat(AssetPaths.arial_0__ttf, _bet_amount6.size, FlxColor.WHITE, "right");
 		add(_bet_amount6);
 		
 		_statck = new FlxGroup();
-		creat_stack(1266, 800,_statck);
+		_statck_res = new Array<String>();
+		creat_stack(1266, 800,_statck,_statck_res);
 		
-		_statck2 =  new FlxGroup();
-		creat_stack(492, 800, _statck2);
+		_statck2 = new FlxGroup();
+		_statck_res2 = new Array<String>();
+		creat_stack(492, 800, _statck2,_statck_res2);
 		
-		_statck3 =  new FlxGroup();
-		creat_stack(981, 818, _statck3);
+		_statck3 = new FlxGroup();
+		_statck_res3 = new Array<String>();
+		creat_stack(981, 818, _statck3,_statck_res3);
 		
 		_statck4 =  new FlxGroup();
-		creat_stack(1633, 762, _statck4);
+		_statck_res4 = new Array<String>();
+		creat_stack(1633, 762, _statck4,_statck_res4);
 		
 		_statck5 =  new FlxGroup();
-		creat_stack(120, 762, _statck5); 		
+		_statck_res5 = new Array<String>();
+		creat_stack(120, 762, _statck5,_statck_res5); 		
 		
 		_statck6 =  new FlxGroup();
-		creat_stack(881, 578, _statck6); 		
+		_statck_res6 = new Array<String>();
+		creat_stack(881, 578, _statck6,_statck_res6); 		
 		
 		disappear(1);		
 		
@@ -224,56 +237,64 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		var r = ~/_2/;		
 		st = r.replace(st, "_1");		
 		
-		FlxG.log.add("coin amount = "+ Main._model.bet_amount());
-		
 		if ( Sprite._id == 0) 
 		{
 			_zone.loadGraphic(st);
 			_bet.revive();
-			_bet_amount.text = Main._model.bet_amount();
-			coin_update(_statck);
 			
+			//send to server
+			Main._model.bet_in(Sprite._id);
+			
+			_bet_amount.text = Main._model.bet_amount();
+			coin_update(_statck,_statck_res);
 		}
 		if ( Sprite._id == 1)
 		{
 			_zone2.loadGraphic(st);
 			_bet2.revive();
 			_bet_amount2.text = Main._model.bet_amount();
-			coin_update(_statck2);
-			//coin_clean();
+			coin_update(_statck2,_statck_res2);
 		}
 		if ( Sprite._id == 2) 
 		{
 			_zone3.loadGraphic(st);
 			_bet3.revive();
 			_bet_amount3.text = Main._model.bet_amount();
+			coin_update(_statck3,_statck_res3);
 		}
 		if ( Sprite._id == 3) 
 		{
 			_zone4.loadGraphic(st);
 			_bet4.revive();
 			_bet_amount4.text = Main._model.bet_amount();
+			coin_update(_statck4,_statck_res4);
 		}
 		if ( Sprite._id == 4) 
 		{
 			_zone5.loadGraphic(st);
 			_bet5.revive();
 			_bet_amount5.text = Main._model.bet_amount();
+			coin_update(_statck5,_statck_res5);
 		}
 		if ( Sprite._id == 5) 
 		{
 			_zone6.loadGraphic(st);
 			_bet6.revive();
 			_bet_amount6.text = Main._model.bet_amount();
+			coin_update(_statck6,_statck_res6);
 		}
 	}
 	
-	private function coin_update(target:FlxGroup):Void
-	{
+	private function coin_update(target:FlxGroup,res:Array<String>):Void
+	{		
+		var i:Int = 0;
 		for ( mem in target)
 		{
 			var item:FlxSprite = cast(mem, FlxSprite);
-			item.loadGraphic("assets/images/share/coin/fh-1.png");
+			//item.loadGraphic("assets/images/share/coin/fh-1.png");
+			item.loadGraphic(res[i]);
+			FlxG.log.add("coin_update "+res[i]);
+			i++;
 		}
 		
 	}
@@ -287,7 +308,7 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		}
 	}
 	
-	private function creat_stack(x:Float,y:Float,target:FlxGroup):Void
+	private function creat_stack(x:Float,y:Float,target:FlxGroup,res:Array<String>):Void
 	{
 		var ColumnCnt:Int = 10;
 		for (i in 0...(1))
@@ -295,12 +316,13 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 			var x:Float = x;
 			var y:Float = y - (i % ColumnCnt * 10);			
 			
-			var coin:FlxSprite = new FlxSprite(x, y).loadGraphic("assets/images/share/coin/fh-1.png");
-			//var coin:FlxSprite = new FlxSprite(x, y).loadGraphic(AssetPaths.ball_none__png);
+			//var coin:FlxSprite = new FlxSprite(x, y).loadGraphic("assets/images/share/coin/fh-1.png");
+			var coin:FlxSprite = new FlxSprite(x, y).loadGraphic(AssetPaths.ball_none__png);
 			coin.scale.set(0.65, 0.65);
 			coin.antialiasing = true;
 			add(coin);			
-			target.add(coin);			
+			target.add(coin);
+			res.push(AssetPaths.ball_none__png);
 		}
 	}
 	

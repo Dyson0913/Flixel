@@ -25,6 +25,8 @@ class Model extends FlxObject
 	public var _remain_time:Int;
 	public var _recode_hisotry:Dynamic;
 	public var _coin_select_idx:Int;
+	public var _zone_un_comfirm_bet:Array<Float> = new Array();
+	public var _zone_comfirm_bet:Array<Float> = new Array();
 	
 	//base event
 	public var send_pack = new Signal<Dynamic>();
@@ -94,6 +96,25 @@ class Model extends FlxObject
 		}
 		
 		_parser.parser(pack);
+	}
+	
+	public function bet_in(zone:Int):String
+	{
+		_zone_un_comfirm_bet.insert(zone, Std.parseFloat(bet_amount()));
+		//TODO check
+	}
+	
+	public function coin_res():String
+	{
+		var res_list:Array<String> = new Array<String>();
+		
+		res_list.push("assets/images/share/coin/five-1.png");
+		res_list.push("assets/images/share/coin/fh-1.png");
+		res_list.push("assets/images/share/coin/ot-1.png");
+		res_list.push("assets/images/share/coin/ft-1.png");
+		res_list.push("assets/images/share/coin/tt-1.png");
+		
+		return Std.string(res_list[Main._model._coin_select_idx]);
 	}
 	
 	public function bet_amount():String
