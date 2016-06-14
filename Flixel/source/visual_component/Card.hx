@@ -24,8 +24,7 @@ class Card extends FlxTypedGroup<FlxSprite>
 	
 	public function new() 
 	{
-		super();
-		FlxG.log.add("Card init");
+		super();		
 		_zone = new FlxSprite(330,530).loadGraphic(AssetPaths.open_card_bg__png);
 		add(_zone);
 		_zone.kill();

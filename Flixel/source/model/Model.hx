@@ -96,6 +96,19 @@ class Model extends FlxObject
 		_parser.parser(pack);
 	}
 	
+	public function bet_amount():String
+	{
+		var coin_list:Array<Int> = new Array<Int>();
+		 
+		coin_list.push(5);
+		coin_list.push(500);
+		coin_list.push(1000);
+		coin_list.push(5000);
+		coin_list.push(10000);
+		
+		return Std.string(coin_list[Main._model._coin_select_idx]);
+	}
+	
 	public static function Format(digit:Int,lenth:Int):String
 	{
 		var str:String = "";

@@ -66,6 +66,13 @@ class Coin extends FlxTypedGroup<FlxSprite>
 	{
 		Main._model._coin_select_idx = 2;
 		_pre_select_idx = -1;
+		
+		//default select
+		var st:String =_coin3._name;
+		var r = ~/-1/;		
+		st = r.replace(st, "-3");
+		_coin3.loadGraphic(st);
+		
 		_coin.revive();
 		_coin2.revive();
 		_coin3.revive();

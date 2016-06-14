@@ -76,7 +76,7 @@ class History_recode extends FlxTypedGroup<FlxSprite>
 		Main._model.EndRoundState.add(appear);
 		
 		disappear(1);
-		Main._model.adjust_item.dispatch(_history_t[0]);
+		
 	}
 	
 	private function appear(s:Dynamic):Void

@@ -33,12 +33,12 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 	private var _bet5:FlxSprite;
 	private var _bet6:FlxSprite;
 	
-	
-	
-	private var _msgbg:FlxSprite;	
-	private var _msgtie:FlxSprite;	
-	
-	private var _click_item:FlxGroup;
+	private var _bet_amount:FlxText;
+	private var _bet_amount2:FlxText;
+	private var _bet_amount3:FlxText;
+	private var _bet_amount4:FlxText;
+	private var _bet_amount5:FlxText;
+	private var _bet_amount6:FlxText;
 	
 	private var _timer:FlxTimer;
 	
@@ -51,7 +51,7 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 		_zone3 = new Btn(765, 687,2, AssetPaths.tie_1__png, onDown,onUp);		
 		_zone4 = new Btn(1519, 583,3, AssetPaths.banker_pair_1__png, onDown,onUp);		
 		_zone5 = new Btn(13, 587,4, AssetPaths.player_pair_1__png, onDown,onUp);		
-		_zone6 = new Btn(779, 526,5, AssetPaths.sp__png, onDown,onUp);		
+		_zone6 = new Btn(779, 526,5, AssetPaths.sp_1__png, onDown,onUp);		
 		
 		add(_zone);
 		add(_zone2);
@@ -74,6 +74,30 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 		add(_bet5);
 		add(_bet6);
 		
+		_bet_amount = new FlxText(_bet.x+29, _bet.y+3,170, "", 35,true);
+		_bet_amount.setFormat(AssetPaths.Times_Bold__ttf, _bet_amount.size, FlxColor.WHITE, "right");
+		add(_bet_amount);
+		
+		_bet_amount2 = new FlxText(_bet2.x+29, _bet2.y+3,170, "", 35,true);
+		_bet_amount2.setFormat(AssetPaths.Times_Bold__ttf, _bet_amount2.size, FlxColor.WHITE, "right");
+		add(_bet_amount2);
+		
+		_bet_amount3 = new FlxText(_bet3.x+29, _bet3.y+3,170, "", 35,true);
+		_bet_amount3.setFormat(AssetPaths.Times_Bold__ttf, _bet_amount3.size, FlxColor.WHITE, "right");
+		add(_bet_amount3);
+		
+		_bet_amount4 = new FlxText(_bet4.x+29, _bet4.y+3,170, "", 35,true);
+		_bet_amount4.setFormat(AssetPaths.Times_Bold__ttf, _bet_amount4.size, FlxColor.WHITE, "right");
+		add(_bet_amount4);
+		
+		_bet_amount5 = new FlxText(_bet5.x+29, _bet5.y+3,170, "", 35,true);
+		_bet_amount5.setFormat(AssetPaths.Times_Bold__ttf, _bet_amount5.size, FlxColor.WHITE, "right");
+		add(_bet_amount5);
+		
+		_bet_amount6 = new FlxText(_bet6.x+29, _bet6.y+3,170, "", 35,true);
+		_bet_amount6.setFormat(AssetPaths.Times_Bold__ttf, _bet_amount6.size, FlxColor.WHITE, "right");
+		add(_bet_amount6);
+		
 		disappear(1);		
 		
 		//event
@@ -84,6 +108,7 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 		Main._model.EndRoundState.add(disappear);
 		
 		_timer = new FlxTimer();
+		//Main._model.adjust_item.dispatch(_bet_amount);
 	}
 	
 	private function appear(s:Dynamic):Void
@@ -94,13 +119,6 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 		_zone4.revive();
 		_zone5.revive();
 		_zone6.revive();
-		
-		//_bet.revive();
-		//_bet2.revive();
-		//_bet3.revive();
-		//_bet4.revive();
-		//_bet5.revive();
-		//_bet6.revive();
 		
 		if ( Main._model._game_state == "StartBetState")
 		{
@@ -140,7 +158,7 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 		_zone3.loadGraphic(AssetPaths.tie_2__png);
 		_zone4.loadGraphic(AssetPaths.banker_pair_2__png);
 		_zone5.loadGraphic(AssetPaths.player_pair_2__png);
-		_zone6.loadGraphic(AssetPaths.sp2__png);
+		_zone6.loadGraphic(AssetPaths.sp_2__png);
 	}
 	
 	private function flash_2():Void
@@ -150,7 +168,7 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 		_zone3.loadGraphic(AssetPaths.tie_1__png);
 		_zone4.loadGraphic(AssetPaths.banker_pair_1__png);
 		_zone5.loadGraphic(AssetPaths.player_pair_1__png);
-		_zone6.loadGraphic(AssetPaths.sp__png);
+		_zone6.loadGraphic(AssetPaths.sp_1__png);
 	}
 	
 	
@@ -167,6 +185,7 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 		if ( Sprite._id == 2) _zone3.loadGraphic(st);
 		if ( Sprite._id == 3) _zone4.loadGraphic(st);
 		if ( Sprite._id == 4) _zone5.loadGraphic(st);
+		if ( Sprite._id == 5) _zone6.loadGraphic(st);
 	}
 	
 	private function onUp(Sprite:Btn)
@@ -175,13 +194,47 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 		
 		var st:String = Sprite._name;
 		var r = ~/_2/;		
-		st = r.replace(st, "_1");
+		st = r.replace(st, "_1");		
 		
-		if ( Sprite._id == 0) _zone.loadGraphic(st);
-		if ( Sprite._id == 1) _zone2.loadGraphic(st);
-		if ( Sprite._id == 2) _zone3.loadGraphic(st);
-		if ( Sprite._id == 3) _zone4.loadGraphic(st);
-		if ( Sprite._id == 4) _zone5.loadGraphic(st);
+		FlxG.log.add("coin amount = "+ Main._model.bet_amount());
+		
+		if ( Sprite._id == 0) 
+		{
+			_zone.loadGraphic(st);
+			_bet.revive();
+			_bet_amount.text = Main._model.bet_amount();
+			
+		}
+		if ( Sprite._id == 1)
+		{
+			_zone2.loadGraphic(st);
+			_bet2.revive();
+			_bet_amount2.text = Main._model.bet_amount();
+		}
+		if ( Sprite._id == 2) 
+		{
+			_zone3.loadGraphic(st);
+			_bet3.revive();
+			_bet_amount3.text = Main._model.bet_amount();
+		}
+		if ( Sprite._id == 3) 
+		{
+			_zone4.loadGraphic(st);
+			_bet4.revive();
+			_bet_amount4.text = Main._model.bet_amount();
+		}
+		if ( Sprite._id == 4) 
+		{
+			_zone5.loadGraphic(st);
+			_bet5.revive();
+			_bet_amount5.text = Main._model.bet_amount();
+		}
+		if ( Sprite._id == 5) 
+		{
+			_zone6.loadGraphic(st);
+			_bet6.revive();
+			_bet_amount6.text = Main._model.bet_amount();
+		}
 	}
 	
 }
