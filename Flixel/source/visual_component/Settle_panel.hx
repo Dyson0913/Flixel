@@ -21,8 +21,8 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 	
 	public function new() 
 	{
-		super();		
-		FlxG.log.add("Settle_panel init");
+		super();
+		
 		_zone = new FlxSprite(1285, 115).loadGraphic(AssetPaths.settle__png);
 		_zone.antialiasing = true;
 		add(_zone);

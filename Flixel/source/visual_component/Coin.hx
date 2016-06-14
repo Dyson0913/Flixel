@@ -121,49 +121,55 @@ class Coin extends FlxTypedGroup<FlxSprite>
 	private function onDown(Sprite:Btn)
 	{
 		Main._model._coin_select_idx = Sprite._id;
-		if ( _pre_select_idx == -1)
-		{
-			_pre_select_idx = Sprite._id;		
+		
+		if ( _pre_select_idx == Sprite._id)
+		{			
+			return;	
 		}
 		else 
-		{
-			if ( _pre_select_idx == Sprite._id) return;
+		{		
+			if ( _pre_select_idx != -1)
+			{
+				//recover origin btn	
+				var or_st:String = "";
+				var my_r = ~/-3/;
+				var or_st = "";
+				if ( _pre_select_idx == 0) 
+				{
+					or_st = _coin._name;
+					or_st = my_r.replace(or_st, "-1");
+					_coin.loadGraphic(or_st);
+				}
+				if ( _pre_select_idx == 1) 
+				{
+					or_st = _coin2._name;
+					or_st = my_r.replace(or_st, "-1");
+					_coin2.loadGraphic(or_st);
+				}
+				if ( _pre_select_idx == 2) 
+				{
+					or_st = _coin3._name;
+					or_st = my_r.replace(or_st, "-1");
+					_coin3.loadGraphic(or_st);
+				}
+				if ( _pre_select_idx == 3) 
+				{
+					or_st = _coin4._name;
+					or_st = my_r.replace(or_st, "-1");
+					_coin4.loadGraphic(or_st);
+				}
+				if ( _pre_select_idx == 4) 
+				{
+					or_st = _coin5._name;
+					or_st = my_r.replace(or_st, "-1");
+					_coin5.loadGraphic(or_st);
+				}
+			}
 			
-			//recover origin btn	
-			var or_st:String = "";
-			var my_r = ~/-3/;
-			var or_st = "";
-			if ( _pre_select_idx == 0) 
-			{
-				or_st = _coin._name;
-				or_st = my_r.replace(or_st, "-1");
-				_coin.loadGraphic(or_st);
-			}
-			if ( _pre_select_idx == 1) 
-			{
-				or_st = _coin._name;
-				or_st = my_r.replace(or_st, "-1");
-				_coin2.loadGraphic(or_st);
-			}
-			if ( _pre_select_idx == 2) 
-			{
-				or_st = _coin._name;
-				or_st = my_r.replace(or_st, "-1");
-				_coin3.loadGraphic(or_st);
-			}
-			if ( _pre_select_idx == 3) 
-			{
-				or_st = _coin._name;
-				or_st = my_r.replace(or_st, "-1");
-				_coin4.loadGraphic(or_st);
-			}
-			if ( _pre_select_idx == 4) 
-			{
-				or_st = _coin._name;
-				or_st = my_r.replace(or_st, "-1");
-				_coin5.loadGraphic(or_st);
-			}			
+			
 		}
+		
+		_pre_select_idx = Sprite._id;
 		
 		
 		var st:String = Sprite._name;
