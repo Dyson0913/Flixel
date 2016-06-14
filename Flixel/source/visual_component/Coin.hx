@@ -28,12 +28,6 @@ class Coin extends FlxTypedGroup<FlxSprite>
 	
 	private var _pre_select_idx:Int = -1;
 	
-	private var _bet:FlxSprite;	
-	private var _bet2:FlxSprite;	
-	private var _bet3:FlxSprite;	
-	private var _bet4:FlxSprite;	
-	private var _bet5:FlxSprite;
-	private var _bet6:FlxSprite;
 	
 	public function new() 
 	{
@@ -53,22 +47,6 @@ class Coin extends FlxTypedGroup<FlxSprite>
 		
 		_coin5 = new Btn(1246, 935,4, AssetPaths.tt_1__png, onDown);
 		add(_coin5);
-		
-		
-		
-		_bet = new FlxSprite(1214,555).loadGraphic(AssetPaths.betframe_bg__png);
-		_bet2 = new FlxSprite(486,559).loadGraphic(AssetPaths.betframe_bg__png);
-		_bet3 = new FlxSprite(847,715).loadGraphic(AssetPaths.betframe_bg__png);
-		_bet4 = new FlxSprite(1577,617).loadGraphic(AssetPaths.betframe_bg__png);
-		_bet5 = new FlxSprite(131,617).loadGraphic(AssetPaths.betframe_bg__png);
-		_bet6 = new FlxSprite(851,510).loadGraphic(AssetPaths.betframe_bg__png);
-		
-		add(_bet);
-		add(_bet2);
-		add(_bet3);
-		add(_bet4);
-		add(_bet5);
-		add(_bet6);
 		
 		disappear(1);
 		
@@ -94,12 +72,6 @@ class Coin extends FlxTypedGroup<FlxSprite>
 		_coin4.revive();
 		_coin5.revive();
 		
-		_bet.revive();
-		_bet2.revive();		
-		_bet3.revive();		
-		_bet4.revive();		
-		_bet5.revive();	
-		_bet6.revive();	
 	}
 	
 	private function disappear(s:Dynamic):Void
@@ -108,14 +80,7 @@ class Coin extends FlxTypedGroup<FlxSprite>
 		_coin2.kill();
 		_coin3.kill();
 		_coin4.kill();
-		_coin5.kill();
-		
-		_bet.kill();
-		_bet2.kill();		
-		_bet3.kill();		
-		_bet4.kill();		
-		_bet5.kill();	
-		_bet6.kill();	
+		_coin5.kill();		
 	}
 	
 	private function onDown(Sprite:Btn)
