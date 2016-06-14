@@ -8,6 +8,7 @@ import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
 import haxe.Json;
 import visual_component.Adjust_tool;
+import visual_component.Bet_zone;
 import visual_component.Coin;
 import visual_component.Hint_msg;
 import visual_component.History_recode;
@@ -28,7 +29,6 @@ import openfl.utils.ByteArray;
 
 import visual_component.Card;
 import visual_component.Hint_board;
-import visual_component.Click_item;
 
 class MenuState extends FlxState
 {
@@ -45,7 +45,7 @@ class MenuState extends FlxState
 	public var _hint_board:Hint_board;
 	
 	//share item
-	private var _bet_zone:Click_item;
+	private var _bet_zone:Bet_zone;
 	private var _card:Card;
 	private var _adjust:Adjust_tool;
 	private var _kiban:Kiban_board;
@@ -123,7 +123,7 @@ class MenuState extends FlxState
 		_adjust = new Adjust_tool();
 		add(_adjust);
 		
-		_bet_zone = new Click_item();
+		_bet_zone = new Bet_zone();
 		add(_bet_zone);
 		
 		_card = new Card();

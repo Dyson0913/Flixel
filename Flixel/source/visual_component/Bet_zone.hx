@@ -4,6 +4,8 @@ package visual_component;
  * ...
  * @author hhg4092
  */
+import flixel.FlxBasic;
+import flixel.FlxBasic.IFlxBasic;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.group.FlxGroup;
@@ -17,7 +19,7 @@ import flixel.util.FlxColor;
 import flixel.input.FlxInput;
 
 
-class Click_item extends FlxTypedGroup<FlxSprite>
+class Bet_zone extends FlxTypedGroup<FlxSprite>
 {		
 	private var _zone:Btn;	
 	private var _zone2:Btn;	
@@ -39,6 +41,14 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 	private var _bet_amount4:FlxText;
 	private var _bet_amount5:FlxText;
 	private var _bet_amount6:FlxText;
+	
+//	private var _coin_stack:Array<FlxSprite>;	
+	private var _statck:FlxGroup;
+	private var _statck2:FlxGroup;
+	private var _statck3:FlxGroup;
+	private var _statck4:FlxGroup;
+	private var _statck5:FlxGroup;
+	private var _statck6:FlxGroup;
 	
 	private var _timer:FlxTimer;
 	
@@ -98,6 +108,24 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 		_bet_amount6.setFormat(AssetPaths.Times_Bold__ttf, _bet_amount6.size, FlxColor.WHITE, "right");
 		add(_bet_amount6);
 		
+		_statck = new FlxGroup();
+		creat_stack(1266, 800,_statck);
+		
+		_statck2 =  new FlxGroup();
+		creat_stack(492, 800, _statck2);
+		
+		_statck3 =  new FlxGroup();
+		creat_stack(981, 818, _statck3);
+		
+		_statck4 =  new FlxGroup();
+		creat_stack(1633, 762, _statck4);
+		
+		_statck5 =  new FlxGroup();
+		creat_stack(120, 762, _statck5); 		
+		
+		_statck6 =  new FlxGroup();
+		creat_stack(881, 578, _statck6); 		
+		
 		disappear(1);		
 		
 		//event
@@ -108,7 +136,7 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 		Main._model.EndRoundState.add(disappear);
 		
 		_timer = new FlxTimer();
-		//Main._model.adjust_item.dispatch(_bet_amount);
+		Main._model.adjust_item.dispatch(_statck6.getFirstAlive());
 	}
 	
 	private function appear(s:Dynamic):Void
@@ -203,6 +231,7 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 			_zone.loadGraphic(st);
 			_bet.revive();
 			_bet_amount.text = Main._model.bet_amount();
+			coin_update(_statck);
 			
 		}
 		if ( Sprite._id == 1)
@@ -210,6 +239,8 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 			_zone2.loadGraphic(st);
 			_bet2.revive();
 			_bet_amount2.text = Main._model.bet_amount();
+			coin_update(_statck2);
+			//coin_clean();
 		}
 		if ( Sprite._id == 2) 
 		{
@@ -234,6 +265,42 @@ class Click_item extends FlxTypedGroup<FlxSprite>
 			_zone6.loadGraphic(st);
 			_bet6.revive();
 			_bet_amount6.text = Main._model.bet_amount();
+		}
+	}
+	
+	private function coin_update(target:FlxGroup):Void
+	{
+		for ( mem in target)
+		{
+			var item:FlxSprite = cast(mem, FlxSprite);
+			item.loadGraphic("assets/images/share/coin/fh-1.png");
+		}
+		
+	}
+	
+	private function coin_clean(target:FlxGroup):Void
+	{
+		for ( mem in target)
+		{
+			var item:FlxSprite = cast(mem, FlxSprite);
+			item.loadGraphic(AssetPaths.ball_none__png);
+		}
+	}
+	
+	private function creat_stack(x:Float,y:Float,target:FlxGroup):Void
+	{
+		var ColumnCnt:Int = 10;
+		for (i in 0...(1))
+		{
+			var x:Float = x;
+			var y:Float = y - (i % ColumnCnt * 10);			
+			
+			var coin:FlxSprite = new FlxSprite(x, y).loadGraphic("assets/images/share/coin/fh-1.png");
+			//var coin:FlxSprite = new FlxSprite(x, y).loadGraphic(AssetPaths.ball_none__png);
+			coin.scale.set(0.65, 0.65);
+			coin.antialiasing = true;
+			add(coin);			
+			target.add(coin);			
 		}
 	}
 	
