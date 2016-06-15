@@ -58,7 +58,15 @@ class Model extends FlxObject
 		super();
 		
 		//customer
-		_parser = new Dk_Parser();		
+		_parser = new Dk_Parser();
+		
+		_zone_un_comfirm_bet.push(0);
+		_zone_un_comfirm_bet.push(0);
+		_zone_un_comfirm_bet.push(0);
+		_zone_un_comfirm_bet.push(0);
+		_zone_un_comfirm_bet.push(0);
+		_zone_un_comfirm_bet.push(0);
+		
 	}
 	
 	public function pack_parse(pack:Dynamic):Void
@@ -98,10 +106,14 @@ class Model extends FlxObject
 		_parser.parser(pack);
 	}
 	
-	public function bet_in(zone:Int):String
+	public function bet_in(zone:Int):Void
 	{
-		_zone_un_comfirm_bet.insert(zone, Std.parseFloat(bet_amount()));
-		//TODO check
+		var total:Float = _zone_un_comfirm_bet[zone];
+		total += Std.parseFloat(bet_amount());
+		
+		_zone_un_comfirm_bet[zone] = total;
+		
+		FlxG.log.add(_zone_un_comfirm_bet);
 	}
 	
 	public function coin_res():String

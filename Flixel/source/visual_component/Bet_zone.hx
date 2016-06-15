@@ -4,6 +4,7 @@ package visual_component;
  * ...
  * @author hhg4092
  */
+import flash.display.Sprite;
 import flixel.FlxBasic;
 import flixel.FlxBasic.IFlxBasic;
 import flixel.FlxG;
@@ -56,6 +57,9 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 	private var _statck_res4:Array<String>;
 	private var _statck_res5:Array<String>;
 	private var _statck_res6:Array<String>;
+	
+	private var _cancel:FlxSprite;
+	private var _continue_bet:FlxSprite;
 	
 	private var _timer:FlxTimer;
 	
@@ -139,6 +143,12 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		_statck_res6 = new Array<String>();
 		creat_stack(881, 578, _statck6,_statck_res6); 		
 		
+		_cancel = new Btn(1739, 950,0, AssetPaths.cancel_1__png, onCancelDown,onCancelUp);	
+		add(_cancel);
+		
+		_continue_bet = new Btn(13, 952, 0, AssetPaths.continue_bet_1__png, onContinueDown, onContinueUp);
+		add(_continue_bet);
+		
 		disappear(1);		
 		
 		//event
@@ -149,7 +159,7 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		Main._model.EndRoundState.add(disappear);
 		
 		_timer = new FlxTimer();
-		Main._model.adjust_item.dispatch(_statck6.getFirstAlive());
+		//Main._model.adjust_item.dispatch(_continue_bet);
 	}
 	
 	private function appear(s:Dynamic):Void
@@ -184,6 +194,9 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		_bet4.kill();
 		_bet5.kill();
 		_bet6.kill();
+		
+		_cancel.kill();
+		_continue_bet.kill();
 	}
 	
 	private function effect(timer:FlxTimer):Void
@@ -212,7 +225,29 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		_zone6.loadGraphic(AssetPaths.sp_1__png);
 	}
 	
+	private function onCancelDown(Sprite:Btn)
+	{
+		FlxG.log.add("onCancelDown ");
+		_cancel.loadGraphic(AssetPaths.cancel_2__png);
+	}
 	
+	private function onCancelUp(Sprite:Btn)
+	{
+		FlxG.log.add("onCancelUp ");
+		_cancel.loadGraphic(AssetPaths.cancel_1__png);
+	}
+	
+	
+	private function onContinueDown(Sprite:Btn)
+	{
+		FlxG.log.add("onContinueDown ");
+		_cancel.loadGraphic(AssetPaths.cancel_2__png);
+	}
+	
+	private function onContinueUp(Sprite:Btn)
+	{
+		
+	}
 	private function onDown(Sprite:Btn)
 	{
 		if ( Main._model._game_state == "NewRoundState") return;
@@ -245,6 +280,10 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 			//send to server
 			Main._model.bet_in(Sprite._id);
 			
+			//cancel show up,count down timer start
+			_cancel.revive();
+			
+			
 			_bet_amount.text = Main._model.bet_amount();
 			coin_update(_statck,_statck_res);
 		}
@@ -252,6 +291,9 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		{
 			_zone2.loadGraphic(st);
 			_bet2.revive();
+			
+			Main._model.bet_in(Sprite._id);
+			
 			_bet_amount2.text = Main._model.bet_amount();
 			coin_update(_statck2,_statck_res2);
 		}
@@ -259,6 +301,8 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		{
 			_zone3.loadGraphic(st);
 			_bet3.revive();
+			
+			Main._model.bet_in(Sprite._id);
 			_bet_amount3.text = Main._model.bet_amount();
 			coin_update(_statck3,_statck_res3);
 		}
@@ -266,6 +310,8 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		{
 			_zone4.loadGraphic(st);
 			_bet4.revive();
+			
+			Main._model.bet_in(Sprite._id);
 			_bet_amount4.text = Main._model.bet_amount();
 			coin_update(_statck4,_statck_res4);
 		}
@@ -273,6 +319,8 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		{
 			_zone5.loadGraphic(st);
 			_bet5.revive();
+			
+			Main._model.bet_in(Sprite._id);
 			_bet_amount5.text = Main._model.bet_amount();
 			coin_update(_statck5,_statck_res5);
 		}
@@ -280,6 +328,8 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		{
 			_zone6.loadGraphic(st);
 			_bet6.revive();
+			
+			Main._model.bet_in(Sprite._id);
 			_bet_amount6.text = Main._model.bet_amount();
 			coin_update(_statck6,_statck_res6);
 		}
