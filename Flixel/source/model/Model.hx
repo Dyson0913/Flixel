@@ -18,8 +18,11 @@ class Model extends FlxObject
 	
 	//model
 	public var _credit:String;
+	public var _player_uuid:String;
 	public var _gamelist:Array<String> = new Array();
 	
+	public var _game_id:String;
+	public var _game_type:String;
 	public var _game_round:String;
 	public var _game_state:String;
 	public var _remain_time:Int;
@@ -107,7 +110,7 @@ class Model extends FlxObject
 		if ( pack.message_type == "MsgLogin")
 		{			
 			_credit = pack.player_info.player_credit;
-			
+			_player_uuid = pack.player_info.player_uuid;
 			//dynamic field
 			for (n in Reflect.fields(pack.game_list))
 			{
@@ -144,6 +147,18 @@ class Model extends FlxObject
 	{
 		return Std.string(_zone_un_comfirm_bet[zone] + _zone_comfirm_bet[zone]);
 	}	
+	
+	public function un_comfirm_bet_to_comfirm():Void
+	{
+		//move un comfirme to comfirm
+		var len:Int = _zone_un_comfirm_bet.length;
+		for (i in 0...(len))
+		{
+			_zone_comfirm_bet[i] += _zone_un_comfirm_bet[i];
+			
+		}
+		
+	}
 	
 	public function creat_mapping_resname(zone:Int,target:Array<String>):Void
 	{
@@ -197,6 +212,20 @@ class Model extends FlxObject
 		}
 		return str + Std.string(digit);
 	}
+
+	public static function uuid():String
+	{
+        // Based on https://gist.github.com/LeverOne/1308368
+        var uid = new StringBuf(), a = 8;
+        uid.add(StringTools.hex(Std.int(Date.now().getTime()), 8));
+        while((a++) < 36) {
+            uid.add(a*51 & 52 != 0
+                ? StringTools.hex(a^15 != 0 ? 8^Std.int(Math.random() * (a^20 != 0 ? 16 : 4)) : 4)
+                : "-"
+            );
+        }
+        return uid.toString().toLowerCase();
+    }
 	
 }
 

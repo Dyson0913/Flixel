@@ -23,6 +23,8 @@ class Dk_Parser extends IParser
 		FlxG.log.add("dk parse");
 		FlxG.log.add(pack);
 		
+		Main._model._game_id = pack.game_id;
+		Main._model._game_type = pack.game_type;
 		Main._model._game_round = pack.game_round;
 		Main._model._game_state = pack.game_state;
 		

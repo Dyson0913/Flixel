@@ -290,7 +290,7 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 			//create mapping res name
 			Main._model.creat_mapping_resname(Sprite._id, _statck_res);
 			
-			coin_update(_statck,_statck_res);
+			coin_update(_statck, _statck_res);			
 		}
 		if ( Sprite._id == 1)
 		{
@@ -370,8 +370,29 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		if ( timer.loopsLeft == 0)
 		{
 			_cancel.kill();
-			//send un_comfirme to server
+			//TODO send un_comfirme to server
+			//send_bet();
+			
+			//sim put comifm
+			Main._model.un_comfirm_bet_to_comfirm();
 		}
+	}
+	
+	private function send_bet():Void
+	{		
+		var bet = { "id": Model.uuid(),//Main._model._player_uuid,
+			        "timestamp":1111,
+					"message_type":"MsgPlayerBet", 
+			        "game_id":Main._model._game_id,
+					"game_type":Main._model._game_type,
+					"game_round":Main._model._game_round
+					//"bet_type": idx_to_name.getValue( ob["betType"]),
+					//"bet_amount":ob["bet_amount"],
+					//"total_bet_amount":ob["total_bet_amount"]
+		};
+		//var betzone_name:Array = ["BetBWPlayer", "BetBWBanker", "BetBWTiePoint", "BetBWBankerPair", "BetBWPlayerPair", "BetBWSpecial"];
+		
+		//Main._model.send_pack.dispatch(bet);
 	}
 	
 	private function cancel_timer_start():Void
