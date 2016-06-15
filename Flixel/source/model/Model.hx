@@ -28,6 +28,10 @@ class Model extends FlxObject
 	public var _zone_un_comfirm_bet:Array<Float> = new Array();
 	public var _zone_comfirm_bet:Array<Float> = new Array();
 	
+	
+	public var _coin_list:Array<Int> = new Array<Int>();
+	public var _res_list:Array<String> = new Array<String>();
+	
 	//base event
 	public var send_pack = new Signal<Dynamic>();
 	
@@ -66,6 +70,26 @@ class Model extends FlxObject
 		_zone_un_comfirm_bet.push(0);
 		_zone_un_comfirm_bet.push(0);
 		_zone_un_comfirm_bet.push(0);
+		
+		_zone_comfirm_bet.push(0);
+		_zone_comfirm_bet.push(0);
+		_zone_comfirm_bet.push(0);
+		_zone_comfirm_bet.push(0);
+		_zone_comfirm_bet.push(0);
+		_zone_comfirm_bet.push(0);
+		
+		_coin_list.push(5);
+		_coin_list.push(500);
+		_coin_list.push(1000);
+		_coin_list.push(5000);
+		_coin_list.push(10000);
+		
+		
+		_res_list.push("assets/images/share/coin/tt-1.png");
+		_res_list.push("assets/images/share/coin/ft-1.png");
+		_res_list.push("assets/images/share/coin/ot-1.png");
+		_res_list.push("assets/images/share/coin/fh-1.png");
+		_res_list.push("assets/images/share/coin/five-1.png");		
 		
 	}
 	
@@ -113,33 +137,52 @@ class Model extends FlxObject
 		
 		_zone_un_comfirm_bet[zone] = total;
 		
-		FlxG.log.add(_zone_un_comfirm_bet);
+		//FlxG.log.add(_zone_un_comfirm_bet);
 	}
 	
-	public function coin_res():String
+	public function bet_total(zone:Int):String
 	{
-		var res_list:Array<String> = new Array<String>();
+		return Std.string(_zone_un_comfirm_bet[zone] + _zone_comfirm_bet[zone]);
+	}	
+	
+	public function creat_mapping_resname(zone:Int,target:Array<String>):Void
+	{
+		var total:Int = Std.parseInt(bet_total(zone));		
 		
-		res_list.push("assets/images/share/coin/five-1.png");
-		res_list.push("assets/images/share/coin/fh-1.png");
-		res_list.push("assets/images/share/coin/ot-1.png");
-		res_list.push("assets/images/share/coin/ft-1.png");
-		res_list.push("assets/images/share/coin/tt-1.png");
+		var big_to_small_coin:Array<Int> = _coin_list.copy();
+		big_to_small_coin.reverse();
 		
-		return Std.string(res_list[Main._model._coin_select_idx]);
+		var coin_idx_list:Array<Int> = new Array<Int>();
+		for (i in 0...(big_to_small_coin.length))
+		{
+			var coin_value:Int = big_to_small_coin[i];
+			var coin_number:Int = Std.parseInt( Std.string(total / coin_value));
+			
+			for ( j in 0...(coin_number))
+			{
+				coin_idx_list.push(i);				
+			}
+			total %= coin_value;
+		}
+		//FlxG.log.add("creat_mapping_resname _coin_list = " + res_list);
+		
+		//reset
+		for (i in 0...(target.length))
+		{			
+			target[i] = AssetPaths.ball_none__png;
+		}
+		
+		//create
+		for (i in 0...(coin_idx_list.length))
+		{
+			var res_name:String = _res_list[coin_idx_list[i]];
+			target[i] =  res_name;
+		}	
 	}
 	
 	public function bet_amount():String
-	{
-		var coin_list:Array<Int> = new Array<Int>();
-		 
-		coin_list.push(5);
-		coin_list.push(500);
-		coin_list.push(1000);
-		coin_list.push(5000);
-		coin_list.push(10000);
-		
-		return Std.string(coin_list[Main._model._coin_select_idx]);
+	{		
+		return Std.string(_coin_list[Main._model._coin_select_idx]);
 	}
 	
 	public static function Format(digit:Int,lenth:Int):String

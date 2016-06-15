@@ -60,8 +60,9 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 	
 	private var _cancel:FlxSprite;
 	private var _continue_bet:FlxSprite;
+	private var _bet_cancel_timer:FlxTimer;
 	
-	private var _timer:FlxTimer;
+	private var _timer_effect:FlxTimer;
 	
 	public function new() 
 	{
@@ -158,7 +159,8 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		Main._model.OpenState.add(disappear);
 		Main._model.EndRoundState.add(disappear);
 		
-		_timer = new FlxTimer();
+		_timer_effect = new FlxTimer();
+		_bet_cancel_timer =  new FlxTimer();
 		//Main._model.adjust_item.dispatch(_continue_bet);
 	}
 	
@@ -173,7 +175,7 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		
 		if ( Main._model._game_state == "StartBetState")
 		{
-			_timer.start(0.2, effect, 4);
+			_timer_effect.start(0.2, effect, 4);
 		}
 			
 	}
@@ -248,6 +250,7 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 	{
 		
 	}
+	
 	private function onDown(Sprite:Btn)
 	{
 		if ( Main._model._game_state == "NewRoundState") return;
@@ -277,14 +280,16 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 			_zone.loadGraphic(st);
 			_bet.revive();
 			
-			//send to server
+			//un_confirm add
 			Main._model.bet_in(Sprite._id);
+			_bet_amount.text = Main._model.bet_total(Sprite._id);
 			
 			//cancel show up,count down timer start
-			_cancel.revive();
+			cancel_timer_start();
 			
+			//create mapping res name
+			Main._model.creat_mapping_resname(Sprite._id, _statck_res);
 			
-			_bet_amount.text = Main._model.bet_amount();
 			coin_update(_statck,_statck_res);
 		}
 		if ( Sprite._id == 1)
@@ -293,8 +298,12 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 			_bet2.revive();
 			
 			Main._model.bet_in(Sprite._id);
+			_bet_amount2.text = Main._model.bet_total(Sprite._id);
 			
-			_bet_amount2.text = Main._model.bet_amount();
+			cancel_timer_start();
+			
+			Main._model.creat_mapping_resname(Sprite._id, _statck_res2);
+			
 			coin_update(_statck2,_statck_res2);
 		}
 		if ( Sprite._id == 2) 
@@ -303,7 +312,12 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 			_bet3.revive();
 			
 			Main._model.bet_in(Sprite._id);
-			_bet_amount3.text = Main._model.bet_amount();
+			_bet_amount3.text = Main._model.bet_total(Sprite._id);
+			
+			cancel_timer_start();
+			
+			Main._model.creat_mapping_resname(Sprite._id, _statck_res3);
+			
 			coin_update(_statck3,_statck_res3);
 		}
 		if ( Sprite._id == 3) 
@@ -312,7 +326,12 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 			_bet4.revive();
 			
 			Main._model.bet_in(Sprite._id);
-			_bet_amount4.text = Main._model.bet_amount();
+			_bet_amount4.text = Main._model.bet_total(Sprite._id);
+			
+			cancel_timer_start();
+			
+			Main._model.creat_mapping_resname(Sprite._id, _statck_res4);
+			
 			coin_update(_statck4,_statck_res4);
 		}
 		if ( Sprite._id == 4) 
@@ -321,7 +340,12 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 			_bet5.revive();
 			
 			Main._model.bet_in(Sprite._id);
-			_bet_amount5.text = Main._model.bet_amount();
+			_bet_amount5.text = Main._model.bet_total(Sprite._id);
+			
+			cancel_timer_start();
+			
+			Main._model.creat_mapping_resname(Sprite._id, _statck_res5);
+			
 			coin_update(_statck5,_statck_res5);
 		}
 		if ( Sprite._id == 5) 
@@ -329,21 +353,43 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 			_zone6.loadGraphic(st);
 			_bet6.revive();
 			
-			Main._model.bet_in(Sprite._id);
-			_bet_amount6.text = Main._model.bet_amount();
+			Main._model.bet_in(Sprite._id);			
+			_bet_amount6.text = Main._model.bet_total(Sprite._id);
+			
+			cancel_timer_start();
+			
+			Main._model.creat_mapping_resname(Sprite._id, _statck_res6);
+			
 			coin_update(_statck6,_statck_res6);
 		}
 	}
+	
+	private function cancel_count(timer:FlxTimer):Void
+	{		
+		//FlxG.log.add("timer "+timer.loopsLeft);
+		if ( timer.loopsLeft == 0)
+		{
+			_cancel.kill();
+			//send un_comfirme to server
+		}
+	}
+	
+	private function cancel_timer_start():Void
+	{
+		_cancel.revive();
+		_bet_cancel_timer.cancel();
+		_bet_cancel_timer.start(1, cancel_count, 3);			
+	}
+	
 	
 	private function coin_update(target:FlxGroup,res:Array<String>):Void
 	{		
 		var i:Int = 0;
 		for ( mem in target)
 		{
-			var item:FlxSprite = cast(mem, FlxSprite);
-			//item.loadGraphic("assets/images/share/coin/fh-1.png");
+			var item:FlxSprite = cast(mem, FlxSprite);			
 			item.loadGraphic(res[i]);
-			FlxG.log.add("coin_update "+res[i]);
+//			FlxG.log.add("coin_update "+res[i]);
 			i++;
 		}
 		
@@ -361,12 +407,11 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 	private function creat_stack(x:Float,y:Float,target:FlxGroup,res:Array<String>):Void
 	{
 		var ColumnCnt:Int = 10;
-		for (i in 0...(1))
+		for (i in 0...(10))
 		{
 			var x:Float = x;
-			var y:Float = y - (i % ColumnCnt * 10);			
+			var y:Float = y - (i % ColumnCnt * 10);
 			
-			//var coin:FlxSprite = new FlxSprite(x, y).loadGraphic("assets/images/share/coin/fh-1.png");
 			var coin:FlxSprite = new FlxSprite(x, y).loadGraphic(AssetPaths.ball_none__png);
 			coin.scale.set(0.65, 0.65);
 			coin.antialiasing = true;
