@@ -67,20 +67,17 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 		var total:Float = 0;		
 		for ( mem in target)
 		{
-			var item:FlxText = cast(mem, FlxText);		
-			total += data[i];
+			var item:FlxText = cast(mem, FlxText);			
 			if ( i == 6) 
-			{				
+			{								
 				item.text = Std.string(total);
+				return;
 			}
 			else item.text = Std.string(data[i]);
-			FlxG.log.add("coin_update " + data[i]);
-			FlxG.log.add("total " + total);
 			
+			total += data[i];			
 			i++;
-			
-		}
-		
+		}		
 	}
 	
 	private function creat_bet_amount(x:Float,y:Float,target:FlxGroup):Void
