@@ -300,7 +300,6 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 			
 			//create mapping res name
 			Main._model.creat_mapping_resname(Sprite._id, _statck_res);
-			
 			coin_update(_statck, _statck_res);			
 		}
 		if ( Sprite._id == 1)
@@ -314,7 +313,6 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 			cancel_timer_start();
 			
 			Main._model.creat_mapping_resname(Sprite._id, _statck_res2);
-			
 			coin_update(_statck2,_statck_res2);
 		}
 		if ( Sprite._id == 2) 
@@ -327,8 +325,7 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 			
 			cancel_timer_start();
 			
-			Main._model.creat_mapping_resname(Sprite._id, _statck_res3);
-			
+			Main._model.creat_mapping_resname(Sprite._id, _statck_res3);			
 			coin_update(_statck3,_statck_res3);
 		}
 		if ( Sprite._id == 3) 
@@ -341,8 +338,7 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 			
 			cancel_timer_start();
 			
-			Main._model.creat_mapping_resname(Sprite._id, _statck_res4);
-			
+			Main._model.creat_mapping_resname(Sprite._id, _statck_res4);			
 			coin_update(_statck4,_statck_res4);
 		}
 		if ( Sprite._id == 4) 
@@ -355,8 +351,7 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 			
 			cancel_timer_start();
 			
-			Main._model.creat_mapping_resname(Sprite._id, _statck_res5);
-			
+			Main._model.creat_mapping_resname(Sprite._id, _statck_res5);			
 			coin_update(_statck5,_statck_res5);
 		}
 		if ( Sprite._id == 5) 
@@ -364,13 +359,13 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 			_zone6.loadGraphic(st);
 			_bet6.revive();
 			
-			Main._model.bet_in(Sprite._id);			
+			Main._model.bet_in(Sprite._id);
 			_bet_amount6.text = Main._model.bet_total(Sprite._id);
 			
 			cancel_timer_start();
 			
+			//update coin
 			Main._model.creat_mapping_resname(Sprite._id, _statck_res6);
-			
 			coin_update(_statck6,_statck_res6);
 		}
 		
@@ -394,7 +389,56 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		Main._model.send_un_comfirm_bet();
 		
 		//sim put comifm
+		
+		//success
 		Main._model.un_comfirm_bet_to_comfirm();
+		
+		//sim faile		
+		//Main._model.un_comfirm_bet_drop();
+		//
+		//update coin
+		//if ( _click_zone != -1)
+		//{
+			//if( _click_zone == 0) 
+			//{
+				//_bet_amount.text = Main._model.bet_total(_click_zone);
+				//Main._model.creat_mapping_resname(_click_zone, _statck_res);
+				//coin_update(_statck, _statck_res);
+			//}
+			//if( _click_zone == 1) 
+			//{
+				//_bet_amount2.text = Main._model.bet_total(_click_zone);
+				//Main._model.creat_mapping_resname(_click_zone, _statck_res2);
+				//coin_update(_statck2,_statck_res2);
+			//}
+			//if( _click_zone == 2) 
+			//{
+				//_bet_amount3.text = Main._model.bet_total(_click_zone);
+				//Main._model.creat_mapping_resname(_click_zone, _statck_res3);			
+				//coin_update(_statck3,_statck_res3);
+			//}
+			//if( _click_zone == 3) 
+			//{
+				//_bet_amount4.text = Main._model.bet_total(_click_zone);
+				//Main._model.creat_mapping_resname(_click_zone, _statck_res4);
+				//coin_update(_statck4,_statck_res4);
+			//}
+			//if( _click_zone == 4) 
+			//{
+				//_bet_amount5.text = Main._model.bet_total(_click_zone);
+				//Main._model.creat_mapping_resname(_click_zone, _statck_res5);			
+				//coin_update(_statck5,_statck_res5);
+			//}
+			//if( _click_zone == 5) 
+			//{
+				//_bet_amount6.text = Main._model.bet_total(_click_zone);
+				//Main._model.creat_mapping_resname(_click_zone, _statck_res6);
+				//coin_update(_statck6,_statck_res6);
+			//}			
+		//}
+		//
+		
+		
 	}
 	
 	

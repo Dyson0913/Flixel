@@ -208,6 +208,18 @@ class Model extends FlxObject
 		
 	}
 	
+	public function un_comfirm_bet_drop():Void
+	{
+		//move un comfirme to comfirm
+		var len:Int = _zone_un_comfirm_bet.length;
+		for (i in 0...(len))
+		{			
+			_zone_un_comfirm_bet[i] = 0;
+		}
+		
+	}
+	
+	
 	public function creat_mapping_resname(zone:Int,target:Array<String>):Void
 	{
 		var total:Int = Std.parseInt(bet_total(zone));		
