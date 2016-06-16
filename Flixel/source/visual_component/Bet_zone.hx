@@ -61,6 +61,7 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 	private var _cancel:FlxSprite;
 	private var _continue_bet:FlxSprite;
 	private var _bet_cancel_timer:FlxTimer;
+	private var _click_zone:Int;
 	
 	private var _timer_effect:FlxTimer;
 	
@@ -150,6 +151,8 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		_continue_bet = new Btn(13, 952, 0, AssetPaths.continue_bet_1__png, onContinueDown, onContinueUp);
 		add(_continue_bet);
 		
+		_click_zone = -1;
+		
 		disappear(1);		
 		
 		//event
@@ -172,6 +175,8 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		_zone4.revive();
 		_zone5.revive();
 		_zone6.revive();
+		
+		_click_zone = -1;
 		
 		if ( Main._model._game_state == "StartBetState")
 		{
@@ -271,6 +276,12 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 	{
 		if ( Main._model._game_state == "NewRoundState") return;
 		
+		//click diff zone
+		if (_click_zone !=-1 && _click_zone != Sprite._id ) 
+		{
+			send_bet();			
+		}
+		
 		var st:String = Sprite._name;
 		var r = ~/_2/;		
 		st = r.replace(st, "_1");		
@@ -362,6 +373,9 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 			
 			coin_update(_statck6,_statck_res6);
 		}
+		
+		_click_zone = Sprite._id;
+		//FlxG.log.add("_click_zone "+_click_zone);
 	}
 	
 	private function cancel_count(timer:FlxTimer):Void
@@ -370,30 +384,19 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		if ( timer.loopsLeft == 0)
 		{
 			_cancel.kill();
-			//TODO send un_comfirme to server
-			//send_bet();
 			
-			//sim put comifm
-			Main._model.un_comfirm_bet_to_comfirm();
+			send_bet();			
 		}
 	}
 	
 	private function send_bet():Void
-	{		
-		var bet = { "id": Model.uuid(),//Main._model._player_uuid,
-			        "timestamp":1111,
-					"message_type":"MsgPlayerBet", 
-			        "game_id":Main._model._game_id,
-					"game_type":Main._model._game_type,
-					"game_round":Main._model._game_round
-					//"bet_type": idx_to_name.getValue( ob["betType"]),
-					//"bet_amount":ob["bet_amount"],
-					//"total_bet_amount":ob["total_bet_amount"]
-		};
-		//var betzone_name:Array = ["BetBWPlayer", "BetBWBanker", "BetBWTiePoint", "BetBWBankerPair", "BetBWPlayerPair", "BetBWSpecial"];
+	{
+		Main._model.send_un_comfirm_bet();
 		
-		//Main._model.send_pack.dispatch(bet);
+		//sim put comifm
+		Main._model.un_comfirm_bet_to_comfirm();
 	}
+	
 	
 	private function cancel_timer_start():Void
 	{

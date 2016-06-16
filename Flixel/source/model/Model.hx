@@ -34,6 +34,7 @@ class Model extends FlxObject
 	
 	public var _coin_list:Array<Int> = new Array<Int>();
 	public var _res_list:Array<String> = new Array<String>();
+	public var _betzone_name:Array<String> = new Array<String>();
 	
 	//base event
 	public var send_pack = new Signal<Dynamic>();
@@ -94,6 +95,16 @@ class Model extends FlxObject
 		_res_list.push("assets/images/share/coin/fh-1.png");
 		_res_list.push("assets/images/share/coin/five-1.png");		
 		
+		
+		_betzone_name.push("BetBWPlayer");
+		_betzone_name.push("BetBWBanker");
+		_betzone_name.push("BetBWTiePoint");
+		_betzone_name.push("BetBWBankerPair");
+		_betzone_name.push("BetBWPlayerPair");
+		_betzone_name.push("BetBWSpecial");
+		
+		
+		
 	}
 	
 	public function pack_parse(pack:Dynamic):Void
@@ -148,6 +159,43 @@ class Model extends FlxObject
 		return Std.string(_zone_un_comfirm_bet[zone] + _zone_comfirm_bet[zone]);
 	}	
 	
+	public function send_un_comfirm_bet():Void
+	{		
+		var len:Int = _zone_un_comfirm_bet.length;
+		var non_zero_idx:Int = -1;
+		for (i in 0...(len))
+		{
+			//find non zero idx	
+			if ( _zone_un_comfirm_bet[i] != 0)
+			{
+				non_zero_idx = i;
+				break;
+			}			
+		}
+		
+		if (non_zero_idx == -1) return;
+		
+		var bet_type:String = _betzone_name[non_zero_idx];
+		var bet_amount:Float = _zone_un_comfirm_bet[non_zero_idx];
+		var total_bet_amount:Float = _zone_un_comfirm_bet[non_zero_idx] + _zone_comfirm_bet[non_zero_idx];		
+		
+		
+		var bet = { "id": Model.uuid(),
+			        "timestamp":1111,
+					"message_type":"MsgPlayerBet", 
+			        "game_id":Main._model._game_id,
+					"game_type":Main._model._game_type,
+					"game_round":Main._model._game_round,
+					"bet_type": bet_type,
+					"bet_amount":bet_amount,
+					"total_bet_amount":total_bet_amount
+		};
+		
+		FlxG.log.add("====my bet ob ="+bet);
+		//Main._model.send_pack.dispatch(bet);
+		
+	}
+	
 	public function un_comfirm_bet_to_comfirm():Void
 	{
 		//move un comfirme to comfirm
@@ -155,7 +203,7 @@ class Model extends FlxObject
 		for (i in 0...(len))
 		{
 			_zone_comfirm_bet[i] += _zone_un_comfirm_bet[i];
-			
+			_zone_un_comfirm_bet[i] = 0;
 		}
 		
 	}
