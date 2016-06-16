@@ -39,7 +39,7 @@ class Dk extends FlxTypedGroup<FlxSprite>
 		add(_bg);
 		
 		_desk = new FlxSprite().loadGraphic(AssetPaths.dk_desk__png);		
-		//_desk = new FlxSprite().loadGraphic(AssetPaths.demo02__jpg);		
+		//_desk = new FlxSprite().loadGraphic(AssetPaths.demo02__jpg);
 		add(_desk);
 		
 		//new Btn(10, 20, AssetPaths.dk_girl__png,null,null,drag,null);

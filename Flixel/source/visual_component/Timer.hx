@@ -72,6 +72,10 @@ class Timer extends FlxTypedGroup<FlxSprite>
 		_ten.loadGraphic("assets/images/share/timer_num/timer_" + ten + ".png");
 		_one.loadGraphic("assets/images/share/timer_num/timer_" + one + ".png");
 		
+		if ( timer.loopsLeft == 0)
+		{			
+			disappear(1);
+		}
 	}
 	
 	private function disappear(s:Dynamic):Void
@@ -79,6 +83,7 @@ class Timer extends FlxTypedGroup<FlxSprite>
 		_zone.kill();
 		_ten.kill();
 		_one.kill();
+		_timer.cancel();
 	}
 	
 }

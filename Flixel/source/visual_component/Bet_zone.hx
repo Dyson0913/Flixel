@@ -176,6 +176,20 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		_zone5.revive();
 		_zone6.revive();
 		
+		_bet_amount.revive();
+		_bet_amount2.revive();
+		_bet_amount3.revive();
+		_bet_amount4.revive();
+		_bet_amount5.revive();
+		_bet_amount6.revive();
+		
+		_statck.revive();
+		_statck2.revive();
+		_statck3.revive();
+		_statck4.revive();
+		_statck5.revive();
+		_statck6.revive();
+		
 		_click_zone = -1;
 		
 		if ( Main._model._game_state == "StartBetState")
@@ -187,7 +201,7 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 	
 	private function disappear(s:Dynamic):Void
 	{
-		FlxG.log.add("click item disappear ");
+		
 		_zone.kill();
 		_zone2.kill();
 		_zone3.kill();
@@ -202,8 +216,24 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		_bet5.kill();
 		_bet6.kill();
 		
+		_bet_amount.kill();
+		_bet_amount2.kill();
+		_bet_amount3.kill();
+		_bet_amount4.kill();
+		_bet_amount5.kill();
+		_bet_amount6.kill();
+		
+		_statck.kill();
+		_statck2.kill();
+		_statck3.kill();
+		_statck4.kill();
+		_statck5.kill();
+		_statck6.kill();
+		
 		_cancel.kill();
 		_continue_bet.kill();
+		
+		
 	}
 	
 	private function effect(timer:FlxTimer):Void
