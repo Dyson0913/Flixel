@@ -29,22 +29,23 @@ class Kiban_board extends FlxTypedGroup<FlxSprite>
 	{
 		super();
 		
-		_zone = new FlxSprite(5,87).loadGraphic(AssetPaths.kiban_with_title__png);
+		_zone = new FlxSprite(12,93).loadGraphic(AssetPaths.kiban_with_title__png);
 		add(_zone);		
 		
-		_zone2 = new FlxSprite(1257,84).loadGraphic(AssetPaths.kiban_no_title__png);
+		_zone2 = new FlxSprite(1256,90).loadGraphic(AssetPaths.kiban_no_title__png);
 		add(_zone2);
 		
-		_zone3 = new FlxSprite(1290,419).loadGraphic(AssetPaths.powerbar__png);
+		_zone3 = new FlxSprite(1290,423).loadGraphic(AssetPaths.powerbar__png);
 		add(_zone3);
 		
 		_permanent_bar = new FlxGroup();
-		creat_permanent_bar(1385, 427, _permanent_bar);
+		creat_permanent_bar(1385, 433, _permanent_bar);
 		_permanent_bar.kill();
 		
 		_permanent_text = new FlxGroup();
-		creat_permanent_text(1685, 417, _permanent_text);
+		creat_permanent_text(1685, 423, _permanent_text);
 		_permanent_bar.kill();
+		
 		
 		//event
 		//two pair third msg
@@ -59,9 +60,9 @@ class Kiban_board extends FlxTypedGroup<FlxSprite>
 			var y:Float = y - (i % ColumnCnt * - 35);
 			
 			var _bar:FlxBar = new FlxBar(x, y, LEFT_TO_RIGHT, 380, 24);
-			if( i ==0) _bar.createImageBar(null,AssetPaths.dk_three_bar__png);
+			if ( i == 0) _bar.createImageBar(null, AssetPaths.dk_three_bar__png);
 			else _bar.createImageBar(null, AssetPaths.dk_twopair_bar__png);			
-			_bar.value = 0;
+			_bar.value = 100;
 			add(_bar);
 			target.add(_bar);
 		}
@@ -104,6 +105,7 @@ class Kiban_board extends FlxTypedGroup<FlxSprite>
 			var item:FlxText = cast(mem, FlxText);			
 			item.text = Std.string(data[i]);	
 			i++;
+			
 		}
 	}	
 }

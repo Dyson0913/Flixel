@@ -22,12 +22,12 @@ class Paytable extends FlxTypedGroup<FlxSprite>
 	public function new() 
 	{
 		super();		
-		_zone = new FlxSprite(40, 110).loadGraphic(AssetPaths.paytable__png);
+		_zone = new FlxSprite(45, 112).loadGraphic(AssetPaths.paytable__png);
 		_zone.antialiasing = true;
 		add(_zone);
 		_zone.kill();
 		
-		_zone2 = new FlxSprite(40, 110).loadGraphic(AssetPaths.paytable_percent__png);
+		_zone2 = new FlxSprite(45, 112).loadGraphic(AssetPaths.paytable_percent__png);
 		_zone2.antialiasing = true;
 		add(_zone2);
 		_zone2.kill();
@@ -39,7 +39,7 @@ class Paytable extends FlxTypedGroup<FlxSprite>
 		Main._model.OpenState.add(disappear);
 		Main._model.EndRoundState.add(appear);
 		
-		//Main._model.adjust_item.dispatch(_zone);
+		Main._model.adjust_item.dispatch(_zone2);
 	}
 	
 	private function appear(s:Dynamic):Void

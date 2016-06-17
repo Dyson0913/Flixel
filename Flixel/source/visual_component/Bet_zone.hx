@@ -69,12 +69,12 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 	{
 		super();		
 		
-		_zone = new Btn(1116, 530,0, AssetPaths.banker_zone_1__png, onDown,onUp);		
-		_zone2 = new Btn(334, 527,1, AssetPaths.player_zone_1__png, onDown,onUp);		
-		_zone3 = new Btn(765, 687,2, AssetPaths.tie_1__png, onDown,onUp);		
-		_zone4 = new Btn(1519, 583,3, AssetPaths.banker_pair_1__png, onDown,onUp);		
-		_zone5 = new Btn(13, 587,4, AssetPaths.player_pair_1__png, onDown,onUp);		
-		_zone6 = new Btn(779, 526,5, AssetPaths.sp_1__png, onDown,onUp);		
+		_zone = new Btn(1116, 537,0, AssetPaths.banker_zone_1__png, onDown,onUp);		
+		_zone2 = new Btn(334, 534,1, AssetPaths.player_zone_1__png, onDown,onUp);		
+		_zone3 = new Btn(765, 692,2, AssetPaths.tie_1__png, onDown,onUp);		
+		_zone4 = new Btn(1519, 588,3, AssetPaths.banker_pair_1__png, onDown,onUp);		
+		_zone5 = new Btn(13, 592,4, AssetPaths.player_pair_1__png, onDown,onUp);		
+		_zone6 = new Btn(779, 531,5, AssetPaths.sp_1__png, onDown,onUp);		
 		
 		add(_zone);
 		add(_zone2);
@@ -164,7 +164,7 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		
 		_timer_effect = new FlxTimer();
 		_bet_cancel_timer =  new FlxTimer();
-		//Main._model.adjust_item.dispatch(_continue_bet);
+//		Main._model.adjust_item.dispatch(_zone4);
 	}
 	
 	private function appear(s:Dynamic):Void

@@ -39,7 +39,7 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		add(_loadpic);
 		
 		
-		_credit_bg = new FlxSprite(1451,13).loadGraphic(AssetPaths.money__png);
+		_credit_bg = new FlxSprite(1451,17).loadGraphic(AssetPaths.money__png);
 		add(_credit_bg);		
 		//_credit.antialiasing = true;
 		
