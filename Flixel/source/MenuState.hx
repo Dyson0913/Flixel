@@ -14,6 +14,7 @@ import visual_component.Hint_msg;
 import visual_component.History_recode;
 import visual_component.Kiban_board;
 import visual_component.Paytable;
+import visual_component.Prob_panel;
 import visual_component.Settle_panel;
 import visual_component.Timer;
 
@@ -55,6 +56,7 @@ class MenuState extends FlxState
 	private var _coin:Coin;
 	private var _hintmsg:Hint_msg;
 	private var _timer:Timer;
+	private var _Prob_panel:Prob_panel;
 	
 	
 	
@@ -149,6 +151,9 @@ class MenuState extends FlxState
 		
 		_timer = new Timer();
 		add(_timer);
+		
+		_Prob_panel =  new Prob_panel();
+		add(_Prob_panel);
 		
 		add(_hud);		
 	}
