@@ -22,7 +22,6 @@ class Paytable extends FlxTypedGroup<FlxSprite>
 	public function new() 
 	{
 		super();		
-		FlxG.log.add("Paytable init");
 		_zone = new FlxSprite(40, 110).loadGraphic(AssetPaths.paytable__png);
 		_zone.antialiasing = true;
 		add(_zone);
