@@ -26,7 +26,7 @@ class Prob_panel extends FlxTypedGroup<FlxSprite>
 		super();
 		
 		_prob_text = new FlxGroup();
-		creat_bet_amount(444, 179, _prob_text);
+		creat_prob_amount(444, 179, _prob_text);
 		
 		//event
 		Main._model.NewRoundState.add(disappear);
@@ -43,8 +43,9 @@ class Prob_panel extends FlxTypedGroup<FlxSprite>
 		_prob_text.revive();
 		
 		//todo handle prob
-		
-		prob_update(_prob_text, Main._model._bigwin_prob);
+		var adjust_data:Array<Float> = sin_ki_formula_by_dyson(Main._model._bigwin_prob);
+		FlxG.log.add("adjust "+adjust_data);
+		prob_update(_prob_text, adjust_data);
 		
 	}
 	
@@ -59,12 +60,59 @@ class Prob_panel extends FlxTypedGroup<FlxSprite>
 		for ( mem in target)
 		{
 			var item:FlxText = cast(mem, FlxText);
-			item.text = Std.string(data[i]+"%");		
+			data[i] *= Math.pow(10,2);
+			var k:Float = Math.round(data[i]) / Math.pow(10, 2);			
+			k *= 100;
+			item.text = Std.string(k+"%");	
 			i++;
-		}		
+		}
 	}
 	
-	private function creat_bet_amount(x:Float,y:Float,target:FlxGroup):Void
+	private function sin_ki_formula_by_dyson(data:Array<Float>):Array<Float>
+	{
+		var copy_data_of_prob:Array<Float> = data.copy();
+		for (i in 0...(copy_data_of_prob.length))
+		{
+			copy_data_of_prob[i] *= 10000;
+		}
+		
+		for (i in 0...(copy_data_of_prob.length))
+		{
+			copy_data_of_prob[i] = Math.sqrt(copy_data_of_prob[i]) *10;
+		}
+		
+		var total:Float = 0;
+		for (i in 0...(copy_data_of_prob.length))
+		{
+			copy_data_of_prob[i] = Math.sqrt(copy_data_of_prob[i]) * 10;
+			total += copy_data_of_prob[i];
+		}
+		
+		if ( total == 0) return copy_data_of_prob;
+		
+		for (i in 0...(copy_data_of_prob.length))
+		{
+			copy_data_of_prob[i] = copy_data_of_prob[i] / total;
+		}
+		
+		//one kin match
+		for (i in 0...(copy_data_of_prob.length))
+		{
+			if ( copy_data_of_prob[i] == 1 && total == 1000) return copy_data_of_prob;
+		}
+		
+		for (i in 0...(copy_data_of_prob.length))
+		{
+			if ( copy_data_of_prob[i] != 0)
+			{
+				copy_data_of_prob[i] = Math.min(0.9,copy_data_of_prob[i]+0.3);
+			}
+		}		
+		
+		return copy_data_of_prob;		
+	}
+	
+	private function creat_prob_amount(x:Float,y:Float,target:FlxGroup):Void
 	{
 		var ColumnCnt:Int = 10;		
 		for (i in 0...(6))
