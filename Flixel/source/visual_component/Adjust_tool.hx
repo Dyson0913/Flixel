@@ -60,20 +60,20 @@ class Adjust_tool extends FlxTypedGroup<FlxSprite>
 	{
 		_control.x -= _diff;
 		FlxG.log.add("item.x ="+_control.x);
-		FlxG.log.add("item.x ="+_control.y);
+		FlxG.log.add("item.y ="+_control.y);
 	}
 	
 	private function x():Void
 	{
 		_control.x += _diff;
 		FlxG.log.add("item.x ="+_control.x);
-		FlxG.log.add("item.x ="+_control.y);
+		FlxG.log.add("item.y ="+_control.y);
 	}
 	
 	private function y():Void
 	{
 		_control.y += _diff;
-		FlxG.log.add("item.y ="+_control.x);
+		FlxG.log.add("item.x ="+_control.x);
 		FlxG.log.add("item.y ="+_control.y);
 	}
 	
@@ -81,7 +81,7 @@ class Adjust_tool extends FlxTypedGroup<FlxSprite>
 	{
 		_control.y -= _diff;
 		FlxG.log.add("item.x ="+_control.x);
-		FlxG.log.add("item.x ="+_control.y);
+		FlxG.log.add("item.y ="+_control.y);
 	}
 	
 	

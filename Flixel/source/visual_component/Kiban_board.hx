@@ -20,6 +20,7 @@ class Kiban_board extends FlxTypedGroup<FlxSprite>
 	private var _zone:FlxSprite;
 	private var _zone2:FlxSprite;
 	private var _zone3:FlxSprite;
+	private var _teach_btn:Btn;
 	
 	private var _permanent_bar:FlxGroup;
 	private var _permanent_text:FlxGroup;
@@ -38,6 +39,10 @@ class Kiban_board extends FlxTypedGroup<FlxSprite>
 		_zone3 = new FlxSprite(1290,423).loadGraphic(AssetPaths.powerbar__png);
 		add(_zone3);
 		
+		_teach_btn = new Btn(19, 949, 0, AssetPaths.teach_btn_1__png, onDown, onUp);	
+		_teach_btn.antialiasing = true;
+		add(_teach_btn);
+		
 		_permanent_bar = new FlxGroup();
 		creat_permanent_bar(1385, 433, _permanent_bar);
 		_permanent_bar.kill();
@@ -47,8 +52,19 @@ class Kiban_board extends FlxTypedGroup<FlxSprite>
 		_permanent_bar.kill();
 		
 		
+		
 		//event
 		//two pair third msg
+	}
+	
+	private function onDown(Sprite:Btn)
+	{
+		_teach_btn.loadGraphic(AssetPaths.teach_btn_2__png);
+	}
+	
+	private function onUp(Sprite:Btn)
+	{
+		_teach_btn.loadGraphic(AssetPaths.teach_btn_1__png);
 	}
 	
 	private function creat_permanent_bar(x:Float,y:Float,target:FlxGroup):Void

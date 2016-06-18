@@ -98,7 +98,12 @@ class Dk_Parser extends IParser
 		if ( pack.message_type == "MsgBPOpenCard")
 		{			
 			//"cards_bigwin_prob":[0.00017,0.011068,0.072029,0.815305,1.00866,2.15512]
-			//"card_list":["7s"],"card_type":"Player",Banker,River					
+			//"card_list":["7s"],"card_type":"Player",Banker,River
+			if ( pack.card_type == "Banker" ) Main._model._bigwin_banker_card.push(pack.card_list[0]);
+			if ( pack.card_type == "Player" ) Main._model._bigwin_player_card.push(pack.card_list[0]);
+			if ( pack.card_type == "River" ) Main._model._bigwin_river_card.push(pack.card_list[0]);
+			Main._model._bigwin_opencard_type = pack.card_type;
+			
 			Main._model._bigwin_prob = pack.cards_bigwin_prob;			
 			Main._model.OpenState.dispatch(pack.game_state);			
 		}
@@ -107,6 +112,8 @@ class Dk_Parser extends IParser
 		{			
 			//remain_time option
 			//result_list :[{"real_win_amount":95,"odds":1.95,"bet_attr":"BetAttrMain","bet_amount":100,"win_state":"WSBWNormalWin","settle_amount":195,"bet_type":"BetBWPlayer"},
+			Main._model._bigwin_opencard_type = "";
+			
 			Main._model.EndRoundState.dispatch(pack.game_state);
 		}
 		

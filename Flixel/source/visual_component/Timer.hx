@@ -26,7 +26,7 @@ class Timer extends FlxTypedGroup<FlxSprite>
 	public function new() 
 	{
 		super();		
-		_zone = new FlxSprite(843, 286).loadGraphic(AssetPaths.timer_bg__png);
+		_zone = new FlxSprite(843, 291).loadGraphic(AssetPaths.timer_bg__png);
 		_zone.antialiasing = true;
 		add(_zone);		
 		
@@ -49,7 +49,7 @@ class Timer extends FlxTypedGroup<FlxSprite>
 		
 		_timer = new FlxTimer();
 		disappear(1);
-		//Main._model.adjust_item.dispatch(_zone3);
+		//Main._model.adjust_item.dispatch(_zone);
 	}
 	
 	private function appear(s:Dynamic):Void

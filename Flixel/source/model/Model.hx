@@ -32,6 +32,10 @@ class Model extends FlxObject
 	public var _zone_comfirm_bet:Array<Float> = new Array<Float>();
 	
 	public var _bigwin_prob:Array<Float> = new Array<Float>();
+	public var _bigwin_opencard_type:String;
+	public var _bigwin_banker_card:Array<String> = new Array<String>();
+	public var _bigwin_player_card:Array<String> = new Array<String>();
+	public var _bigwin_river_card:Array<String> = new Array<String>();
 	
 	public var _coin_list:Array<Int> = new Array<Int>();
 	public var _res_list:Array<String> = new Array<String>();
@@ -109,8 +113,7 @@ class Model extends FlxObject
 		_bigwin_prob.push(0);
 		_bigwin_prob.push(0);
 		_bigwin_prob.push(0);
-		_bigwin_prob.push(0);
-		
+		_bigwin_prob.push(0);		
 		
 	}
 	

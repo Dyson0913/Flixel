@@ -21,30 +21,24 @@ class Hint_msg extends FlxTypedGroup<FlxSprite>
 {
 	private var _msgbg:FlxSprite;	
 	
-	private var _msgtie:FlxSprite;	
-	private var _msg_endbet:FlxSprite;	
+	private var _msg_startbet:FlxSprite;	
+	private var _msg_endbet:FlxSprite;
 	private var _msg_no_money:FlxSprite;	
 	
 	public function new() 
 	{
-		super();
-		FlxG.log.add("click item init");
+		super();		
 		
-		_msgbg = new FlxSprite(140, 636).loadGraphic(AssetPaths.msg_bg__png);
+		_msgbg = new FlxSprite(140, 645).loadGraphic(AssetPaths.msg_bg__png);
 		
-		_msgtie = new FlxSprite(588, 563).loadGraphic(AssetPaths.msg_start_bet__png);
-		_msg_endbet = new FlxSprite(454, 563).loadGraphic(AssetPaths.msg_stop_bet__png);
+		_msg_startbet = new FlxSprite(792, 645).loadGraphic(AssetPaths.msg_start_bet__png);
+		_msg_endbet = new FlxSprite(746, 645).loadGraphic(AssetPaths.msg_stop_bet__png);
 		_msg_no_money = new FlxSprite(704, 641).loadGraphic(AssetPaths.msg_no_money__png);
 		
 		
-		add(_msgbg);					
-		
-		_msgtie.scale.set(0.45, 0.45);
-		add(_msgtie);		
-		
-		_msg_endbet.scale.set(0.45, 0.45);
+		add(_msgbg);		
+		add(_msg_startbet);		
 		add(_msg_endbet);		
-		
 		add(_msg_no_money);
 		
 		//event
@@ -55,12 +49,11 @@ class Hint_msg extends FlxTypedGroup<FlxSprite>
 		Main._model.EndRoundState.add(disappear);
 		
 		disappear(1);
-		//Main._model.adjust_item.dispatch(_msg_no_money);		
+		Main._model.adjust_item.dispatch(_msg_no_money);		
 	}
 	
 	private function appear(s:Dynamic):Void
-	{
-		FlxG.log.add("click item appear ");
+	{		
 		_msgbg.revive();
 		
 		_msgbg.alpha = 1;
@@ -68,8 +61,8 @@ class Hint_msg extends FlxTypedGroup<FlxSprite>
 		
 		if ( Main._model._game_state == "StartBetState")
 		{			
-			_msgtie.revive();			
-			FlxTween.tween(_msgtie, { alpha:0, }, 0.5 , { ease:FlxEase.backIn } );
+			_msg_startbet.revive();			
+			FlxTween.tween(_msg_startbet, { alpha:0, }, 0.5 , { ease:FlxEase.backIn } );
 		}
 		
 		if ( Main._model._game_state == "EndBetState")
@@ -81,13 +74,11 @@ class Hint_msg extends FlxTypedGroup<FlxSprite>
 	}
 	
 	private function disappear(s:Dynamic):Void
-	{
-		FlxG.log.add("click item disappear ");
+	{		
 		_msgbg.kill();
-		_msgtie.kill();
+		_msg_startbet.kill();
 		_msg_endbet.kill();
 		_msg_no_money.kill();
-		
 	}
 	
 }

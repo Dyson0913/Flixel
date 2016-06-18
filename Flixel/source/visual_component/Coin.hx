@@ -33,19 +33,19 @@ class Coin extends FlxTypedGroup<FlxSprite>
 	{
 		super();		
 		
-		_coin = new Btn(514, 935,0, AssetPaths.five_1__png, onDown);
+		_coin = new Btn(513, 942,0, AssetPaths.five_1__png, onDown);
 		add(_coin);
 		
-		_coin2 = new Btn(697, 935,1, AssetPaths.fh_1__png, onDown);
+		_coin2 = new Btn(696, 942,1, AssetPaths.fh_1__png, onDown);
 		add(_coin2);
 		
-		_coin3 = new Btn(880, 935,2, AssetPaths.ot_1__png, onDown);
+		_coin3 = new Btn(879, 942,2, AssetPaths.ot_1__png, onDown);
 		add(_coin3);
 		
-		_coin4 = new Btn(1063, 935,3, AssetPaths.ft_1__png, onDown);
+		_coin4 = new Btn(1062, 942,3, AssetPaths.ft_1__png, onDown);
 		add(_coin4);
 		
-		_coin5 = new Btn(1246, 935,4, AssetPaths.tt_1__png, onDown);
+		_coin5 = new Btn(1245, 942,4, AssetPaths.tt_1__png, onDown);
 		add(_coin5);
 		
 		disappear(1);
@@ -57,7 +57,7 @@ class Coin extends FlxTypedGroup<FlxSprite>
 		Main._model.OpenState.add(disappear);
 		Main._model.EndRoundState.add(disappear);
 		
-		//Main._model.adjust_item.dispatch(_bet6);
+		//Main._model.adjust_item.dispatch(_coin2);
 		
 		
 	}

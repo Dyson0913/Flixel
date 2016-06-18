@@ -123,32 +123,32 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		
 		_statck = new FlxGroup();
 		_statck_res = new Array<String>();
-		creat_stack(1266, 800,_statck,_statck_res);
+		creat_stack(1266, 806,_statck,_statck_res);
 		
 		_statck2 = new FlxGroup();
 		_statck_res2 = new Array<String>();
-		creat_stack(492, 800, _statck2,_statck_res2);
+		creat_stack(492, 806, _statck2,_statck_res2);
 		
 		_statck3 = new FlxGroup();
 		_statck_res3 = new Array<String>();
-		creat_stack(981, 818, _statck3,_statck_res3);
+		creat_stack(981, 824, _statck3,_statck_res3);
 		
 		_statck4 =  new FlxGroup();
 		_statck_res4 = new Array<String>();
-		creat_stack(1633, 762, _statck4,_statck_res4);
+		creat_stack(1633, 768, _statck4,_statck_res4);
 		
 		_statck5 =  new FlxGroup();
 		_statck_res5 = new Array<String>();
-		creat_stack(120, 762, _statck5,_statck_res5); 		
+		creat_stack(120, 768, _statck5,_statck_res5); 		
 		
 		_statck6 =  new FlxGroup();
 		_statck_res6 = new Array<String>();
-		creat_stack(881, 578, _statck6,_statck_res6); 		
+		creat_stack(881, 584, _statck6,_statck_res6); 		
 		
-		_cancel = new Btn(1739, 950,0, AssetPaths.cancel_1__png, onCancelDown,onCancelUp);	
+		_cancel = new Btn(1740, 962,0, AssetPaths.cancel_1__png, onCancelDown,onCancelUp);	
 		add(_cancel);
 		
-		_continue_bet = new Btn(13, 952, 0, AssetPaths.continue_bet_1__png, onContinueDown, onContinueUp);
+		_continue_bet = new Btn(1570, 962, 0, AssetPaths.continue_bet_1__png, onContinueDown, onContinueUp);
 		add(_continue_bet);
 		
 		_click_zone = -1;
@@ -164,7 +164,7 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		
 		_timer_effect = new FlxTimer();
 		_bet_cancel_timer =  new FlxTimer();
-//		Main._model.adjust_item.dispatch(_zone4);
+		//Main._model.adjust_item.dispatch(_continue_bet);
 	}
 	
 	private function appear(s:Dynamic):Void
@@ -477,6 +477,7 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		_cancel.revive();
 		_bet_cancel_timer.cancel();
 		_bet_cancel_timer.start(1, cancel_count, 3);			
+		
 	}
 	
 	

@@ -29,8 +29,8 @@ class History_recode extends FlxTypedGroup<FlxSprite>
 	public function new() 
 	{
 		super();		
-		FlxG.log.add("History_recode init");
-		_zone = new FlxSprite(1285, 115).loadGraphic(AssetPaths.history__png);
+		
+		_zone = new FlxSprite(1291, 128).loadGraphic(AssetPaths.history__png);
 		_zone.antialiasing = true;
 		add(_zone);		
 		
@@ -45,8 +45,8 @@ class History_recode extends FlxTypedGroup<FlxSprite>
 		for (i in 0...(60))
 		{
 			//colu
-			var x:Float = 1294 + ( Math.floor(i / ColumnCnt) * 57);	
-			var y:Float = 124+ (i % ColumnCnt * 48);
+			var x:Float = 1299 + ( Math.floor(i / ColumnCnt) * 57);	
+			var y:Float = 137 + (i % ColumnCnt * 48);
 			
 			//row
 			//var x:Float = 1294 + (i % RowCnt * 57) ;			
@@ -58,9 +58,9 @@ class History_recode extends FlxTypedGroup<FlxSprite>
 			_history_ball.push(card);			
 			_ball_group.add(card);
 			
-			var _credit:FlxText = new FlxText(x,y-4, 50, "", 40,true);
-			_credit.setFormat(AssetPaths.Times_Bold__ttf, _credit.size, FlxColor.WHITE, "center");
-			add(_credit);
+			var _credit:FlxText = new FlxText(x-1,y-4, 50, "", 40,true);
+			_credit.setFormat(AssetPaths.arial_0__ttf, _credit.size, FlxColor.WHITE, "center");
+			add(_credit);			
 			_history_t.push(_credit);
 			_history_text.add(_credit);
 		}
@@ -76,7 +76,7 @@ class History_recode extends FlxTypedGroup<FlxSprite>
 		Main._model.EndRoundState.add(appear);
 		
 		disappear(1);
-		
+			
 	}
 	
 	private function appear(s:Dynamic):Void
@@ -100,11 +100,11 @@ class History_recode extends FlxTypedGroup<FlxSprite>
 			//var y:Float = 124 + Math.floor(i / RowCnt) * 48;
 			
 			//colu
-			var x:Float = 1294 + ( Math.floor(i / ColumnCnt) * 57);	
-			var y:Float = 124+ (i % ColumnCnt * 48);
+			var x:Float = 1299 + ( Math.floor(i / ColumnCnt) * 57);	
+			var y:Float = 137+ (i % ColumnCnt * 48);
 			
-			point.reset(x, y);
-			point.setFormat(AssetPaths.Times_Bold__ttf, 40, FlxColor.WHITE, "center");
+			point.reset(x-1, y-4);
+			point.setFormat(AssetPaths.arial_0__ttf, 40, FlxColor.WHITE, "center");
 			if ( str.winner == "BetBWPlayer") 
 			{
 				sp.loadGraphic(AssetPaths.b_ball__png);
@@ -124,8 +124,8 @@ class History_recode extends FlxTypedGroup<FlxSprite>
 			{
 				//sp
 				sp.loadGraphic(AssetPaths.y_ball__png);
-				point.reset(point.x, point.y +12);
-				point.setFormat(AssetPaths.Times_Bold__ttf, 15, FlxColor.BLACK, "center");
+				point.reset(x, y +12);
+				point.setFormat(AssetPaths.arial_0__ttf, 15, FlxColor.BLACK, "center");
 				
 				var s:String = "";
 				if ( str.winner == "WSBWRoyalFlush") s = "RTF";

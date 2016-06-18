@@ -37,9 +37,7 @@ class Paytable extends FlxTypedGroup<FlxSprite>
 		Main._model.StartBetState.add(appear);
 		Main._model.EndBetState.add(disappear);
 		Main._model.OpenState.add(disappear);
-		Main._model.EndRoundState.add(appear);
-		
-		Main._model.adjust_item.dispatch(_zone2);
+		Main._model.EndRoundState.add(appear);		
 	}
 	
 	private function appear(s:Dynamic):Void
