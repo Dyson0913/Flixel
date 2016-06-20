@@ -145,7 +145,7 @@ class Coin extends FlxTypedGroup<FlxSprite>
 		
 		
 		var st:String = Sprite._name;
-		var r = ~/-1/;		
+		var r = ~/-1/;
 		st = r.replace(st, "-3");
 		
 		if ( Sprite._id == 0) _coin.loadGraphic(st);

@@ -12,11 +12,14 @@ import model.Model;
 
 import flixel.util.FlxColor;
 import flixel.tweens.FlxTween;
+import openfl.geom.Point;
 
 
 class Card extends FlxTypedGroup<FlxSprite>
 {
 	private var _zone:FlxSprite;		
+	private var _poker_light:FlxSprite;
+	private var _poker_po_data:Array<Point>;
 	
 	private var _poker:Array<FlxSprite>;
 	
@@ -29,7 +32,18 @@ class Card extends FlxTypedGroup<FlxSprite>
 		super();
 		
 		_zone = new FlxSprite(320,546).loadGraphic(AssetPaths.open_card_bg__png);
-		add(_zone);		
+		add(_zone);
+		
+		_poker_light = new FlxSprite(207,621).loadGraphic(AssetPaths.dk_poker_light__png);
+		add(_poker_light);
+		_poker_po_data = new Array<Point>();
+		_poker_po_data.push(new Point(207, 621));
+		_poker_po_data.push(new Point(414, 621));
+		_poker_po_data.push(new Point(750, 621));
+		_poker_po_data.push(new Point(957, 621));
+		_poker_po_data.push(new Point(1293, 621));
+		_poker_po_data.push(new Point(1500, 621));
+		
 		
 		//event
 		Main._model.NewRoundState.add(disappear);
@@ -62,12 +76,16 @@ class Card extends FlxTypedGroup<FlxSprite>
 		}
 		
 		disappear(1);
+		
+		Main._model.adjust_item.dispatch(_poker_light);
 	}
 	
 	private function appear(s:Dynamic):Void
 	{		
 		_zone.revive();
 		_Cards.revive();
+		
+		if ( Main._model._game_state == "EndRoundState") _poker_light.kill();
 		
 		FlxG.log.add("dk poker b" + Main._model._bigwin_banker_card);
 		FlxG.log.add("dk poker p" + Main._model._bigwin_player_card);
@@ -113,22 +131,46 @@ class Card extends FlxTypedGroup<FlxSprite>
 		{
 			var idx:Int = poker_trans( banker_poker[banker_poker.length - 1]);
 			_flip_idx = idx;
-			if (banker_poker.length == 1) poker_turn(_poker[4]);
-			if (banker_poker.length == 2) poker_turn(_poker[5]);
+			if (banker_poker.length == 1)
+			{
+				poker_turn(_poker[4]);
+				light_poker(4);
+			}
+			if (banker_poker.length == 2)
+			{
+				poker_turn(_poker[5]);
+				light_poker(5);
+			}
 		}
 		if (  Main._model._bigwin_opencard_type  == "Player")
 		{
 			var idx:Int = poker_trans(_player_card[_player_card.length - 1]);
 			_flip_idx = idx;
-			if (_player_card.length == 1) poker_turn(_poker[0]);
-			if (_player_card.length == 2) poker_turn(_poker[1]);
+			if (_player_card.length == 1)
+			{
+				poker_turn(_poker[0]);
+				light_poker(0);
+			}
+			if (_player_card.length == 2)
+			{
+				poker_turn(_poker[1]);
+				light_poker(1);
+			}
 		}
 		if (  Main._model._bigwin_opencard_type  == "River")
 		{
 			var idx:Int = poker_trans(_river_card[_river_card.length - 1]);
 			_flip_idx = idx;
-			if (_river_card.length == 1) poker_turn(_poker[2]);
-			if (_river_card.length == 2) poker_turn(_poker[3]);
+			if (_river_card.length == 1)
+			{
+				poker_turn(_poker[2]);
+				light_poker(2);
+			}
+			if (_river_card.length == 2)
+			{
+				poker_turn(_poker[3]);
+				light_poker(3);
+			}
 		}
 	}
 	
@@ -136,6 +178,15 @@ class Card extends FlxTypedGroup<FlxSprite>
 	{		
 		_zone.kill();
 		_Cards.kill();
+		_poker_light.kill();
+	}
+	
+	private function light_poker(num:Int):Void
+	{
+		_poker_light.revive();
+		var p:Point = _poker_po_data[num];
+		_poker_light.x = p.x;
+		_poker_light.y = p.y;
 	}
 	
 	private function poker_change(card:FlxSprite,idx:Int):Void

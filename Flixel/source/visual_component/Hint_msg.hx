@@ -19,11 +19,11 @@ import flixel.tweens.FlxEase;
 
 class Hint_msg extends FlxTypedGroup<FlxSprite>
 {
-	private var _msgbg:FlxSprite;	
+	private var _msgbg:FlxSprite;
 	
-	private var _msg_startbet:FlxSprite;	
+	private var _msg_startbet:FlxSprite;
 	private var _msg_endbet:FlxSprite;
-	private var _msg_no_money:FlxSprite;	
+	private var _msg_no_money:FlxSprite;
 	
 	public function new() 
 	{
@@ -36,9 +36,9 @@ class Hint_msg extends FlxTypedGroup<FlxSprite>
 		_msg_no_money = new FlxSprite(704, 641).loadGraphic(AssetPaths.msg_no_money__png);
 		
 		
-		add(_msgbg);		
-		add(_msg_startbet);		
-		add(_msg_endbet);		
+		add(_msgbg);
+		add(_msg_startbet);
+		add(_msg_endbet);
 		add(_msg_no_money);
 		
 		//event
@@ -49,7 +49,7 @@ class Hint_msg extends FlxTypedGroup<FlxSprite>
 		Main._model.EndRoundState.add(disappear);
 		
 		disappear(1);
-		Main._model.adjust_item.dispatch(_msg_no_money);		
+		//Main._model.adjust_item.dispatch(_msg_no_money);		
 	}
 	
 	private function appear(s:Dynamic):Void
