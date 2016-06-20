@@ -58,7 +58,12 @@ class Dk_Parser extends IParser
 			{
 				//cards_info : { river_card_list : [], extra_card_list : [], banker_card_list : [], player_card_list : [] }
 				//"cards_bigwin_prob":[0.00017, 0.011068, 0.072029, 0.815305, 1.00866, 2.15512]
-				//"card_list":["7s"],"card_type":"Player",Banker,River
+				//"card_list":["7s"],"card_type":"Player",Banker,River				
+				if ( pack.card_type == "Banker" ) Main._model._bigwin_banker_card.push(pack.card_list[0]);
+				if ( pack.card_type == "Player" ) Main._model._bigwin_player_card.push(pack.card_list[0]);
+				if ( pack.card_type == "River" ) Main._model._bigwin_river_card.push(pack.card_list[0]);
+				Main._model._bigwin_opencard_type = pack.card_type;			
+				
 				Main._model._bigwin_prob = pack.cards_bigwin_prob;
 				Main._model.OpenState.dispatch(pack.game_state);
 			}
@@ -67,6 +72,10 @@ class Dk_Parser extends IParser
 			{
 				//remain_time option
 				//result_list :[{"real_win_amount":95,"odds":1.95,"bet_attr":"BetAttrMain","bet_amount":100,"win_state":"WSBWNormalWin","settle_amount":195,"bet_type":"BetBWPlayer"},
+				
+				
+				Main._model._bigwin_opencard_type = "";
+				
 				Main._model.EndRoundState.dispatch(pack.game_state);
 			}
 			
@@ -78,7 +87,7 @@ class Dk_Parser extends IParser
 		{
 			if ( pack.game_state == "NewRoundState")
 			{
-				//record_list : [ { banker_pair : false, point : 3, player_pair : true, winner : BetBWBanker } : false, winner : None },..] }				
+				//record_list : [ { banker_pair : false, point : 3, player_pair : true, winner : BetBWBanker } : false, winner : None },..] }
 				Main._model._recode_hisotry = pack.record_list;
 				Main._model.NewRoundState.dispatch(pack.game_state);
 			}
@@ -104,14 +113,28 @@ class Dk_Parser extends IParser
 			if ( pack.card_type == "River" ) Main._model._bigwin_river_card.push(pack.card_list[0]);
 			Main._model._bigwin_opencard_type = pack.card_type;
 			
-			Main._model._bigwin_prob = pack.cards_bigwin_prob;			
-			Main._model.OpenState.dispatch(pack.game_state);			
+			Main._model._bigwin_prob = pack.cards_bigwin_prob;
+			Main._model.OpenState.dispatch(pack.game_state);
 		}
 		
 		if ( pack.message_type == "MsgBPEndRound")
 		{			
 			//remain_time option
 			//result_list :[{"real_win_amount":95,"odds":1.95,"bet_attr":"BetAttrMain","bet_amount":100,"win_state":"WSBWNormalWin","settle_amount":195,"bet_type":"BetBWPlayer"},
+			var _result:Array<String> = pack.result_list;
+			//_zone_settle_bet.
+			var len:Int = _result.length;
+			for (i in 0...(len))
+			{
+				var str:Dynamic = pack.result_list[i];				
+				if ( str.bet_type == "BetBWBanker") Main._model._zone_settle_bet.insert(0, str.settle_amount);
+				if ( str.bet_type == "BetBWPlayer") Main._model._zone_settle_bet.insert(1, str.settle_amount);
+				if ( str.bet_type == "BetBWTiePoint") Main._model._zone_settle_bet.insert(2, str.settle_amount);
+				if ( str.bet_type == "BetBWBankerPair") Main._model._zone_settle_bet.insert(3, str.settle_amount);
+				if ( str.bet_type == "BetBWPlayerPair") Main._model._zone_settle_bet.insert(4, str.settle_amount);
+				if ( str.bet_type == "BetBWSpecial") Main._model._zone_settle_bet.insert(5, str.settle_amount);
+				
+			}
 			Main._model._bigwin_opencard_type = "";
 			
 			Main._model.EndRoundState.dispatch(pack.game_state);

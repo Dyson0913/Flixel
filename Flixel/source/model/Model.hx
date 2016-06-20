@@ -30,6 +30,8 @@ class Model extends FlxObject
 	public var _coin_select_idx:Int;
 	public var _zone_un_comfirm_bet:Array<Float> = new Array<Float>();
 	public var _zone_comfirm_bet:Array<Float> = new Array<Float>();
+	public var _zone_settle_bet:Array<Float> = new Array<Float>();
+	
 	
 	public var _bigwin_prob:Array<Float> = new Array<Float>();
 	public var _bigwin_opencard_type:String;
@@ -86,6 +88,13 @@ class Model extends FlxObject
 		_zone_comfirm_bet.push(0);
 		_zone_comfirm_bet.push(0);
 		_zone_comfirm_bet.push(0);
+		
+		//_zone_settle_bet.push(0);
+		//_zone_settle_bet.push(0);
+		//_zone_settle_bet.push(0);
+		//_zone_settle_bet.push(0);
+		//_zone_settle_bet.push(0);
+		//_zone_settle_bet.push(0);
 		
 		_coin_list.push(5);
 		_coin_list.push(500);

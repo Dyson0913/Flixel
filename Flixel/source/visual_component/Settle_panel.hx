@@ -16,27 +16,31 @@ import flixel.util.FlxColor;
 
 class Settle_panel extends FlxTypedGroup<FlxSprite>
 {
-	private var _zone:FlxSprite;
-	private var _zone2:FlxSprite;
+	private var _settle_title:FlxSprite;
+	private var _bet_amount_title:FlxSprite;
 	
 	private var _bet_amount:FlxGroup;	
+	private var _settle_amount:FlxGroup;	
 	
 	public function new() 
 	{
 		super();
 		
-		_zone = new FlxSprite(1290, 121).loadGraphic(AssetPaths.settle__png);
-		_zone.antialiasing = true;
-		add(_zone);
-		_zone.kill();
+		_settle_title = new FlxSprite(1290, 121).loadGraphic(AssetPaths.settle__png);
+		_settle_title.antialiasing = true;
+		add(_settle_title);
 		
-		_zone2 = new FlxSprite(1770, 120).loadGraphic(AssetPaths.settle_point__png);
-		_zone2.antialiasing = true;
-		add(_zone2);
-		_zone2.kill();
+		
+		_bet_amount_title = new FlxSprite(1770, 120).loadGraphic(AssetPaths.settle_point__png);
+		_bet_amount_title.antialiasing = true;
+		add(_bet_amount_title);
+		
 		
 		_bet_amount = new FlxGroup();
 		creat_bet_amount(1488, 159, _bet_amount);
+		
+		_settle_amount = new FlxGroup();
+		creat_bet_amount(1658, 159, _settle_amount);
 		
 		//event
 		Main._model.NewRoundState.add(disappear);
@@ -45,23 +49,31 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 		Main._model.OpenState.add(appear);
 		Main._model.EndRoundState.add(appear);
 		
-		
+		Main._model.adjust_item.dispatch(_settle_amount.getFirstAlive());
+		disappear(1);
 	}
 	
 	private function appear(s:Dynamic):Void
 	{		
-		_zone.revive();
+		_settle_title.revive();
 		
-		coin_update(_bet_amount, Main._model._zone_comfirm_bet);
+		amount_update(_bet_amount, Main._model._zone_comfirm_bet);
+		
+		if ( Main._model._game_state == "EndRoundState")
+		{
+			_bet_amount_title.revive();
+			FlxG.log.add(Main._model._zone_settle_bet);
+			amount_update(_settle_amount, Main._model._zone_settle_bet);
+		}
 	}
 	
 	private function disappear(s:Dynamic):Void
 	{		
-		_zone.kill();
-		_zone2.kill();
+		_settle_title.kill();
+		_bet_amount_title.kill();
 	}
 	
-	private function coin_update(target:FlxGroup,data:Array<Float>):Void
+	private function amount_update(target:FlxGroup,data:Array<Float>):Void
 	{		
 		var i:Int = 0;
 		var total:Float = 0;		

@@ -42,7 +42,7 @@ class Main extends Sprite
 			_ws.onTextPacket.add(onText);
 			_ws.onClose.add(onClose);
 		}
-		FlxG.debugger.visible = true;		
+		//FlxG.debugger.visible = true;
 		
 		//TODO test class
 		Assets.loadText("assets/data/pack_DK_normal.txt").onComplete(pack_loading_Ok);
