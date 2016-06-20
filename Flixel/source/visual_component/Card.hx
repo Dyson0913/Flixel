@@ -21,6 +21,15 @@ class Card extends FlxTypedGroup<FlxSprite>
 	private var _poker_light:FlxSprite;
 	private var _poker_po_data:Array<Point>;
 	
+	private var _player_sp:FlxSprite;
+	private var _banker_sp:FlxSprite;
+	private var _player_point:FlxText;
+	private var _banker_point:FlxText;
+	
+	private var _poker_mi_back:FlxSprite;
+	private var _poker_mi_Target:FlxSprite;
+	private var _mi_poker_or_not:Int;
+	
 	private var _poker:Array<FlxSprite>;
 	
 	private var _Cards:FlxGroup;
@@ -44,6 +53,19 @@ class Card extends FlxTypedGroup<FlxSprite>
 		_poker_po_data.push(new Point(1293, 621));
 		_poker_po_data.push(new Point(1500, 621));
 		
+		_player_point = new FlxText(316,558 , 170, "", 40, true);		
+		_player_point.setFormat(AssetPaths.arial_0__ttf, _player_point.size, 0xffdb94, "center");			
+		add(_player_point);
+		
+		_player_sp = new FlxSprite(414, 562, AssetPaths.point_text__png);
+		add(_player_sp);		
+		
+		_banker_point = new FlxText(1400,558 , 170, "", 40, true);		
+		_banker_point.setFormat(AssetPaths.arial_0__ttf, _banker_point.size, 0xffdb94, "center");			
+		add(_banker_point);
+		
+		_banker_sp = new FlxSprite(1500, 562, AssetPaths.point_text__png);
+		add(_banker_sp);
 		
 		//event
 		Main._model.NewRoundState.add(disappear);
@@ -75,9 +97,18 @@ class Card extends FlxTypedGroup<FlxSprite>
 			_Cards.add(card);
 		}
 		
+		//to 808,214
+		_poker_mi_Target = new FlxSprite(648, 214,AssetPaths.ball_none__png);
+		add(_poker_mi_Target);
+		
+		_poker_mi_back = new FlxSprite(648, 214, AssetPaths.poker_back__png);
+		add(_poker_mi_back);
+		
+		
+		
 		disappear(1);
 		
-		Main._model.adjust_item.dispatch(_poker_light);
+		Main._model.adjust_item.dispatch(_poker_mi_Target);
 	}
 	
 	private function appear(s:Dynamic):Void
@@ -137,9 +168,10 @@ class Card extends FlxTypedGroup<FlxSprite>
 				light_poker(4);
 			}
 			if (banker_poker.length == 2)
-			{
-				poker_turn(_poker[5]);
+			{				
 				light_poker(5);
+				_mi_poker_or_not = 2;
+				mi_poker();
 			}
 		}
 		if (  Main._model._bigwin_opencard_type  == "Player")
@@ -152,9 +184,11 @@ class Card extends FlxTypedGroup<FlxSprite>
 				light_poker(0);
 			}
 			if (_player_card.length == 2)
-			{
-				poker_turn(_poker[1]);
+			{				
 				light_poker(1);
+				_mi_poker_or_not = 1;
+				mi_poker();
+				
 			}
 		}
 		if (  Main._model._bigwin_opencard_type  == "River")
@@ -179,6 +213,16 @@ class Card extends FlxTypedGroup<FlxSprite>
 		_zone.kill();
 		_Cards.kill();
 		_poker_light.kill();
+		
+		_player_sp.kill();
+		_banker_sp.kill();
+		_player_point.kill();
+		_banker_point.kill();
+		
+		_poker_mi_back.kill();
+		_poker_mi_Target.kill();
+		
+		_mi_poker_or_not = -1;
 	}
 	
 	private function light_poker(num:Int):Void
@@ -187,6 +231,77 @@ class Card extends FlxTypedGroup<FlxSprite>
 		var p:Point = _poker_po_data[num];
 		_poker_light.x = p.x;
 		_poker_light.y = p.y;
+	}
+	
+	private function mi_poker():Void
+	{
+		_poker_mi_back.revive();		
+		_poker_mi_Target.revive();
+		
+		_poker_mi_Target.loadGraphic("assets/images/share/poker/" + (_flip_idx) + ".png");
+		FlxTween.tween(_poker_mi_Target, { x: _poker_mi_back.x +160 }, 1, { onComplete: mi_poker_ok });
+	}
+	
+	private function mi_poker_ok(Tween:FlxTween):Void
+	{
+		FlxTween.tween(_poker_mi_Target, { x: _poker_mi_Target.x }, 1, { onComplete: mi_poker_hide });
+	}
+	
+	private function mi_poker_hide(Tween:FlxTween):Void
+	{
+		_poker_mi_back.kill();
+		_poker_mi_Target.kill();
+		_poker_mi_Target.x = _poker_mi_back.x;
+		_poker_mi_Target.y = _poker_mi_back.y;
+		
+		
+		//show point
+		if ( _mi_poker_or_not == 1) 
+		{
+			poker_turn(_poker[1]);
+			player_point();			
+		}
+		if ( _mi_poker_or_not == 2)
+		{
+			banker_point();
+			poker_turn(_poker[5]);
+		}
+		
+		_mi_poker_or_not = -1;
+	}
+	
+	private function player_point():Void
+	{
+		_player_sp.revive();
+		_player_point.revive();		
+		_player_point.text = get_Point(Main._model._bigwin_player_card);		
+	}
+	
+	private function banker_point():Void
+	{		
+		_banker_sp.revive();
+		_banker_point.revive();
+		_banker_point.text = get_Point(Main._model._bigwin_banker_card);
+	}
+	
+	public function get_Point(poke:Array<String>):String
+	{		
+		var total_point:Int = 0;
+		for (i in 0...(poke.length))
+		{
+			total_point += get_Baccarat_Point(poke[i]);			
+		}
+		total_point %= 10;
+		 
+		return Std.string(total_point);
+	}
+	
+	public function get_Baccarat_Point(poke:String):Int
+	{
+		var point:String = poke.substr(0, 1);
+		
+		if ( point == "i" ||  point == "j" || point == "q" || point == "k") return 10;			
+		return Std.parseInt(point);
 	}
 	
 	private function poker_change(card:FlxSprite,idx:Int):Void
