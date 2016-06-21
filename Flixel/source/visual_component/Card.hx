@@ -229,10 +229,10 @@ class Card extends FlxTypedGroup<FlxSprite>
 		Main._model._bigwin_river_card.splice(0, Main._model._bigwin_river_card.length);
 		
 		FlxG.log.add("poker reload");
-		for (i in 0...(6))
-		{
-			_poker[i].loadGraphic(AssetPaths.poker_back__png);
-		}
+		//for (i in 0...(6))
+		//{
+			//_poker[i].loadGraphic(AssetPaths.poker_back__png);
+		//}
 		
 	}
 	

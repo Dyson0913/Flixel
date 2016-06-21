@@ -8,6 +8,7 @@ import flixel.FlxG;
 import flixel.group.FlxGroup;
 import flixel.FlxSprite;
 import flixel.text.FlxText;
+import flixel.util.FlxTimer;
 import model.Model;
 
 import flixel.util.FlxColor;
@@ -18,6 +19,10 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 {
 	private var _settle_title:FlxSprite;
 	private var _bet_amount_title:FlxSprite;
+	
+	private var _win_title:FlxSprite;
+	private var _timer_effect:FlxTimer;
+	
 	
 	private var _bet_amount:FlxGroup;	
 	private var _settle_amount:FlxGroup;	
@@ -35,6 +40,10 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 		_bet_amount_title.antialiasing = true;
 		add(_bet_amount_title);
 		
+		_win_title = new FlxSprite(1140, 420).loadGraphic(AssetPaths.win_1__png);
+		_win_title.antialiasing = true;
+		_win_title.scale.set(0.7,0.7);
+		add(_win_title);
 		
 		_bet_amount = new FlxGroup();
 		creat_bet_amount(1488, 159, _bet_amount);
@@ -51,6 +60,10 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 		
 		Main._model.adjust_item.dispatch(_settle_amount.getFirstAlive());
 		disappear(1);
+		
+		Main._model.adjust_item.dispatch(_win_title);
+		
+		_timer_effect =  new FlxTimer();
 	}
 	
 	private function appear(s:Dynamic):Void
@@ -68,6 +81,17 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 			_settle_amount.revive();
 			
 			FlxG.log.add(Main._model._zone_settle_bet);
+			
+			if ( Main._model._zone_settle_bet[0] != 0)
+			{
+				_timer_effect.start(0.2, effect, 4);
+			}
+			if ( Main._model._zone_settle_bet[1] != 0)
+			{
+				_timer_effect.start(0.2, effect, 4);
+			}
+			
+			
 			amount_update(_settle_amount, Main._model._zone_settle_bet);
 		}
 	}
@@ -80,7 +104,15 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 		_bet_amount.kill();
 		_settle_amount.kill();
 		
+		_win_title.kill();
+		
 		Main._model._zone_settle_bet.splice(0, Main._model._zone_settle_bet.length);
+	}
+	
+	private function effect(timer:FlxTimer):Void
+	{		
+		if ( timer.loopsLeft % 2 == 0) _win_title.loadGraphic(AssetPaths.win_2__png);
+		else _win_title.loadGraphic(AssetPaths.win_1__png);	
 	}
 	
 	private function amount_update(target:FlxGroup,data:Array<Float>):Void
