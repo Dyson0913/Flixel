@@ -129,7 +129,10 @@ class Card extends FlxTypedGroup<FlxSprite>
 		//static
 		if ( banker_poker.length != 0 )
 		{	
-			for (i in 0...(banker_poker.length))
+			var len:Int = 0;
+			if ( Main._model._bigwin_opencard_type == "Banker")  len = 1;
+			
+			for (i in 0...(banker_poker.length -len))
 			{
 				var idx:Int = poker_trans( banker_poker[i]);
 				poker_change(_poker[i + 4], idx);

@@ -40,7 +40,8 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 		_bet_amount_title.antialiasing = true;
 		add(_bet_amount_title);
 		
-		_win_title = new FlxSprite(1140, 420).loadGraphic(AssetPaths.win_1__png);
+		
+		_win_title = new FlxSprite(1140, 420).loadGraphic(AssetPaths.win_tie__png);
 		_win_title.antialiasing = true;
 		_win_title.scale.set(0.7,0.7);
 		add(_win_title);
@@ -59,11 +60,12 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 		Main._model.EndRoundState.add(appear);
 		
 		Main._model.adjust_item.dispatch(_settle_amount.getFirstAlive());
+		_timer_effect =  new FlxTimer();
 		disappear(1);
 		
 		Main._model.adjust_item.dispatch(_win_title);
 		
-		_timer_effect =  new FlxTimer();
+		
 	}
 	
 	private function appear(s:Dynamic):Void
@@ -81,15 +83,28 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 			_settle_amount.revive();
 			
 			FlxG.log.add(Main._model._zone_settle_bet);
+			_win_title.revive();
+			_win_title.scale.set(0.7, 0.7);
+			_win_title.y = 420;
 			
 			if ( Main._model._zone_settle_bet[0] != 0)
 			{
-				_timer_effect.start(0.2, effect, 4);
+				_win_title.x = 1140;
+				_timer_effect.start(0.2, effect, 20);
 			}
-			if ( Main._model._zone_settle_bet[1] != 0)
+			else if ( Main._model._zone_settle_bet[1] != 0)
 			{
-				_timer_effect.start(0.2, effect, 4);
+				_win_title.x = 70;
+				_timer_effect.start(0.2, effect, 20);
 			}
+			else
+			{
+				//tie				
+				_win_title.x = 797;
+				_win_title.y = 457;
+				_win_title.scale.set(1, 1);				
+			}
+			
 			
 			
 			amount_update(_settle_amount, Main._model._zone_settle_bet);
@@ -104,7 +119,8 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 		_bet_amount.kill();
 		_settle_amount.kill();
 		
-		_win_title.kill();
+		//_win_title.kill();		
+		_timer_effect.cancel();
 		
 		Main._model._zone_settle_bet.splice(0, Main._model._zone_settle_bet.length);
 	}
