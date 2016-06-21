@@ -57,11 +57,16 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 	{		
 		_settle_title.revive();
 		
+		_bet_amount.revive();
+		
+		
 		amount_update(_bet_amount, Main._model._zone_comfirm_bet);
 		
 		if ( Main._model._game_state == "EndRoundState")
 		{
 			_bet_amount_title.revive();
+			_settle_amount.revive();
+			
 			FlxG.log.add(Main._model._zone_settle_bet);
 			amount_update(_settle_amount, Main._model._zone_settle_bet);
 		}
@@ -71,6 +76,11 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 	{		
 		_settle_title.kill();
 		_bet_amount_title.kill();
+		
+		_bet_amount.kill();
+		_settle_amount.kill();
+		
+		Main._model._zone_settle_bet.splice(0, Main._model._zone_settle_bet.length);
 	}
 	
 	private function amount_update(target:FlxGroup,data:Array<Float>):Void

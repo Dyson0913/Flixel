@@ -223,6 +223,17 @@ class Card extends FlxTypedGroup<FlxSprite>
 		_poker_mi_Target.kill();
 		
 		_mi_poker_or_not = -1;
+		
+		Main._model._bigwin_banker_card.splice(0, Main._model._bigwin_banker_card.length);
+		Main._model._bigwin_player_card.splice(0, Main._model._bigwin_player_card.length);
+		Main._model._bigwin_river_card.splice(0, Main._model._bigwin_river_card.length);
+		
+		FlxG.log.add("poker reload");
+		for (i in 0...(6))
+		{
+			_poker[i].loadGraphic(AssetPaths.poker_back__png);
+		}
+		
 	}
 	
 	private function light_poker(num:Int):Void
