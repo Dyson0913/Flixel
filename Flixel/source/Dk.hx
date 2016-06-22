@@ -43,9 +43,8 @@ class Dk extends FlxTypedGroup<FlxSprite>
 		add(_desk);
 		
 		//new Btn(10, 20, AssetPaths.dk_girl__png,null,null,drag,null);
-		_girl = new FlxSprite(686,24).loadGraphic(AssetPaths.dk_girl__png);		
-		_girl.antialiasing = true;
-		
+		_girl = new FlxSprite(686,24).loadGraphic(AssetPaths.dk_girl_1__png);		
+		_girl.antialiasing = true;		
 		add(_girl);
 		
 		
@@ -53,12 +52,23 @@ class Dk extends FlxTypedGroup<FlxSprite>
 		_loadpic = new FlxButton(700, 200, "dk", clickPlay);
 		add(_loadpic);
 		
-		
-		
+		Main._model.NewRoundState.add(Round_start);
+		Main._model.EndRoundState.add(Round_end);
 		//_player = new Base_sprite(30, 30);
 		//add(_player);
 		
 	}	
+	
+	private function Round_start(s:Dynamic):Void
+	{
+		_girl.loadGraphic(AssetPaths.dk_girl_1__png);
+	}
+	
+	
+	private function Round_end(s:Dynamic):Void
+	{
+		_girl.loadGraphic(AssetPaths.dk_girl_2__png);
+	}
 	
 	private function clickPlay():Void
 	{

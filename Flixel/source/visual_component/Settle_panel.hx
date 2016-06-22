@@ -41,7 +41,7 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 		add(_bet_amount_title);
 		
 		
-		_win_title = new FlxSprite(1140, 420).loadGraphic(AssetPaths.win_tie__png);
+		_win_title = new FlxSprite(1140, 420).loadGraphic(AssetPaths.win_1__png);
 		_win_title.antialiasing = true;
 		_win_title.scale.set(0.7,0.7);
 		add(_win_title);
@@ -59,11 +59,11 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 		Main._model.OpenState.add(appear);
 		Main._model.EndRoundState.add(appear);
 		
-		Main._model.adjust_item.dispatch(_settle_amount.getFirstAlive());
+		
 		_timer_effect =  new FlxTimer();
 		disappear(1);
 		
-		Main._model.adjust_item.dispatch(_win_title);
+		//Main._model.adjust_item.dispatch(_win_title);
 		
 		
 	}
@@ -119,7 +119,7 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 		_bet_amount.kill();
 		_settle_amount.kill();
 		
-		//_win_title.kill();		
+		_win_title.kill();	
 		_timer_effect.cancel();
 		
 		Main._model._zone_settle_bet.splice(0, Main._model._zone_settle_bet.length);

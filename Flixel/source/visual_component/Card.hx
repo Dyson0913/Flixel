@@ -108,7 +108,7 @@ class Card extends FlxTypedGroup<FlxSprite>
 		
 		disappear(1);
 		
-		Main._model.adjust_item.dispatch(_poker_mi_Target);
+		//Main._model.adjust_item.dispatch(_poker_mi_Target);
 	}
 	
 	private function appear(s:Dynamic):Void
