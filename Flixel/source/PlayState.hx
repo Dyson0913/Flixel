@@ -14,7 +14,7 @@ class PlayState extends FlxState
 	override public function create():Void
 	{
 		super.create();
-		add(new FlxText(0, 0, 0, "playerState"));	
+		add(new FlxText(0, 0, 0, "playerState"));
 		//FlxG.switchState(new PlayState());
 		
 	}

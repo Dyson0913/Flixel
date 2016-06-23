@@ -99,28 +99,28 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		add(_bet5);
 		add(_bet6);
 		
-		_bet_amount = new FlxText(_bet.x+29, _bet.y+3,170, "", 35,true);
-		_bet_amount.setFormat(AssetPaths.arial_0__ttf, _bet_amount.size, FlxColor.WHITE, "right");
+		_bet_amount = new FlxText(_bet.x + 29, _bet.y + 3, 170, "", 35, false);
+		Model.font_format(_bet_amount, FlxColor.WHITE, "right");
 		add(_bet_amount);
 		
-		_bet_amount2 = new FlxText(_bet2.x+29, _bet2.y+3,170, "", 35,true);
-		_bet_amount2.setFormat(AssetPaths.arial_0__ttf, _bet_amount2.size, FlxColor.WHITE, "right");
+		_bet_amount2 = new FlxText(_bet2.x + 29, _bet2.y + 3, 170, "", 35, false);
+		Model.font_format(_bet_amount2, FlxColor.WHITE, "right");
 		add(_bet_amount2);
 		
-		_bet_amount3 = new FlxText(_bet3.x+29, _bet3.y+3,170, "", 35,true);
-		_bet_amount3.setFormat(AssetPaths.arial_0__ttf, _bet_amount3.size, FlxColor.WHITE, "right");
+		_bet_amount3 = new FlxText(_bet3.x + 29, _bet3.y + 3, 170, "", 35, false);
+		Model.font_format(_bet_amount3, FlxColor.WHITE, "right");
 		add(_bet_amount3);
 		
-		_bet_amount4 = new FlxText(_bet4.x+29, _bet4.y+3,170, "", 35,true);
-		_bet_amount4.setFormat(AssetPaths.arial_0__ttf, _bet_amount4.size, FlxColor.WHITE, "right");
+		_bet_amount4 = new FlxText(_bet4.x + 29, _bet4.y + 3, 170, "", 35, false);
+		Model.font_format(_bet_amount4, FlxColor.WHITE, "right");
 		add(_bet_amount4);
 		
-		_bet_amount5 = new FlxText(_bet5.x+29, _bet5.y+3,170, "", 35,true);
-		_bet_amount5.setFormat(AssetPaths.arial_0__ttf, _bet_amount5.size, FlxColor.WHITE, "right");
+		_bet_amount5 = new FlxText(_bet5.x + 29, _bet5.y + 3, 170, "", 35, false);
+		Model.font_format(_bet_amount5, FlxColor.WHITE, "right");
 		add(_bet_amount5);
 		
-		_bet_amount6 = new FlxText(_bet6.x+29, _bet6.y+3,170, "", 35,true);
-		_bet_amount6.setFormat(AssetPaths.arial_0__ttf, _bet_amount6.size, FlxColor.WHITE, "right");
+		_bet_amount6 = new FlxText(_bet6.x + 29, _bet6.y + 3, 170, "", 35, false);
+		Model.font_format(_bet_amount6, FlxColor.WHITE, "right");
 		add(_bet_amount6);
 		
 		_statck = new FlxGroup();

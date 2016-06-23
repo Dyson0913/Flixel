@@ -67,8 +67,6 @@ class MenuState extends FlxState
 		super.create();
 		_hud = new HUD();
 		
-		//add(new FlxText(0, 0, 0, "Hello World!"));		
-		
 		_hint_board = new Hint_board();
 		add(_hint_board);
 		

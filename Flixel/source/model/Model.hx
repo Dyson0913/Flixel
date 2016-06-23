@@ -1,6 +1,8 @@
 package model;
 
 import flixel.FlxObject;
+import flixel.text.FlxText;
+import flixel.util.FlxColor;
 import parser.*;
 import flixel.FlxG;
 
@@ -313,6 +315,12 @@ class Model extends FlxObject
         }
         return uid.toString().toLowerCase();
     }
+	
+	public static function font_format(target:FlxText,color:FlxColor,alig:String):Void
+	{
+		//_credit.setFormat(AssetPaths.Times_Bold__ttf, _credit.size, FlxColor.WHITE, "right");
+		//target.setFormat(AssetPaths.arial_0__ttf, target.size, color, alig);
+	}
 	
 }
 

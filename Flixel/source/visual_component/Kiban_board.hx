@@ -92,8 +92,8 @@ class Kiban_board extends FlxTypedGroup<FlxSprite>
 			var x:Float = x;			
 			var y:Float = y - (i % ColumnCnt * - 35);
 			
-			var text = new FlxText(x, y, 170, "0", 30, true);			
-			text.setFormat(AssetPaths.arial_0__ttf, text.size, FlxColor.WHITE, "right");			
+			var text = new FlxText(x, y, 170, "0", 30, false);		
+			Model.font_format(text, FlxColor.WHITE, "right");			
 			add(text);		
 			target.add(text);			
 		}

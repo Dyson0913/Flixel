@@ -31,8 +31,7 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		super();
 		
 		//_sprBack = new FlxSprite().makeGraphic(FlxG.width, 30, FlxColor.BROWN);
-		//add(_sprBack);
-		//add(new FlxText(0, 0, 0, ""));
+		//add(_sprBack);		
 		
 		//_loadpic = new FlxButton(100, 0, "back", back_to_lobby);		
 		_loadpic = new FlxButton(100, 50, "test", pack_test);		
@@ -43,8 +42,8 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		add(_credit_bg);		
 		//_credit.antialiasing = true;
 		
-		_credit = new FlxText(_credit_bg.x+70, _credit_bg.y+15, 350, "", 40,true);
-		_credit.setFormat(AssetPaths.Times_Bold__ttf, _credit.size, FlxColor.WHITE, "right");
+		_credit = new FlxText(_credit_bg.x + 70, _credit_bg.y + 15, 350, "", 40, false);
+		Model.font_format(_credit, FlxColor.WHITE, "right");
 		add(_credit);
 		
 		//event

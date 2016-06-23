@@ -31,9 +31,9 @@ class Hint_board extends FlxTypedGroup<FlxSprite>
 		_hint.x -= _hint.width / 2;
 		_hint.y -= _hint.height / 2;
 		
-		    _hintext = new FlxText(_hint.x - 10, _hint.y, 350, "", 40, true);
-			//_hintext.font = "_sans";
-		    _hintext.setFormat(AssetPaths.Times_Bold__ttf, _hintext.size, FlxColor.WHITE, "center");
+		    _hintext = new FlxText(_hint.x - 10, _hint.y, 350, "", 40, false);
+			//_hintext.font = "_sans";		    
+			Model.font_format(_hintext, FlxColor.WHITE, "center");
 		
 		add(_hint);
 		add(_hintext);
