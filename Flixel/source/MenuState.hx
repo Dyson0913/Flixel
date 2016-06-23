@@ -13,6 +13,7 @@ import visual_component.Coin;
 import visual_component.Hint_msg;
 import visual_component.History_recode;
 import visual_component.Kiban_board;
+import visual_component.Page_slider;
 import visual_component.Paytable;
 import visual_component.Prob_panel;
 import visual_component.Settle_panel;
@@ -57,6 +58,7 @@ class MenuState extends FlxState
 	private var _hintmsg:Hint_msg;
 	private var _timer:Timer;
 	private var _Prob_panel:Prob_panel;
+	private var _page_slider:Page_slider;
 	
 	
 	
@@ -154,6 +156,9 @@ class MenuState extends FlxState
 		
 		_Prob_panel =  new Prob_panel();
 		add(_Prob_panel);
+		
+		_page_slider = new Page_slider();
+		add(_page_slider);
 		
 		add(_hud);		
 	}

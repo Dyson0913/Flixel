@@ -169,7 +169,7 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		
 		_timer_effect = new FlxTimer();
 		_bet_cancel_timer =  new FlxTimer();
-		Main._model.adjust_item.dispatch(_high_pay);
+		//Main._model.adjust_item.dispatch(_high_pay);
 	}
 	
 	private function appear(s:Dynamic):Void
@@ -206,8 +206,6 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		{
 			_timer_effect.start(0.2, effect, 4);
 		}
-		
-		
 		
 	}
 	
