@@ -47,8 +47,6 @@ class Dk extends FlxTypedGroup<FlxSprite>
 		_girl.antialiasing = true;		
 		add(_girl);
 		
-		
-		
 		_loadpic = new FlxButton(700, 200, "dk", clickPlay);
 		add(_loadpic);
 		

@@ -53,15 +53,14 @@ class Timer extends FlxTypedGroup<FlxSprite>
 	}
 	
 	private function appear(s:Dynamic):Void
-	{		
-		_zone.revive();
-		
+	{
 		//Std.parseInt
 		_timer.start(1, timer_count, Main._model._remain_time);
 	}
 	
 	private function timer_count(timer:FlxTimer):Void
 	{		
+		_zone.revive();
 		_ten.revive();
 		_one.revive();
 		var time_str:String =  Model.Format(timer.loopsLeft, 2);		
