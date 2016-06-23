@@ -232,10 +232,13 @@ class Card extends FlxTypedGroup<FlxSprite>
 		Main._model._bigwin_river_card.splice(0, Main._model._bigwin_river_card.length);
 		
 		
-		//for (i in 0...(6))
-		//{
-			//_poker[i].loadGraphic(AssetPaths.poker_back__png);
-		//}
+		if ( Main._model._game_state == "StartBetState")
+		{
+			for (i in 0...(6))
+			{
+				_poker[i].loadGraphic(AssetPaths.poker_back__png);
+			}
+		}		
 		
 	}
 	
