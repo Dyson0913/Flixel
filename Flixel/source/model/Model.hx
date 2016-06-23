@@ -75,19 +75,7 @@ class Model extends FlxObject
 		//customer
 		_parser = new Dk_Parser();
 		
-		_zone_un_comfirm_bet.push(0);
-		_zone_un_comfirm_bet.push(0);
-		_zone_un_comfirm_bet.push(0);
-		_zone_un_comfirm_bet.push(0);
-		_zone_un_comfirm_bet.push(0);
-		_zone_un_comfirm_bet.push(0);
-		
-		_zone_comfirm_bet.push(0);
-		_zone_comfirm_bet.push(0);
-		_zone_comfirm_bet.push(0);
-		_zone_comfirm_bet.push(0);
-		_zone_comfirm_bet.push(0);
-		_zone_comfirm_bet.push(0);
+		reset_model();
 		
 		//_zone_settle_bet.push(0);
 		//_zone_settle_bet.push(0);
@@ -124,6 +112,26 @@ class Model extends FlxObject
 		_bigwin_prob.push(0);
 		_bigwin_prob.push(0);		
 		
+	}
+	
+	public function reset_model():Void
+	{
+		_zone_un_comfirm_bet.splice(0, _zone_un_comfirm_bet.length);			
+		_zone_comfirm_bet.splice(0, _zone_comfirm_bet.length);
+		
+		_zone_un_comfirm_bet.push(0);
+		_zone_un_comfirm_bet.push(0);
+		_zone_un_comfirm_bet.push(0);
+		_zone_un_comfirm_bet.push(0);
+		_zone_un_comfirm_bet.push(0);
+		_zone_un_comfirm_bet.push(0);
+		
+		_zone_comfirm_bet.push(0);
+		_zone_comfirm_bet.push(0);
+		_zone_comfirm_bet.push(0);
+		_zone_comfirm_bet.push(0);
+		_zone_comfirm_bet.push(0);
+		_zone_comfirm_bet.push(0);
 	}
 	
 	public function pack_parse(pack:Dynamic):Void

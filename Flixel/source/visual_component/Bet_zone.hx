@@ -181,12 +181,6 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		_zone5.revive();
 		_zone6.revive();
 		
-		_bet_amount.revive();
-		_bet_amount2.revive();
-		_bet_amount3.revive();
-		_bet_amount4.revive();
-		_bet_amount5.revive();
-		_bet_amount6.revive();
 		
 		_statck.revive();
 		_statck2.revive();
@@ -197,11 +191,24 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		
 		_click_zone = -1;
 		
+		if ( Main._model._game_state == "NewRoundState")
+		{			
+			Main._model.reset_model();
+			coin_clean(_statck);
+			coin_clean(_statck2);
+			coin_clean(_statck3);
+			coin_clean(_statck4);
+			coin_clean(_statck5);
+			coin_clean(_statck6);			
+		}
+		
 		if ( Main._model._game_state == "StartBetState")
 		{
 			_timer_effect.start(0.2, effect, 4);
 		}
-			
+		
+		
+		
 	}
 	
 	private function disappear(s:Dynamic):Void
@@ -219,14 +226,14 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		_bet3.kill();
 		_bet4.kill();
 		_bet5.kill();
-		_bet6.kill();
+		_bet6.kill();		
 		
-		_bet_amount.kill();
-		_bet_amount2.kill();
-		_bet_amount3.kill();
-		_bet_amount4.kill();
-		_bet_amount5.kill();
-		_bet_amount6.kill();
+		_bet_amount.text = "";
+		_bet_amount2.text = "";
+		_bet_amount3.text = "";
+		_bet_amount4.text = "";
+		_bet_amount5.text = "";
+		_bet_amount6.text = "";
 		
 		_statck.kill();
 		_statck2.kill();
@@ -238,7 +245,7 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		_cancel.kill();
 		_continue_bet.kill();
 		
-		_high_pay.kill();
+		_high_pay.kill();		
 		
 	}
 	
