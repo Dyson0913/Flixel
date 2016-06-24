@@ -59,13 +59,13 @@ class Dk extends FlxTypedGroup<FlxSprite>
 	
 	private function Round_start(s:Dynamic):Void
 	{
-		_girl.loadGraphic(AssetPaths.dk_girl_1__png);
+		//_girl.loadGraphic(AssetPaths.dk_girl_1__png);
 	}
 	
 	
 	private function Round_end(s:Dynamic):Void
 	{
-		_girl.loadGraphic(AssetPaths.dk_girl_2__png);
+		//_girl.loadGraphic(AssetPaths.dk_girl_2__png);
 	}
 	
 	private function clickPlay():Void

@@ -112,7 +112,7 @@ class Prob_panel extends FlxTypedGroup<FlxSprite>
 			var x:Float = x;			
 			var y:Float = y - (i % ColumnCnt * - 52);
 			
-			var text = new FlxText(x, y, 170, "", 30, false);
+			var text = new FlxText(x, y, 170, "1", 30, false);
 			if ( i == 6) Model.font_format(text, FlxColor.YELLOW, "right");
 			else Model.font_format(text, FlxColor.WHITE, "right");
 			add(text);			

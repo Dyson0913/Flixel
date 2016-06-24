@@ -116,8 +116,8 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 		_settle_title.kill();
 		_bet_amount_title.kill();
 		
-		_bet_amount.kill();
-		_settle_amount.kill();
+		//_bet_amount.kill();
+		//_settle_amount.kill();
 		
 		_win_title.kill();	
 		_timer_effect.cancel();
@@ -160,7 +160,7 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 			if ( i == 6) last_dis = 10;
 			var y:Float = y - (i % ColumnCnt * - 35) + last_dis;
 			
-			var text = new FlxText(x, y, 170, "", 30, false);
+			var text = new FlxText(x, y, 170, "1", 30, false);
 			if ( i == 6) Model.font_format(text, FlxColor.YELLOW, "right");
 			else Model.font_format(text, FlxColor.WHITE, "right");
 			add(text);			

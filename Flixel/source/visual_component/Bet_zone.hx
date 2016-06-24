@@ -193,7 +193,7 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		
 		if ( Main._model._game_state == "NewRoundState")
 		{			
-			Main._model.reset_model();
+			//Main._model.reset_model();
 			coin_clean(_statck);
 			coin_clean(_statck2);
 			coin_clean(_statck3);
@@ -226,12 +226,12 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		_bet5.kill();
 		_bet6.kill();		
 		
-		_bet_amount.text = "";
-		_bet_amount2.text = "";
-		_bet_amount3.text = "";
-		_bet_amount4.text = "";
-		_bet_amount5.text = "";
-		_bet_amount6.text = "";
+		//_bet_amount.text = "";
+		//_bet_amount2.text = "";
+		//_bet_amount3.text = "";
+		//_bet_amount4.text = "";
+		//_bet_amount5.text = "";
+		//_bet_amount6.text = "";
 		
 		_statck.kill();
 		_statck2.kill();
