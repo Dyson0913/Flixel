@@ -116,7 +116,11 @@ class Card extends FlxTypedGroup<FlxSprite>
 		_zone.revive();
 		_Cards.revive();
 		
-		if ( Main._model._game_state == "EndRoundState") _poker_light.kill();
+		if ( Main._model._game_state == "EndRoundState") 
+		{
+			_poker_light.kill();
+			return;
+		}
 		
 		FlxG.log.add("dk poker b" + Main._model._bigwin_banker_card);
 		FlxG.log.add("dk poker p" + Main._model._bigwin_player_card);
