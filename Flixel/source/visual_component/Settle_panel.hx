@@ -63,16 +63,14 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 		_timer_effect =  new FlxTimer();
 		disappear(1);
 		
-		//Main._model.adjust_item.dispatch(_win_title);
+		Main._model.adjust_item.dispatch(_win_title);
 		
 		
 	}
 	
 	private function appear(s:Dynamic):Void
 	{		
-		_settle_title.revive();
-		
-		_bet_amount.revive();
+		_settle_title.revive();		
 		
 		
 		amount_update(_bet_amount, Main._model._zone_comfirm_bet);
@@ -82,27 +80,31 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 			_bet_amount_title.revive();
 			_settle_amount.revive();
 			
+			Main._model._win_type = 3;
 			FlxG.log.add(Main._model._zone_settle_bet);
+			
 			_win_title.revive();
 			_win_title.scale.set(0.7, 0.7);
+			_win_title.loadGraphic(AssetPaths.win_1__png);
 			_win_title.y = 420;
 			
-			if ( Main._model._zone_settle_bet[0] != 0)
+			if ( Main._model._win_type == 1 )
 			{
 				_win_title.x = 1140;
-				//_timer_effect.start(0.2, effect, 20);
+				_timer_effect.start(0.2, effect, 20);
 			}
-			else if ( Main._model._zone_settle_bet[1] != 0)
+			else if ( Main._model._win_type == 2)
 			{
 				_win_title.x = 70;
-				//_timer_effect.start(0.2, effect, 20);
+				_timer_effect.start(0.2, effect, 20);
 			}
-			else
+			else if ( Main._model._win_type == 3)
 			{
-				//tie				
+				//tie
+				_win_title.loadGraphic(AssetPaths.win_tie__png);
 				_win_title.x = 797;
 				_win_title.y = 457;
-				//_win_title.scale.set(1, 1);				
+				_win_title.scale.set(1, 1);				
 			}
 			
 			
@@ -116,8 +118,18 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 		_settle_title.kill();
 		_bet_amount_title.kill();
 		
-		//_bet_amount.kill();
-		//_settle_amount.kill();
+		//_bet_amount.forEach(checkAttackRange);
+		for (bet in _bet_amount) 
+		{
+		  var bet:FlxText = cast(bet,FlxText);
+		  bet.text = "";
+		}
+		
+		for (bet in _settle_amount) 
+		{
+		  var bet:FlxText = cast(bet,FlxText);
+		  bet.text = "";
+		}		
 		
 		_win_title.kill();	
 		_timer_effect.cancel();
@@ -160,7 +172,7 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 			if ( i == 6) last_dis = 10;
 			var y:Float = y - (i % ColumnCnt * - 35) + last_dis;
 			
-			var text = new FlxText(x, y, 170, "1", 30, false);
+			var text = new FlxText(x, y, 170, "", 30, false);
 			if ( i == 6) Model.font_format(text, FlxColor.YELLOW, "right");
 			else Model.font_format(text, FlxColor.WHITE, "right");
 			add(text);			

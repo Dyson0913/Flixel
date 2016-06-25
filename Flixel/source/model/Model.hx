@@ -33,6 +33,7 @@ class Model extends FlxObject
 	public var _zone_un_comfirm_bet:Array<Float> = new Array<Float>();
 	public var _zone_comfirm_bet:Array<Float> = new Array<Float>();
 	public var _zone_settle_bet:Array<Float> = new Array<Float>();
+	public var _win_type:Int;
 	
 	
 	public var _bigwin_prob:Array<Float> = new Array<Float>();

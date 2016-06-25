@@ -58,7 +58,8 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 	private var _statck_res5:Array<String>;
 	private var _statck_res6:Array<String>;
 	
-	private var _high_pay:FlxSprite;
+	private var _high_pay:Btn;
+	private var _high_paytable:Btn;
 	
 	private var _cancel:FlxSprite;
 	private var _continue_bet:FlxSprite;
@@ -147,8 +148,12 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		_statck_res6 = new Array<String>();
 		creat_stack(881, 584, _statck6,_statck_res6); 		
 		
-		_high_pay = new FlxSprite(1010, 615, AssetPaths.dk_high_pay__png);
+		_high_pay = new Btn(1012, 615,0, AssetPaths.dk_high_pay_1__png,onhighDown);
 		add(_high_pay);
+		
+		_high_paytable = new Btn(1012, 287,0,AssetPaths.dk_sp_paytable__png,onhigh_payDown);
+		add(_high_paytable);
+		_high_paytable.kill();
 		
 		_cancel = new Btn(1740, 962,0, AssetPaths.cancel_1__png, onCancelDown,onCancelUp);	
 		add(_cancel);
@@ -169,7 +174,7 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		
 		_timer_effect = new FlxTimer();
 		_bet_cancel_timer =  new FlxTimer();
-		//Main._model.adjust_item.dispatch(_high_pay);
+		Main._model.adjust_item.dispatch(_high_paytable);
 	}
 	
 	private function appear(s:Dynamic):Void
@@ -244,7 +249,7 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		_continue_bet.kill();
 		
 		_high_pay.kill();		
-		
+		_high_paytable.kill();
 	}
 	
 	private function effect(timer:FlxTimer):Void
@@ -290,6 +295,17 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 	{
 		FlxG.log.add("onCancelUp ");
 		_cancel.loadGraphic(AssetPaths.cancel_1__png);
+	}
+	
+	
+	private function onhighDown(Sprite:Btn)
+	{
+		_high_paytable.revive();
+	}
+	
+	private function onhigh_payDown(Sprite:Btn)
+	{
+		_high_paytable.kill();
 	}
 	
 	

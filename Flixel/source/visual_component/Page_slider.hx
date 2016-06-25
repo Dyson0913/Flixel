@@ -70,7 +70,7 @@ class Page_slider extends FlxTypedGroup<FlxSprite>
 		_res.push(AssetPaths.dk_teach_3__png);
 		
 		
-		Main._model.adjust_item.dispatch(_teach_table);	
+		//Main._model.adjust_item.dispatch(_teach_table);	
 	}
 	
 	private function onpagedown(Sprite:Btn)

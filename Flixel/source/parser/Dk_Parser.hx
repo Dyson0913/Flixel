@@ -114,9 +114,21 @@ class Dk_Parser extends IParser
 				for (i in 0...(len))
 				{
 					var str:Dynamic = pack.result_list[i];				
-					if ( str.bet_type == "BetBWBanker") Main._model._zone_settle_bet.insert(0, str.settle_amount);
-					if ( str.bet_type == "BetBWPlayer") Main._model._zone_settle_bet.insert(1, str.settle_amount);
-					if ( str.bet_type == "BetBWTiePoint") Main._model._zone_settle_bet.insert(2, str.settle_amount);
+					if ( str.bet_type == "BetBWBanker") 
+					{
+						Main._model._zone_settle_bet.insert(0, str.settle_amount);
+						if (str.win_state != "WSLost") Main._model._win_type = 1;
+					}
+					if ( str.bet_type == "BetBWPlayer")
+					{
+						Main._model._zone_settle_bet.insert(1, str.settle_amount);
+						if (str.win_state != "WSLost") Main._model._win_type = 2;
+					}
+					if ( str.bet_type == "BetBWTiePoint")
+					{
+						Main._model._zone_settle_bet.insert(2, str.settle_amount);
+						if (str.win_state != "WSLost") Main._model._win_type = 3;
+					}
 					if ( str.bet_type == "BetBWBankerPair") Main._model._zone_settle_bet.insert(3, str.settle_amount);
 					if ( str.bet_type == "BetBWPlayerPair") Main._model._zone_settle_bet.insert(4, str.settle_amount);
 					if ( str.bet_type == "BetBWSpecial") Main._model._zone_settle_bet.insert(5, str.settle_amount);
@@ -175,9 +187,21 @@ class Dk_Parser extends IParser
 			for (i in 0...(len))
 			{
 				var str:Dynamic = pack.result_list[i];				
-				if ( str.bet_type == "BetBWBanker") Main._model._zone_settle_bet.insert(0, str.settle_amount);
-				if ( str.bet_type == "BetBWPlayer") Main._model._zone_settle_bet.insert(1, str.settle_amount);
-				if ( str.bet_type == "BetBWTiePoint") Main._model._zone_settle_bet.insert(2, str.settle_amount);
+				if ( str.bet_type == "BetBWBanker") 
+				{
+					Main._model._zone_settle_bet.insert(0, str.settle_amount);
+					if (str.win_state != "WSLost") Main._model._win_type = 1;
+				}
+				if ( str.bet_type == "BetBWPlayer")
+				{
+					Main._model._zone_settle_bet.insert(1, str.settle_amount);
+					if (str.win_state != "WSLost") Main._model._win_type = 2;
+				}
+				if ( str.bet_type == "BetBWTiePoint")
+				{
+					Main._model._zone_settle_bet.insert(2, str.settle_amount);
+					if (str.win_state != "WSLost") Main._model._win_type = 3;
+				}
 				if ( str.bet_type == "BetBWBankerPair") Main._model._zone_settle_bet.insert(3, str.settle_amount);
 				if ( str.bet_type == "BetBWPlayerPair") Main._model._zone_settle_bet.insert(4, str.settle_amount);
 				if ( str.bet_type == "BetBWSpecial") Main._model._zone_settle_bet.insert(5, str.settle_amount);
