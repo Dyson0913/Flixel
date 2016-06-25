@@ -58,7 +58,7 @@ class History_recode extends FlxTypedGroup<FlxSprite>
 			_history_ball.push(card);			
 			_ball_group.add(card);
 			
-			var _credit:FlxText = new FlxText(x-1,y-4, 50, "1", 40,false);			
+			var _credit:FlxText = new FlxText(x-1,y-4, 50, "", 40,true);			
 			Model.font_format(_credit, FlxColor.WHITE, "center");
 			add(_credit);			
 			_history_t.push(_credit);
@@ -85,7 +85,7 @@ class History_recode extends FlxTypedGroup<FlxSprite>
 		_ball_group.revive();
 		_history_text.revive();
 		
-		return;
+		
 		var history:Array<String> = Main._model._recode_hisotry;				
 		var RowCnt:Int = 10;
 		var ColumnCnt:Int = 6;
@@ -105,7 +105,7 @@ class History_recode extends FlxTypedGroup<FlxSprite>
 			var y:Float = 137+ (i % ColumnCnt * 48);
 			
 			point.reset(x-1, y-4);
-			//point.setFormat(AssetPaths.arial_0__ttf, 40, FlxColor.WHITE, "center");
+			point.setFormat(AssetPaths.arial_0__ttf, 40, FlxColor.WHITE, "center");
 			if ( str.winner == "BetBWPlayer") 
 			{
 				sp.loadGraphic(AssetPaths.b_ball__png);
@@ -126,9 +126,9 @@ class History_recode extends FlxTypedGroup<FlxSprite>
 				//sp
 				sp.loadGraphic(AssetPaths.y_ball__png);
 				point.reset(x, y +12);
-				//point.setFormat(AssetPaths.arial_0__ttf, 15, FlxColor.BLACK, "center");
+				point.setFormat(AssetPaths.arial_0__ttf, 15, FlxColor.BLACK, "center");
 				
-				var s:String = "1";
+				var s:String = "";
 				if ( str.winner == "WSBWRoyalFlush") s = "RTF";
 				else if ( str.winner == "WSBWStraightFlush") s = "STF";
 				else if ( str.winner == "WSBWFourOfAKind") s = "4K";
@@ -136,7 +136,7 @@ class History_recode extends FlxTypedGroup<FlxSprite>
 				else if ( str.winner == "WSBWFlush") s = "FLU";
 				else if ( str.winner == "WSBWStraight") s = "STR";
 				
-				//point.text = s;
+				point.text = s;
 			}
 		}
 		

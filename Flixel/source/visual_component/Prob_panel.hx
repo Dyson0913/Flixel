@@ -31,8 +31,6 @@ class Prob_panel extends FlxTypedGroup<FlxSprite>
 		_prob_text = new FlxGroup();
 		creat_prob_amount(444, 179, _prob_text);
 		
-		
-		
 		//event
 		Main._model.NewRoundState.add(disappear);
 		Main._model.StartBetState.add(disappear);
@@ -112,7 +110,7 @@ class Prob_panel extends FlxTypedGroup<FlxSprite>
 			var x:Float = x;			
 			var y:Float = y - (i % ColumnCnt * - 52);
 			
-			var text = new FlxText(x, y, 170, "1", 30, false);
+			var text = new FlxText(x, y, 170, "", 30, true);
 			if ( i == 6) Model.font_format(text, FlxColor.YELLOW, "right");
 			else Model.font_format(text, FlxColor.WHITE, "right");
 			add(text);			

@@ -53,14 +53,14 @@ class Card extends FlxTypedGroup<FlxSprite>
 		_poker_po_data.push(new Point(1293, 621));
 		_poker_po_data.push(new Point(1500, 621));
 		
-		_player_point = new FlxText(316,558 , 170, "", 40, false);		
+		_player_point = new FlxText(316,558 , 170, "", 40, true);		
 		Model.font_format(_player_point, 0xffdb94, "center");
 		add(_player_point);
 		
 		_player_sp = new FlxSprite(414, 562, AssetPaths.point_text__png);
 		add(_player_sp);		
 		
-		_banker_point = new FlxText(1400,558 , 170, "", 40, false);		
+		_banker_point = new FlxText(1400,558 , 170, "", 40, true);		
 		Model.font_format(_banker_point, 0xffdb94, "center");
 		add(_banker_point);
 		

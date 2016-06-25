@@ -63,7 +63,7 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 		_timer_effect =  new FlxTimer();
 		disappear(1);
 		
-		Main._model.adjust_item.dispatch(_win_title);
+//		Main._model.adjust_item.dispatch(_win_title);
 		
 		
 	}
@@ -172,7 +172,7 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 			if ( i == 6) last_dis = 10;
 			var y:Float = y - (i % ColumnCnt * - 35) + last_dis;
 			
-			var text = new FlxText(x, y, 170, "", 30, false);
+			var text = new FlxText(x, y, 170, "", 30, true);
 			if ( i == 6) Model.font_format(text, FlxColor.YELLOW, "right");
 			else Model.font_format(text, FlxColor.WHITE, "right");
 			add(text);			

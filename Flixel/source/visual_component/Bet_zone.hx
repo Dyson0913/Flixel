@@ -100,27 +100,27 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		add(_bet5);
 		add(_bet6);
 		
-		_bet_amount = new FlxText(_bet.x + 29, _bet.y + 3, 170, "", 35, false);
+		_bet_amount = new FlxText(_bet.x + 29, _bet.y + 3, 170, "", 35, true);
 		Model.font_format(_bet_amount, FlxColor.WHITE, "right");
 		add(_bet_amount);
 		
-		_bet_amount2 = new FlxText(_bet2.x + 29, _bet2.y + 3, 170, "", 35, false);
+		_bet_amount2 = new FlxText(_bet2.x + 29, _bet2.y + 3, 170, "", 35, true);
 		Model.font_format(_bet_amount2, FlxColor.WHITE, "right");
 		add(_bet_amount2);
 		
-		_bet_amount3 = new FlxText(_bet3.x + 29, _bet3.y + 3, 170, "", 35, false);
+		_bet_amount3 = new FlxText(_bet3.x + 29, _bet3.y + 3, 170, "", 35, true);
 		Model.font_format(_bet_amount3, FlxColor.WHITE, "right");
 		add(_bet_amount3);
 		
-		_bet_amount4 = new FlxText(_bet4.x + 29, _bet4.y + 3, 170, "", 35, false);
+		_bet_amount4 = new FlxText(_bet4.x + 29, _bet4.y + 3, 170, "", 35, true);
 		Model.font_format(_bet_amount4, FlxColor.WHITE, "right");
 		add(_bet_amount4);
 		
-		_bet_amount5 = new FlxText(_bet5.x + 29, _bet5.y + 3, 170, "", 35, false);
+		_bet_amount5 = new FlxText(_bet5.x + 29, _bet5.y + 3, 170, "", 35, true);
 		Model.font_format(_bet_amount5, FlxColor.WHITE, "right");
 		add(_bet_amount5);
 		
-		_bet_amount6 = new FlxText(_bet6.x + 29, _bet6.y + 3, 170, "", 35, false);
+		_bet_amount6 = new FlxText(_bet6.x + 29, _bet6.y + 3, 170, "", 35, true);
 		Model.font_format(_bet_amount6, FlxColor.WHITE, "right");
 		add(_bet_amount6);
 		
@@ -174,7 +174,7 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		
 		_timer_effect = new FlxTimer();
 		_bet_cancel_timer =  new FlxTimer();
-		Main._model.adjust_item.dispatch(_high_paytable);
+		//Main._model.adjust_item.dispatch(_high_paytable);
 	}
 	
 	private function appear(s:Dynamic):Void
@@ -198,7 +198,7 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		
 		if ( Main._model._game_state == "NewRoundState")
 		{			
-			//Main._model.reset_model();
+			Main._model.reset_model();
 			coin_clean(_statck);
 			coin_clean(_statck2);
 			coin_clean(_statck3);
@@ -231,12 +231,12 @@ class Bet_zone extends FlxTypedGroup<FlxSprite>
 		_bet5.kill();
 		_bet6.kill();		
 		
-		//_bet_amount.text = "";
-		//_bet_amount2.text = "";
-		//_bet_amount3.text = "";
-		//_bet_amount4.text = "";
-		//_bet_amount5.text = "";
-		//_bet_amount6.text = "";
+		_bet_amount.text = "";
+		_bet_amount2.text = "";
+		_bet_amount3.text = "";
+		_bet_amount4.text = "";
+		_bet_amount5.text = "";
+		_bet_amount6.text = "";
 		
 		_statck.kill();
 		_statck2.kill();

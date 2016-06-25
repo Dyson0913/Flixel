@@ -78,14 +78,7 @@ class Model extends FlxObject
 		//customer
 		_parser = new Dk_Parser();
 		
-		reset_model();
-		
-		//_zone_settle_bet.push(0);
-		//_zone_settle_bet.push(0);
-		//_zone_settle_bet.push(0);
-		//_zone_settle_bet.push(0);
-		//_zone_settle_bet.push(0);
-		//_zone_settle_bet.push(0);
+		reset_model();		
 		
 		_coin_list.push(5);
 		_coin_list.push(500);
@@ -320,7 +313,7 @@ class Model extends FlxObject
 	public static function font_format(target:FlxText,color:FlxColor,alig:String):Void
 	{
 		//_credit.setFormat(AssetPaths.Times_Bold__ttf, _credit.size, FlxColor.WHITE, "right");
-		//target.setFormat(AssetPaths.arial_0__ttf, target.size, color, alig);
+		target.setFormat(AssetPaths.arial_0__ttf, target.size, color, alig);
 	}
 	
 }

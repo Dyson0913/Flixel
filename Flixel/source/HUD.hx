@@ -42,7 +42,7 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		add(_credit_bg);		
 		//_credit.antialiasing = true;
 		
-		_credit = new FlxText(_credit_bg.x + 70, _credit_bg.y + 15, 350, "", 40, false);
+		_credit = new FlxText(_credit_bg.x + 70, _credit_bg.y + 15, 350, "", 40, true);
 		Model.font_format(_credit, FlxColor.WHITE, "right");
 		add(_credit);
 		
