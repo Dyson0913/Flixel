@@ -22,8 +22,6 @@ import flixel.addons.display.FlxPieDial;
 import flixel.addons.display.FlxPieDial.FlxPieDialShape;
 import flixel.tweens.FlxTween;
 
-import flixel.input.mouse.FlxMouseEventManager;
-
 class Dk extends FlxTypedGroup<FlxSprite>
 {
 	private var _bg:FlxSprite;	
