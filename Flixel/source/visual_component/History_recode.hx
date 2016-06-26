@@ -146,7 +146,8 @@ class History_recode extends FlxTypedGroup<FlxSprite>
 	private function disappear(s:Dynamic):Void
 	{		
 		_zone.kill();
-		_ball_group.kill();		
+		_ball_group.kill();
+		_history_text.kill();
 	}
 	
 }

@@ -122,8 +122,8 @@ class MenuState extends FlxState
 		_dkcanvs = new Dk();
 		add(_dkcanvs);
 		
-		_adjust = new Adjust_tool();
-		add(_adjust);
+		//_adjust = new Adjust_tool();
+		//add(_adjust);
 		
 		_bet_zone = new Bet_zone();
 		add(_bet_zone);

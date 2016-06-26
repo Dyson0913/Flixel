@@ -60,6 +60,7 @@ class Page_slider extends FlxTypedGroup<FlxSprite>
 		
 		_teach_dot = new FlxGroup();
 		creat_dot(_teach_bg.x+605, _teach_bg.y+856, _teach_dot);		
+		_teach_dot.kill();
 		
 		_teach_table = new FlxSprite(377,133, AssetPaths.dk_teach_1__png);
 		add(_teach_table);
@@ -134,8 +135,7 @@ class Page_slider extends FlxTypedGroup<FlxSprite>
 		_teach_close.revive();
 		_teach_table.revive();
 		_teach_right.revive();
-		_teach_left.revive();
-		
+		_teach_left.revive();		
 		_teach_dot.revive();
 		
 		var i:Int = 0;

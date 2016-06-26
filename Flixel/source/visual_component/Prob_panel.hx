@@ -54,7 +54,8 @@ class Prob_panel extends FlxTypedGroup<FlxSprite>
 	
 	private function disappear(s:Dynamic):Void
 	{
-		_prob_bar.kill();		
+		_prob_bar.kill();
+		_prob_text.kill();
 	}
 	
 	private function creat_prob_bar(x:Float,y:Float,target:FlxGroup):Void

@@ -44,17 +44,17 @@ class Dk extends FlxTypedGroup<FlxSprite>
 		_bg = new FlxSprite().loadGraphic(AssetPaths.dk_bg__png);
 		add(_bg);
 		
-		_desk = new FlxSprite().loadGraphic(AssetPaths.dk_desk__png);		
+		//_desk = new FlxSprite().loadGraphic(AssetPaths.dk_desk__png);		
 		//_desk = new FlxSprite().loadGraphic(AssetPaths.demo02__jpg);
-		add(_desk);
+		//add(_desk);
 		
 		//new Btn(10, 20, AssetPaths.dk_girl__png,null,null,drag,null);
-		_girl = new FlxSprite(686,24).loadGraphic(AssetPaths.dk_girl_1__png);		
-		_girl.antialiasing = true;		
-		add(_girl);
+		//_girl = new FlxSprite(686,24).loadGraphic(AssetPaths.dk_girl_1__png);		
+		//_girl.antialiasing = true;		
+		//add(_girl);
 		
-		_loadpic = new FlxButton(700, 200, "dk", clickPlay);
-		add(_loadpic);
+		//_loadpic = new FlxButton(700, 200, "dk", clickPlay);
+		//add(_loadpic);
 		
 		Main._model.NewRoundState.add(Round_start);
 		Main._model.EndRoundState.add(Round_end);
