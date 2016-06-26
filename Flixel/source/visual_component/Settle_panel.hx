@@ -119,17 +119,18 @@ class Settle_panel extends FlxTypedGroup<FlxSprite>
 		_bet_amount_title.kill();
 		
 		//_bet_amount.forEach(checkAttackRange);
-		for (bet in _bet_amount) 
-		{
-		  var bet:FlxText = cast(bet,FlxText);
-		  bet.text = "";
-		}
-		
-		for (bet in _settle_amount) 
-		{
-		  var bet:FlxText = cast(bet,FlxText);
-		  bet.text = "";
-		}		
+		_bet_amount.kill();
+		//for (bet in _bet_amount) 
+		//{
+		  //var bet:FlxText = cast(bet,FlxText);
+		  //bet.text = "";
+		//}
+		_settle_amount.kill();
+		//for (bet in _settle_amount) 
+		//{
+		  //var bet:FlxText = cast(bet,FlxText);
+		  //bet.text = "";
+		//}		
 		
 		_win_title.kill();	
 		_timer_effect.cancel();

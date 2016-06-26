@@ -30,8 +30,7 @@ class History_recode extends FlxTypedGroup<FlxSprite>
 	{
 		super();		
 		
-		_zone = new FlxSprite(1291, 128).loadGraphic(AssetPaths.history__png);
-		_zone.antialiasing = true;
+		_zone = new FlxSprite(1291, 128).loadGraphic(AssetPaths.history__png);		
 		add(_zone);		
 		
 		_history_ball = new Array<FlxSprite>();
@@ -58,11 +57,11 @@ class History_recode extends FlxTypedGroup<FlxSprite>
 			_history_ball.push(card);			
 			_ball_group.add(card);
 			
-			var _credit:FlxText = new FlxText(x-1,y-4, 50, "", 40,true);			
-			Model.font_format(_credit, FlxColor.WHITE, "center");
-			add(_credit);			
-			_history_t.push(_credit);
-			_history_text.add(_credit);
+			var point:FlxText = new FlxText(x-1,y-4, 50, "", 40,true);			
+			Model.font_format(point, FlxColor.WHITE, "center");
+			add(point);			
+			_history_t.push(point);
+			_history_text.add(point);
 		}
 		
 		
@@ -89,8 +88,11 @@ class History_recode extends FlxTypedGroup<FlxSprite>
 		var history:Array<String> = Main._model._recode_hisotry;				
 		var RowCnt:Int = 10;
 		var ColumnCnt:Int = 6;
+		var str:Dynamic = Main._model._recode_hisotry[57];
+		
 		for (i in 0...(history.length))
 		{
+			
 			var str:Dynamic = Main._model._recode_hisotry[i];
 			//FlxG.log.add(str);
 			var sp:FlxSprite =  _history_ball[i];
@@ -105,30 +107,30 @@ class History_recode extends FlxTypedGroup<FlxSprite>
 			var y:Float = 137+ (i % ColumnCnt * 48);
 			
 			point.reset(x-1, y-4);
-			point.setFormat(AssetPaths.arial_0__ttf, 40, FlxColor.WHITE, "center");
+			point.setFormat(AssetPaths.arial_0__ttf, 40, FlxColor.WHITE, "center");			
+			
 			if ( str.winner == "BetBWPlayer") 
 			{
 				sp.loadGraphic(AssetPaths.b_ball__png);
-				point.text = str.point;
+				point.text = Std.string(str.point);
 			}
 			else if ( str.winner == "BetBWBanker") 
 			{
 				sp.loadGraphic(AssetPaths.r_ball__png);	
-				point.text = str.point;
+				point.text = Std.string(str.point);
 			}
 			else if ( str.winner == "None") 
-			{
+			{				
 				sp.loadGraphic(AssetPaths.g_ball__png);
-				point.text = str.point;
+				point.text = Std.string(str.point);
 			}
 			else
 			{
-				//sp
 				sp.loadGraphic(AssetPaths.y_ball__png);
 				point.reset(x, y +12);
 				point.setFormat(AssetPaths.arial_0__ttf, 15, FlxColor.BLACK, "center");
 				
-				var s:String = "";
+				var s:String = "1";
 				if ( str.winner == "WSBWRoyalFlush") s = "RTF";
 				else if ( str.winner == "WSBWStraightFlush") s = "STF";
 				else if ( str.winner == "WSBWFourOfAKind") s = "4K";
@@ -139,17 +141,12 @@ class History_recode extends FlxTypedGroup<FlxSprite>
 				point.text = s;
 			}
 		}
-		
-		
-		
-		
 	}	
 	
 	private function disappear(s:Dynamic):Void
 	{		
 		_zone.kill();
-		_ball_group.kill();
-		_history_text.kill();
+		_ball_group.kill();		
 	}
 	
 }

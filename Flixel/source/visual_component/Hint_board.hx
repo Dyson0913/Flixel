@@ -19,10 +19,6 @@ class Hint_board extends FlxTypedGroup<FlxSprite>
 	private var _hint:FlxSprite;
 	private var _hintext:FlxText;
 	
-	
-	//[Embed(source = "fonts/mandarin.ttf", fontFamily = "system")];
-	//protected var junk:String;
-	
 	public function new() 
 	{
 		super();

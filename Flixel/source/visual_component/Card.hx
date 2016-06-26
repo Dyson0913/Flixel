@@ -223,8 +223,9 @@ class Card extends FlxTypedGroup<FlxSprite>
 		
 		_player_sp.kill();
 		_banker_sp.kill();
-		_player_point.kill();
-		_banker_point.kill();
+		
+		_player_point.text = "";
+		_banker_point.text = "";
 		
 		_poker_mi_back.kill();
 		_poker_mi_Target.kill();

@@ -47,7 +47,7 @@ class Main extends Sprite
 		
 		//TODO test class
 		Assets.loadText("assets/data/pack_DK_normal.txt").onComplete(pack_loading_Ok);
-		
+		FlxG.camera.antialiasing = true;
 		
 		
 	}

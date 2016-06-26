@@ -13,8 +13,7 @@ class PlayState extends FlxState
 	
 	override public function create():Void
 	{
-		super.create();
-		add(new FlxText(0, 0, 0, "playerState"));
+		super.create();		
 		//FlxG.switchState(new PlayState());
 		
 	}
@@ -23,14 +22,5 @@ class PlayState extends FlxState
 	{
 		super.update(elapsed);
 	}
-	
-	
-	
-	//private function dysonDown(s:BitmapData):Void
-	//{		
-		//_player.set_bitmap(s);
-	//}
-	
-	
 	
 }
