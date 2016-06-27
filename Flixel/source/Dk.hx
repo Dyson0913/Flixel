@@ -8,6 +8,8 @@ import flixel.FlxG;
 import flixel.group.FlxGroup;
 import flixel.FlxSprite;
 import flixel.text.FlxText;
+import js.Browser;
+import js.FullScreenApi;
 import model.Model;
 
 
@@ -53,8 +55,8 @@ class Dk extends FlxTypedGroup<FlxSprite>
 		//_girl.antialiasing = true;		
 		//add(_girl);
 		
-		//_loadpic = new FlxButton(700, 200, "dk", clickPlay);
-		//add(_loadpic);
+		_loadpic = new FlxButton(700, 200, "dk", clickPlay);
+		add(_loadpic);
 		
 		Main._model.NewRoundState.add(Round_start);
 		Main._model.EndRoundState.add(Round_end);
@@ -74,6 +76,7 @@ class Dk extends FlxTypedGroup<FlxSprite>
 		//FlxSpriteUtil.alphaMaskFlxSprite(_timerbg,_dial,_targ);
 		
 		//FlxTween.tween(_dial, { amount: 1.0 }, 2.0);
+		
 	}	
 	
 	private function Round_start(s:Dynamic):Void
@@ -91,7 +94,17 @@ class Dk extends FlxTypedGroup<FlxSprite>
 	{
 		//Assets.loadBitmapData(AssetPaths.dk_girl__png).onComplete(dysonDown);	
 		//Main._model.adjust_item.dispatch(_girl);
-		Main._model.adjust_item.dispatch(_dial);
+		//Main._model.adjust_item.dispatch(_dial);
+		//if ( Browser.document.fullscreenElement == null )
+    //Browser.document.documentElement.requestFullscreen();
+//else
+    //Browser.document.exitFullscreen();
+		
+		untyped if ( Browser.document.webkitFullscreenElement == null )
+    untyped Browser.document.documentElement.webkitRequestFullscreen();
+else
+    untyped Browser.document.webkitExitFullscreen();
+		//FlxG.log.add("dk init" +FullScreenApi.supportsFullScreen);
 	}
 	
 	private function dysonDown(s:BitmapData):Void
