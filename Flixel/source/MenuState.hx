@@ -36,13 +36,10 @@ class MenuState extends FlxState
 {
 	private var _hud:HUD;
 	
+	//game
 	private var _dkcanvs:Dk;
-	private var _PAcanvs:PA;
-	private var _7pkcanvs:Super7pk;
-	
-	private var _dk:FlxButton;
-	private var _pa:FlxButton;
-	private var _7pk:FlxButton;
+	private var _slot_canvs:Slot;
+	private var _templat:Template_State;
 	
 	public var _hint_board:Hint_board;
 	
@@ -73,21 +70,6 @@ class MenuState extends FlxState
 		//event
 		Main._model.creditUpdate.add(credit_update);
 		Main._model.join_game_success.add(join_game_success);
-		
-		return;
-		
-		_dk = new FlxButton(250, 400, "dk", dk);		
-		add(_dk);
-		
-		_pa = new FlxButton(400, 400, "pa", pa);		
-		add(_pa);		
-		
-		_7pk = new FlxButton(500, 400, "7pk", click7pk);		
-		add(_7pk);		
-		
-		add(_hud);
-		
-		
 	}
 	
 	private function credit_update(data:Dynamic):Void
@@ -112,7 +94,9 @@ class MenuState extends FlxState
 	
 	private function join_game_success(data:Dynamic):Void
 	{
-		dk();
+		//dk();		
+		slot();
+		//template();
 	}
 	
 	private function dk():Void
@@ -161,22 +145,21 @@ class MenuState extends FlxState
 		add(_hud);		
 	}
 	
-	private function pa():Void
+	private function slot():Void
 	{		
 		remove(_hud);
-		_PAcanvs = new PA();
-		add(_PAcanvs);
-		add(_hud);
 		
+		_slot_canvs = new Slot();
+		add(_slot_canvs);
+		add(_hud);
 	}
 	
-	private function click7pk():Void
-	{		
+	private function template():Void
+	{
 		remove(_hud);
-		_7pkcanvs = new Super7pk();
-		add(_7pkcanvs);
+		_templat = new Template_State();
+		add(_templat);
 		add(_hud);
-		
 	}
 	
 	override public function update(elapsed:Float):Void

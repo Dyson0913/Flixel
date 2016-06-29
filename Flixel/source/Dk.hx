@@ -8,8 +8,13 @@ import flixel.FlxG;
 import flixel.group.FlxGroup;
 import flixel.FlxSprite;
 import flixel.text.FlxText;
+
+ #if js
 import js.Browser;
 import js.FullScreenApi;
+ #end
+
+
 import model.Model;
 
 
@@ -94,17 +99,13 @@ class Dk extends FlxTypedGroup<FlxSprite>
 	{
 		//Assets.loadBitmapData(AssetPaths.dk_girl__png).onComplete(dysonDown);	
 		//Main._model.adjust_item.dispatch(_girl);
-		//Main._model.adjust_item.dispatch(_dial);
-		//if ( Browser.document.fullscreenElement == null )
-    //Browser.document.documentElement.requestFullscreen();
-//else
-    //Browser.document.exitFullscreen();
-		
+		//Main._model.adjust_item.dispatch(_dial);	   
+		#if js
 		untyped if ( Browser.document.webkitFullscreenElement == null )
-    untyped Browser.document.documentElement.webkitRequestFullscreen();
-else
-    untyped Browser.document.webkitExitFullscreen();
-		//FlxG.log.add("dk init" +FullScreenApi.supportsFullScreen);
+			untyped Browser.document.documentElement.webkitRequestFullscreen();
+		else
+			untyped Browser.document.webkitExitFullscreen();
+		#end		
 	}
 	
 	private function dysonDown(s:BitmapData):Void
