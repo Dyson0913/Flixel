@@ -20,7 +20,6 @@ import visual_component.Settle_panel;
 import visual_component.Timer;
 
 
-
 import flash.display.BitmapData;
 
 import Std;
@@ -56,8 +55,6 @@ class MenuState extends FlxState
 	private var _timer:Timer;
 	private var _Prob_panel:Prob_panel;
 	private var _page_slider:Page_slider;
-	
-	
 	
 	override public function create():Void
 	{
@@ -98,6 +95,7 @@ class MenuState extends FlxState
 		slot();
 		//template();
 	}
+	
 	
 	private function dk():Void
 	{		
@@ -160,11 +158,6 @@ class MenuState extends FlxState
 		_templat = new Template_State();
 		add(_templat);
 		add(_hud);
-	}
-	
-	override public function update(elapsed:Float):Void
-	{
-		super.update(elapsed);
 	}
 	
 	override public function destroy():Void
