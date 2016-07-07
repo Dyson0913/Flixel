@@ -260,7 +260,7 @@ class Card extends FlxTypedGroup<FlxSprite>
 		_poker_mi_back.revive();		
 		_poker_mi_Target.revive();
 		
-		_poker_mi_Target.loadGraphic("assets/images/share/poker/" + (_flip_idx) + ".png");
+		_poker_mi_Target.loadGraphic("assets/images/share/poker/poker_" + (_flip_idx) + ".png");
 		FlxTween.tween(_poker_mi_Target, { x: _poker_mi_back.x +160 }, 1, { onComplete: mi_poker_ok });
 	}
 	
@@ -328,7 +328,7 @@ class Card extends FlxTypedGroup<FlxSprite>
 	
 	private function poker_change(card:FlxSprite,idx:Int):Void
 	{
-		card.loadGraphic("assets/images/share/poker/" + (idx) + ".png");
+		card.loadGraphic("assets/images/share/poker/poker_" + (idx) + ".png");
 	}
 	
 	private function poker_turn(card:FlxSprite):Void
@@ -339,7 +339,7 @@ class Card extends FlxTypedGroup<FlxSprite>
 	
 	private function pickCard(Tween:FlxTween):Void
 	{		
-		_flip_card.loadGraphic("assets/images/share/poker/" + (_flip_idx) + ".png");
+		_flip_card.loadGraphic("assets/images/share/poker/poker_" + (_flip_idx) + ".png");
 		FlxTween.tween(_flip_card.scale, { x: 0.39 }, 0.2 / 2);
 	}
 	

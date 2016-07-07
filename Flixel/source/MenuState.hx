@@ -91,8 +91,8 @@ class MenuState extends FlxState
 	
 	private function join_game_success(data:Dynamic):Void
 	{
-		//dk();		
-		slot();
+		dk();		
+		//slot();
 		//template();
 	}
 	
